@@ -3,6 +3,6 @@ import './container.css'
 
 export default function Container({children}) {
   return (
-    <div className='lg:container lg:mx-auto containers'>{children}</div>
+    <div className='xl:container xl:mx-auto containers'>{children}</div>
   )
 }

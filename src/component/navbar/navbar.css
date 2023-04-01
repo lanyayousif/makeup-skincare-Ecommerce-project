@@ -13,7 +13,7 @@ nav.scrolled{
     left: 0;right: 0;
     height: 70px;
     transition: all 1s;
-    padding-top: 1rem
+    /* padding-top: 1rem */
 }
 .nav-parts{
     height:100%;
@@ -64,12 +64,13 @@ nav.scrolled .nav_elements ul li a{
         cursor: pointer;
     }
     nav.scrolled .nav_elements{
-        background-color: var(--back-weight-color);   
+        background-color: var(--back-weight-color); 
+        overflow: scroll;  
     }
     .nav_elements{
         position: absolute;
         left: 0;
-        top: 70px;
+        top: 0px;
         bottom: 0;
         background-color:var(--back-weight-color);
         width: 0;
@@ -78,36 +79,36 @@ nav.scrolled .nav_elements ul li a{
         height: 0;
         opacity: 0;
         overflow: scroll;
-        transition: width .4s ease-in-out;
+        transition: all .4s ease-in-out;
     }
 
     .nav_elements.active{
         width: 100vw;
-        height: 90vh;
+        height: 100vh;
         transition: width .4s ease-in-out;
         opacity: 1;
 
     }
-    .nav_elements ul{
+    .nav_elements ul.nav-items{
         display: flex;
         flex-direction: column;
         margin: 1rem 2rem 3rem;
         align-items: center;
     }
-    .nav_elements ul li{
+    .nav_elements ul.nav-items li{
         margin-right: unset;
         width: fit-content;
         width: 100%;
         margin: 22px auto 0;
         text-align: left;
     }
-    .nav_elements ul li a{
+    .nav_elements ul.nav-items li a{
         display: inline-block;
     }
     .nav_elements button.main-button{
         margin: 22px auto 0;
     }
-    .nav_elements ul li:not(:last-child){
+    .nav_elements ul.nav-items li:not(:last-child){
        border-bottom: 1px solid var(--purple-text-color);
        padding-bottom:4px;
     } 

@@ -1,0 +1,15 @@
+header{
+    font-family: 'Roboto Mono', monospace;
+    position: relative;
+    background-image: url(../../assets/img/header.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+header .header-text-box {
+    top: 30vh;
+}
+
+header .header-text-box  button{
+padding: 1rem 4rem;
+}

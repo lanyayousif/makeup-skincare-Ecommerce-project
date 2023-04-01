@@ -3,6 +3,49 @@
 @tailwind utilities;
 
 
+@layer base {
+  .h1 {
+    font-size: theme('fontSize.5xl');
+    color: theme('colors.black-text');
+    line-height: theme('lineHeight.14');
+    @apply font-black;
+    @apply capitalize;
+
+  }
+  .h2 {
+    font-size: theme('fontSize.4xl');
+    line-height: theme('lineHeight.14');
+    @apply font-bold;
+    @apply capitalize;
+  }
+  .h3 {
+    font-size: theme('fontSize.3xl');
+    line-height: theme('lineHeight.13');
+    @apply font-semibold;
+    @apply capitalize;
+  }
+  .h4 {
+    font-size: theme('fontSize.2xl');
+    line-height: theme('lineHeight.11');
+    @apply font-medium;
+    @apply capitalize;
+  }
+  .h5 {
+    font-size: theme('fontSize.xl');
+    line-height: theme('lineHeight.10');
+    @apply font-medium;
+    @apply capitalize;
+  }
+  .h6 {
+    font-size: theme('fontSize.base');
+    line-height: theme('lineHeight.7');
+    @apply font-medium;
+    @apply capitalize;
+  }
+
+}
+
+
 *,
 ::after,
 ::before{
@@ -15,3 +58,5 @@ body{
 font-family: sans-serif;
 font-family: 'Roboto Mono', monospace;
 }
+
+

@@ -5,6 +5,8 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+
 
 
 import Container from '../container/Container'
@@ -48,8 +50,29 @@ function Navbar() {
                    <span><FontAwesomeIcon className='text-2xl' icon={faBars} /></span>
                 </div>
 
+                {/* nav menu responsive */}
                 <div className={`nav_elements ${shownav && 'active'} `}>
-                    <ul className='flex justify-between items-baseline lg-flex-row sm-flex-col list-none'>
+                    {/* nav menu top  */}
+                    <div className="close_menu_part pt-5 px-5  hidden md:block sm:block xsm:block ">
+                        <div className='flex justify-between items-center '>
+                                <div className="humberger-btn w-8 h-8  hidden md:inline-block sm:inline-block xsm:inline-block inline-block order-first" onClick={handlShowNavbar} >
+                                    <span><FontAwesomeIcon className='text-2xl' icon={faXmark} /></span>
+                                </div>
+                                <div className="logo-part ">
+                                    <Logo/>
+                                </div>
+                                <div className="icons sm:order-last md:order-last xsm:order-last">
+                                    <ul className='flex justify-between items-center'>
+                                        <li><NavLink to="/"><FontAwesomeIcon icon={faMagnifyingGlass} /></NavLink></li>
+                                        <li><NavLink to="/"><FontAwesomeIcon icon={faHeart} /></NavLink></li>
+                                        <li><NavLink to="/"><FontAwesomeIcon icon={faBagShopping} /></NavLink></li>
+                                    </ul>
+                                </div>
+                        </div>
+
+                    </div>
+                    {/* nav items */}
+                    <ul className='nav-items flex justify-between items-baseline lg-flex-row sm-flex-col list-none'>
                         <li><NavLink to="/">Bestseller</NavLink></li>
                         <li><NavLink to="/skin">Skin</NavLink></li>
                         <li><NavLink to="/body">Body</NavLink></li>
@@ -59,13 +82,13 @@ function Navbar() {
                     <Button hide={"hidden md:inline-block sm:inline-block xsm:inline-block"} >account</Button>
                     </ul>
                 </div>
-
+                {/* nav icons */}
                 <div className="icons sm:order-last md:order-last xsm:order-last">
                     <ul className='flex justify-between items-center'>
-                        <li><FontAwesomeIcon icon={faMagnifyingGlass} /></li>
-                        <li><FontAwesomeIcon icon={faHeart} /></li>
-                        <li className='lg:visible hidden lg:inline-block'><FontAwesomeIcon icon={faUser} /></li>
-                        <li><FontAwesomeIcon icon={faBagShopping} /></li>
+                        <li><NavLink to="/"><FontAwesomeIcon icon={faMagnifyingGlass} /></NavLink></li>
+                        <li><NavLink to="/"><FontAwesomeIcon icon={faHeart} /></NavLink></li>
+                        <li className='lg:visible hidden lg:inline-block xl:inline-block 2xl:inline-block'><NavLink to="/"><FontAwesomeIcon icon={faUser} /></NavLink></li>
+                        <li><NavLink to="/"><FontAwesomeIcon icon={faBagShopping} /></NavLink></li>
                     </ul>
                 </div>
 

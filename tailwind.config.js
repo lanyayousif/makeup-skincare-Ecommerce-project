@@ -33,6 +33,24 @@ export default {
         'white-text':'#fff',
         'purple-text':'#80597A'
       },
+      fontSize: {
+        sm: '0.8rem',
+        base: '1rem',
+        xl: '1.25rem',
+        '2xl': '1.563rem',
+        '3xl': '1.953rem',
+        '4xl': '2.441rem',
+        '5xl': '3.052rem',
+      },
+      lineHeight: {
+        '11': '3rem',
+        '12': '4rem',
+        '13': '5rem',
+        '14': '6rem',
+      },
+      height: {
+        '128': '32rem',
+      }
 
     },
   },
