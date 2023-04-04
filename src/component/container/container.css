@@ -1,8 +1,7 @@
-/* .container{
-    max-width: 1200px;
-    margin: 0 auto;
+.containers{
+    /* max-width: 1200px; */
     padding: 0 40px;
-} */
+}
 
 @media (max-width:600px){
     .containers{

@@ -1,6 +1,8 @@
 nav{
     height: 70px;
-    position: sticky;
+    /* position: sticky; */
+    position: absolute;
+    left: 0;top: 0;right: 0;
     z-index: 11111111111111;
 }
 nav .containers{
@@ -76,7 +78,7 @@ nav.scrolled .nav_elements ul li a{
         width: 0;
         overflow: hidden;
         opacity: 1;
-        height: 0;
+        height: 100vh;
         opacity: 0;
         overflow: scroll;
         transition: all .4s ease-in-out;

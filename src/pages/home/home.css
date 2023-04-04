@@ -1,0 +1,39 @@
+.about_box{
+    max-width: 1000px;
+}
+.about_box p{
+    max-width: 700px;
+    word-break: break-all;
+}
+
+/* services */
+
+.services .services_lists .service{
+    position: relative;
+    height: 330px;
+}
+.services .services_lists  .service .skin_circle{
+    background:url(../../assets/img/skin_circle.svg);
+    
+}
+.services .services_lists  .service .hair_circle{
+    background:url(../../assets/img/hair_circle.svg);
+    
+}
+.services .services_lists  .service .body_circle{
+    background:url(../../assets/img/body_circle.svg);
+    
+}
+.services .services_lists  .service .makeup_circle{
+    background:url(../../assets/img/makeup_circle.svg);
+    
+}
+.services .services_lists  .service .service_img{
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.services .services_lists  .service .service_about{
+    max-width: 150px;
+}
