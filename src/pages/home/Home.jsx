@@ -133,14 +133,14 @@ function Home() {
               <div className="offerImg h-full">
                 <img src={offerImg} alt="offer image" className="w-full h-full object-cover object-center" />
               </div>
-              <div className="offerTitle h-full bg-bg-bejiKal pt-20 px-16 xsm:pt-8">
-                <h2 className=" xsm:h4 sm:h4 md:h4 h3 text-center text-purple-text">Explore Our Range of Offerings</h2>
+              <div className="offerTitle h-full bg-bg-bejiKal pt-20 pb-10 px-16 xsm:px-4 xsm:pt-8">
+                <h2 className=" xsm:h4 sm:h4 md:h4 h3 text-center text-purple-text xsm:pt-[5vh]">Explore Our Range of Offerings</h2>
                 <h4 className="h4 text-center pt-6 lg:pt-10 xl:pt-10 2xl:pt-10">Discover Something New Today</h4>
               </div>
           </div>
 
           <div className="overing_products">
-            <Cards discount={true}/>
+            {/* <Cards discount={true}/> */}
           </div>
 
         </section>

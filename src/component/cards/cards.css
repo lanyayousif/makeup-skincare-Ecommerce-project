@@ -6,6 +6,7 @@
 }
 .slick-track{
     width: max-content!important;
+    /* width: 96%!important; */
 }
 .slick-slide{
 width: fit-content!important;
@@ -22,11 +23,14 @@ width: fit-content!important;
 } */
 /* @media (min-width:768px) and (max-width:641px){
     .slick-slide{
-        width: 300px!important;}
-
-        
+        width: 300px!important;}        
 } */
 
 
 /* 641-762 */
 /* 480-611 */
+
+@media  (max-width:1024px){
+    .slick-prev, .slick-next{
+        display: none!important;}        
+}

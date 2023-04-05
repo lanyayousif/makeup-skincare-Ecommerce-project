@@ -18,7 +18,10 @@ padding: 1rem 4rem;
 
 @media (max-width: 768px){
     header .header-text-box {
-      top: 10vh;
+      /* top: 10vh; */
       backdrop-filter: blur(3px);
     }
+    header .header-text-box  button{
+        padding: 1rem 3rem;
+        }
 }

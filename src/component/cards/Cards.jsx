@@ -136,31 +136,31 @@ function Cards({ discount }) {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 1085,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2
-        }
+          initialSlide: 2,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
-    <div className=" w-full ">
+    <div className="  max-w-[98%] pl-[1%]">
       {/* flex align-middle justify-center  */}
-      <div className=" xsm:mt-8  sm:mt-8 md:mt-8 mt-0  cards ">
+      <div className=" xsm:mt-8  sm:mt-8 md:mt-8 mt-0  cards w-full">
         <Slider {...settings}>
           {productInfor.map((data) => {
             if (discount && data.product_DiscountPrice) {
@@ -170,9 +170,6 @@ function Cards({ discount }) {
             }
           })}
         </Slider>
-
-       
-
       </div>
     </div>
   );
