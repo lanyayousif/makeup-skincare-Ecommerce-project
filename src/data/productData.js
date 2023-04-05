@@ -1,16 +1,4 @@
-import React from "react";
-import Slider from "react-slick";
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
-import "./cards.css";
-import Card from "../card/Card";
-
-import product from "../../assets/img/product.jpg";
-import product2 from "../../assets/img/product2.jpg";
-function Cards({ discount }) {
-  const productInfor = [
+ const productInfor = [
     {
       id: 1,
       productImg: product,
@@ -122,60 +110,3 @@ function Cards({ discount }) {
       product_DiscountPrice: "$10",
     },
   ];
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1460,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true
-        }
-      },
-      {
-        breakpoint: 1085,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
-
-  return (
-    <div className=" w-full ">
-      {/* flex align-middle justify-center  */}
-      <div className=" xsm:mt-8  sm:mt-8 md:mt-8 mt-0  cards ">
-        <Slider {...settings}>
-          {productInfor.map((data) => {
-            if (discount && data.product_DiscountPrice) {
-              return <Card {...data} key={data.id} discountt={discount} />;
-            } else if (!discount && !data.product_DiscountPrice) {
-              return <Card {...data} key={data.id} discountt={discount} />;
-            }
-          })}
-        </Slider>
-
-       
-
-      </div>
-    </div>
-  );
-}
-
-export default Cards;

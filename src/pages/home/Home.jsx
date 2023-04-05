@@ -21,7 +21,7 @@ function Home() {
         </Header>
         {/* *************************************** sell best sellers section ****************************************** */}
         <section className="se_best_sell section  ">
-          <h2 className="section_title ">SALE BEST SELLERS</h2>
+          <h2 className="section_title mb-16 ">SALE BEST SELLERS</h2>
           <Cards discount={false}  />
         </section>
 

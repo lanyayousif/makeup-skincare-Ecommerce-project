@@ -2,5 +2,31 @@
     background-color: green;
     width: 100px;
     height: 100px;
-    
+
 }
+.slick-track{
+    width: max-content!important;
+}
+.slick-slide{
+width: fit-content!important;
+}
+.slick-prev:before, .slick-next:before,
+.slick-dots li.slick-active button:before{
+    color: var(--purple-text-color)!important;
+}
+
+/* @media (max-width:768px){
+    .slick-slide{
+        width: 300px!important;
+        }
+} */
+/* @media (min-width:768px) and (max-width:641px){
+    .slick-slide{
+        width: 300px!important;}
+
+        
+} */
+
+
+/* 641-762 */
+/* 480-611 */

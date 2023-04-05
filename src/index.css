@@ -54,7 +54,9 @@
     color: theme('colors.black-text');
     @apply xsm:h4 sm:h4 md:h4 h3 text-center 
   }
-
+  .slick-slide{
+    /* @apply xsm:m-2 sm:m-4 md:m-4 m-3 w-[350px] h-[500px] xsm:w-[290px] xsm:h-[400px]  */
+  }
 }
 
 
