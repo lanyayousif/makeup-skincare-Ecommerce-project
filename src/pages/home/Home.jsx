@@ -17,28 +17,30 @@ const serviceData = [
   {
     id: 1,
     img: skin,
+    imgCircle: "skin",
     title: " skin care",
-    about:
-      "We're here to help you get your best skin routine for your skin journey.",
+    about:"We're here to help you get your best skin routine for your skin journey.",
   },
   {
     id: 2,
     img: hair,
+    imgCircle: "hair",
     title: " hair care",
     about: "Locks of Luxury: Your One-Stop Hair Care Product Store",
   },
   {
     id: 3,
     img: body,
+    imgCircle: "body",
     title: " body care",
     about: "Purely Pampered: Your Ultimate Body Care Product Destination",
   },
   {
     id: 4,
     img: makeup,
+    imgCircle: "makeup",
     title: " makeup care",
-    about:
-      "Discover Your Signature Look: The Best Makeup Products for Every Style at Our Store",
+    about: "Discover Your Signature Look: The Best Makeup Products for Every Style at Our Store",
   },
 ];
 
@@ -71,7 +73,7 @@ function Home() {
               </p>
             </div>
             {/* *************************************** services section ****************************************** */}
-            <div className="services">
+            <div className="services max-w-[1400px] mx-auto">
               <h2 className="section_title">Our services</h2>
               <p className="text-center text-base xsm:text-sm font-light">
                 Skin care is a personal journey and we're here to guide you
@@ -129,6 +131,7 @@ function Home() {
             <ReviewsSlider/>
           </div>
         </section>
+        
       </main>
       <Footer/>
     </>
@@ -137,10 +140,10 @@ function Home() {
 
 export default Home;
 
-function Services({ img, title, about }) {
+function Services({ img, title, about,imgCircle }) {
   return (
     <div className="service relative w-60 my-10 mx-auto  h-fit ">
-      <div className="service_img skin_circle w-full h-full  ">
+      <div className={`service_img ${imgCircle}_circle w-full h-full`}>
         <img
           src={img}
           alt="skin service image "

@@ -22,8 +22,9 @@ function Footer() {
         <div
           className="listsPart  columns-3xs
              grid  
-              sm:grid-rows-2 xsm:grid-rows-[repeat(2, minmax(200px, 250px))]  md:grid-rows-2 2xl:grid-rows-1 xl:grid-rows-1 lg:grid-rows-1
-              sm:grid-cols-3 xsm:grid-cols-1 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6"
+              sm:grid-rows-2 xsm:grid-rows-[repeat(2, minmax(200px, 250px))]  md:grid-rows-2 2xl:grid-rows-1 xl:grid-rows-1 
+              lg:grid-rows-1
+              sm:grid-cols-3 xsm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6"
         >
           <ul
             className="lists mt-4  col-start-1 col-end-2 md:col-start-1 md:col-end-2 md:row-span-1 
@@ -62,7 +63,7 @@ function Footer() {
           </ul>
           <ul
             className="lists mt-4  col-start-2 col-end-3 md:col-start-2 md:col-end-3 md:row-span-1
-          sm:col-start-2 sm:col-end-3 sm:row-span-1 xsm:col-start-1 xsm:col-end-2 xsm:row-start-2 xsm:row-end-3"
+          sm:col-start-2 sm:col-end-3 sm:row-span-1 xsm:col-start-2 xsm:col-end-3 xsm:row-start-1 xsm:row-end-2"
           >
             <li className="list">
               <h6 className="h6 capitalize">shop</h6>
@@ -97,7 +98,7 @@ function Footer() {
           </ul>
           <ul
             className="lists mt-4  col-start-3 col-end-4 md:col-start-3 md:col-end-4 md:row-span-1
-          sm:col-start-3 sm:col-end-4 sm:row-span-1 xsm:col-start-1 xsm:col-end-2 xsm:row-start-3 xsm:row-end-4 "
+          sm:col-start-3 sm:col-end-4 sm:row-span-1 xsm:col-start-1 xsm:col-end-3 xsm:row-start-2 xsm:row-end-3 "
           >
             <li className="list">
               <h6 className="h6 capitalize">need some help?</h6>
@@ -128,19 +129,19 @@ function Footer() {
 
           <div
             className="lists mt-4 col-start-4 col-end-8 md:col-start-1 md:col-end-4 md:row-span-2
-          sm:col-start-1 sm:col-end-4 sm:row-span-2 xsm:col-start-1 xsm:col-end-2 xsm:row-start-4 xsm:row-end-5"
+          sm:col-start-1 sm:col-end-4 sm:row-span-2 xsm:col-start-1 xsm:col-end-3 xsm:row-start-3 xsm:row-end-4"
           >
             <div className="content_footer mx-auto  max-w-[580px]">
-              <h6 className="h6 capitalize mb-6">
+              <h6 className="h6 capitalize mb-6 xsm:text-sm xsm:mb-2">
                 sign up for subscriber-only discounts
               </h6>
-              <div className="subscribeInput">
+              <div className="subscribeInput grid grid-cols-3 grid-rows-1 grid-rows-[repeat(1, minmax(30px, 50px))]">
                 <input
                   type="email"
                   placeholder="Email Address"
-                  className="inline-block  w-full  lg:w-[340px] max-w-[400px] xsm:max-w-[245px] px-4 py-3 rounded"
+                  className="inline-block  w-full  lg:w-[340px] max-w-[400px]  px-4 py-3 rounded col-start-1 col-end-3"
                 />
-                <Button classbtn="px-4 py-3 xsm:py-3 xsm:text-sm font-semibold">submit</Button>
+                <Button classbtn="px-4 py-3 xsm:py-3 xsm:text-sm font-semibold col-start-3 col-end-4 my-0 xsm:my-0 xsm:mx-2">submit</Button>
               </div>
               <div className="social_Icons my-8">
                 <FontAwesomeIcon icon={faFacebookF} />

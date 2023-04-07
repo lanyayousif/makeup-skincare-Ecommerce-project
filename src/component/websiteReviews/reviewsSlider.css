@@ -2,3 +2,27 @@
     color: rgb(249, 224, 7);
 }
 
+.swiper-slide{
+    margin: 0 1rem;
+}
+.swiper-button-next, .swiper-button-prev{
+    color: var(--back-secondary-color)!important;
+}
+
+.swiper-pagination-bullet-active{
+    background-color: var(--back-secondary-color)!important;
+}
+.swiper-slide, .swiper-slide{
+width: fit-content!important;
+}
+
+@media (max-width:1024px){
+    .swiper-button-next, .swiper-button-prev{
+        display: none!important;
+    }
+}
+@media (max-width:640px){
+    .swiper-button-next, .swiper-button-prev{
+        display: none!important;
+    }
+}

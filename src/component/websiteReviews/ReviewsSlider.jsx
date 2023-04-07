@@ -1,15 +1,14 @@
 import React from "react";
 import "./reviewsSlider.css";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation, Pagination, EffectCoverflow } from "swiper";
+SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
-// import required modules
-import { EffectCoverflow, Pagination } from "swiper";
 
 import Reviews from "../reviews/Reviews";
 import quote from "../../assets/img/quote.png";
@@ -28,7 +27,7 @@ function ReviewsSlider() {
     },
     {
       id: 2,
-      username: "diya azad",
+      username: "hanar azad",
       raitingNumber: 4,
       review: `here are many variations of passages of 
             Lorem Ipsum available, but the majority have suffered
@@ -38,7 +37,27 @@ function ReviewsSlider() {
     },
     {
       id: 3,
-      username: "diya azad",
+      username: "zhina azad",
+      raitingNumber: 4,
+      review: `here are many variations of passages of 
+            Lorem Ipsum available, but the majority have suffered
+             alteration in some form, by injected humour, or randomised
+              words which don't look even slightly believable. If you are   
+               going to use a passage of Lorem Ipsum,`,
+    },
+    {
+      id: 4,
+      username: "naz azad",
+      raitingNumber: 4,
+      review: `here are many variations of passages of 
+            Lorem Ipsum available, but the majority have suffered
+             alteration in some form, by injected humour, or randomised
+              words which don't look even slightly believable. If you are   
+               going to use a passage of Lorem Ipsum,`,
+    },
+    {
+      id: 5,
+      username: "bnar azad",
       raitingNumber: 4,
       review: `here are many variations of passages of 
             Lorem Ipsum available, but the majority have suffered
@@ -48,40 +67,32 @@ function ReviewsSlider() {
     },
   ];
 
+  
   return (
     <div className="mt-14">
-      {/* <div class="swiper-container">
-    <div class="swiper-wrapper">
-        {
-            ReviewsData.map(data=>{
-               return <ReviewsCard {...data} key={data.id}/>
-            }) 
-        }
-        </div>
-        </div> */}
 
       <Swiper
-        effect={"coverflow"}
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={"auto"}
+        navigation
+        pagination={{ clickable: true }}
+        effect="coverflow"
         coverflowEffect={{
-          rotate: 50,
+          rotate: 0,
           stretch: 0,
           depth: 100,
-          modifier: 1,
-          slideShadows: true,
+          modifier: 3,
+          slideShadows: false
         }}
-        pagination={true}
-        modules={[EffectCoverflow, Pagination]}
-        className="mySwiper"
+        slidesPerView={2}
+        centeredSlides
+        style={{ height: "500px" }}
       >
-        <SwiperSlide>
-          {ReviewsData.map((data) => {
-            return <ReviewsCard {...data} key={data.id} />;
+
+         {ReviewsData.map((data) => {
+            return <SwiperSlide><ReviewsCard {...data} key={data.id} /></SwiperSlide>;
           })}
-        </SwiperSlide>
-      </Swiper>
+
+        </Swiper>
+
     </div>
   );
 }
@@ -104,5 +115,6 @@ function ReviewsCard({ username, raitingNumber, review }) {
         className="absolute bottom-[-25px] right-4"
       />
     </div>
+    
   );
 }
