@@ -6,7 +6,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Pagination, EffectCoverflow } from "swiper";
+import SwiperCore, { Navigation, Pagination, EffectCoverflow  } from "swiper";
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
 
@@ -72,18 +72,18 @@ function ReviewsSlider() {
     <div className="mt-14">
 
       <Swiper
-        navigation
+       navigation
         pagination={{ clickable: true }}
         effect="coverflow"
         coverflowEffect={{
           rotate: 0,
-          stretch: 0,
+          stretch: -10,
           depth: 100,
           modifier: 3,
           slideShadows: false
         }}
         slidesPerView={2}
-        centeredSlides
+         // centeredSlides
         style={{ height: "500px" }}
       >
 

@@ -134,6 +134,7 @@ function Home() {
         
       </main>
       <Footer/>
+     
     </>
   );
 }

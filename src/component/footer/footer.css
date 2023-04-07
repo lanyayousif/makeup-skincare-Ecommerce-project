@@ -2,6 +2,10 @@
     color: var(--purple-text-color);
     font-size: 1.5rem;
     margin: 0 .5rem;
+    opacity: .8;
+}
+.social_Icons a:hover svg{
+   opacity: 1;
 }
 
 footer .listsPart .lists li.footerListHover{

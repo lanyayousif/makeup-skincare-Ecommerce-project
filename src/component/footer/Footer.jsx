@@ -144,10 +144,10 @@ function Footer() {
                 <Button classbtn="px-4 py-3 xsm:py-3 xsm:text-sm font-semibold col-start-3 col-end-4 my-0 xsm:my-0 xsm:mx-2">submit</Button>
               </div>
               <div className="social_Icons my-8">
-                <FontAwesomeIcon icon={faFacebookF} />
-                <FontAwesomeIcon icon={faTwitter} />
-                <FontAwesomeIcon icon={faInstagram} />
-                <FontAwesomeIcon icon={faYoutube} />
+                <a href="#" target="_blank"><FontAwesomeIcon icon={faFacebookF} /></a>
+                <a href="#" target="_blank"><FontAwesomeIcon icon={faTwitter} /></a>
+                <a href="#" target="_blank"><FontAwesomeIcon icon={faInstagram} /></a>
+                <a href="#" target="_blank"><FontAwesomeIcon icon={faYoutube} /></a>
               </div>
             </div>
           </div>
@@ -155,7 +155,7 @@ function Footer() {
       </div>
       <div className="partTwo bg-bg-main h-fit py-1">
         <p className="text-sm font-normal text-center capitalize">
-          <span className="pb-4 text-base">@</span>2023 devloped by me
+          <span className=" text-base">@</span>2023 devloped by me
         </p>
       </div>
     </footer>
