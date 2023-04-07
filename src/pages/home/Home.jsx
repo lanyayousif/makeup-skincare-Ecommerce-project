@@ -11,6 +11,7 @@ import hair from "../../assets/img/hair.png";
 import makeup from "../../assets/img/makeup.png";
 import offerImg from "../../assets/img/offerImg.jpg";
 import ReviewsSlider from "../../component/websiteReviews/ReviewsSlider";
+import Footer from "../../component/footer/Footer";
 
 const serviceData = [
   {
@@ -129,6 +130,7 @@ function Home() {
           </div>
         </section>
       </main>
+      <Footer/>
     </>
   );
 }

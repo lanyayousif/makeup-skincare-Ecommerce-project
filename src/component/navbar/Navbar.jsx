@@ -38,6 +38,7 @@ function Navbar() {
     <nav className={` ${scrollnav && `scrolled`}`}>
       <Container>
         <div className="nav-parts flex justify-between items-center">
+
           <div className="logo-part ">
             <Logo />
           </div>
@@ -54,12 +55,14 @@ function Navbar() {
           {/* nav menu responsive */}
           <div className={`nav_elements ${shownav && "active"} `}>
             {/* nav menu top  */}
-            <Container>
+            <div className="  md:container xsm:container sm:container mx-auto xsm:px-4 xsm:py-[10px] sm:px-4 sm:py-[10px]
+             md:px-8 md:py-5 ">
               {/* pt-5 px-5  */}
               <div className="close_menu_part  hidden md:block sm:block xsm:block ">
                 <div className="flex justify-between items-center ">
                   <div
-                    className="humberger-btn w-8 h-8  hidden md:inline-block sm:inline-block xsm:inline-block inline-block order-first"
+                    className="humberger-btn w-8 h-8  hidden 
+                    md:inline-block sm:inline-block xsm:inline-block  order-first"
                     onClick={handlShowNavbar}
                   >
                     <span>
@@ -90,7 +93,7 @@ function Navbar() {
                   </div>
                 </div>
               </div>
-            </Container>
+            </div>
             {/* nav items */}
             <ul className="nav-items flex justify-between items-baseline lg-flex-row sm-flex-col list-none">
               <li>
@@ -118,6 +121,7 @@ function Navbar() {
               </Button>
             </ul>
           </div>
+
           {/* nav icons */}
           <div className="icons sm:order-last md:order-last xsm:order-last">
             <ul className="flex justify-between items-center">

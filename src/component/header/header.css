@@ -8,7 +8,7 @@ header{
 }
 header .header-text-box {
     top: 30vh;
-    backdrop-filter: blur(3px);
+    /* backdrop-filter: blur(3px); */
     padding: 0 10px;
 }
 
@@ -24,4 +24,8 @@ padding: 1rem 4rem;
     header .header-text-box  button{
         padding: 1rem 3rem;
         }
+}
+@media (max-width: 1024px){
+header .header-text-box {
+    backdrop-filter: blur(3px);}
 }

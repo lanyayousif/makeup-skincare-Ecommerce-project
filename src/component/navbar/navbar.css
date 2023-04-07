@@ -22,7 +22,9 @@ nav.scrolled{
 }
 
 .nav_elements ul li:not(:last-child){
-    margin-right: 60px;
+    /* margin-right: 60px; */
+    margin-right: 30px;
+    margin-left: 30px;
 } 
 .nav_elements ul li a{
     font-size: 1rem;
@@ -61,7 +63,7 @@ nav.scrolled .nav_elements ul li a{
 .nav-parts .icons ul li svg{
     color: var(--purple-text-color);
 }
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
     .humberger-btn{
         cursor: pointer;
     }

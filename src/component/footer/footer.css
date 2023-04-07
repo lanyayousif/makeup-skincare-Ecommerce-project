@@ -1,0 +1,5 @@
+.social_Icons svg{
+    color: var(--purple-text-color);
+    font-size: 1.5rem;
+    margin: 0 .5rem;
+}
