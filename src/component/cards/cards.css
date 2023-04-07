@@ -11,6 +11,13 @@
 .slick-slide{
 width: fit-content!important;
 }
+.slick-prev{
+    z-index: 22;
+    left: 0px!important;
+} 
+.slick-next{
+    right: 0px;
+}
 .slick-prev:before, .slick-next:before,
 .slick-dots li.slick-active button:before{
     color: var(--purple-text-color)!important;

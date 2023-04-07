@@ -6,10 +6,13 @@ import "slick-carousel/slick/slick-theme.css";
 
 import "./cards.css";
 import Card from "../card/Card";
+import db from '../../../data/db.json'
 
 import product from "../../assets/img/product.jpg";
 import product2 from "../../assets/img/product2.jpg";
+
 function Cards({ discount }) {
+
   const productInfor = [
     {
       id: 1,
@@ -122,6 +125,7 @@ function Cards({ discount }) {
       product_DiscountPrice: "$10",
     },
   ];
+
   const settings = {
     dots: true,
     infinite: false,

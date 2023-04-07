@@ -11,11 +11,11 @@ export default function Reviews({rating}) {
 
   for (let i = 0; i < 5; i++) {
     if (i < fullStart) {
-      starIcon.push(<FontAwesomeIcon icon={faStar} className={"checked"} />);
+      starIcon.push(<FontAwesomeIcon icon={faStar} className={"checked"} key={i} />);
     } else if (halfStart && i==haffNumber ) {
-      starIcon.push(<FontAwesomeIcon icon={faStarHalfAlt} className={"checked"} />);
+      starIcon.push(<FontAwesomeIcon icon={faStarHalfAlt} className={"checked"} key={i}/>);
     } else {
-      starIcon.push(<FontAwesomeIcon icon={faStar} />);
+      starIcon.push(<FontAwesomeIcon icon={faStar} key={i} />);
     }
   }
   return <>{starIcon}</>;

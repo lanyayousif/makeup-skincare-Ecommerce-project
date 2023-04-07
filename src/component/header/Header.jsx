@@ -12,7 +12,8 @@ function Header({ children }) {
         {/* <div className="header-img w-full h-full ">
                 <img className='w-full h-full object-cover object-center' src={header_img} alt="header img" />
             </div> */}
-        <div className="header-text-box w-fit absolute xsm:left-2 xsm:right-2 sm:left-9 md:left-9 lg:left-11 xl:left-11 2xl:left-11 xsm:top-14 sm:top-14 ">
+        <div className="header-text-box w-fit absolute xsm:left-2 xsm:right-2 sm:left-9 md:left-9 
+        lg:left-11 xl:left-11 2xl:left-11 xsm:top-14 sm:top-14 ">
           <h1 className="xsm:h4 sm:h3 md:h3 h1 black-text">
             Get the Look You Want
           </h1>
