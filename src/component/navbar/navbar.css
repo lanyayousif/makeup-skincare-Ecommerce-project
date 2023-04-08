@@ -1,7 +1,7 @@
 nav{
     height: 70px;
-    /* position: sticky; */
-    position: absolute;
+    position: sticky;
+    /* position: absolute; */
     left: 0;top: 0;right: 0;
     z-index: 11111111111111;
 }

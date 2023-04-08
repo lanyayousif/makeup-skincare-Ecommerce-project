@@ -5,7 +5,7 @@ import "./logo.css";
 export default function Logo() {
   return (
     <div className="logo-part ">
-      <NavLink>
+      <NavLink to="/">
         <h1 className="text-3xl">Beauty</h1>
       </NavLink>
     </div>

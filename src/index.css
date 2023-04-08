@@ -58,6 +58,9 @@
     /* @apply xsm:m-2 sm:m-4 md:m-4 m-3 w-[350px] h-[500px] xsm:w-[290px] xsm:h-[400px]  */
   }
 
+  select#sort option{
+    @apply text-sm capitalize my-3 hover:bg-bg-second  
+}
  
 }
 

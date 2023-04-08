@@ -1,0 +1,36 @@
+select.sort{
+    border: 1px solid var( --black-text-color);
+}
+select#sort:focus-visible{
+   outline: none;
+}
+select#sort option:hover{
+    color: var(--white-text-color);
+    background-color:var(--back-secondary-color) ;
+
+}
+
+.dropbutton{
+    border: 1px solid var(--back-secondary-color);
+}
+.dropdownFilter .dropdownContent{
+    height: 0;
+    opacity: 0;
+    /* border: 1px solid black; */
+}
+.dropdownFilter .dropdownContent .filtercontent .filter{
+    height: 0;
+    opacity: 0;
+    display: none;
+}
+
+.dropdownFilter .dropdownContent .filtercontent.activeDrop .filter,
+.dropdownFilter .activeDrop{
+height: fit-content;
+opacity: 1;
+transition: height 3s;
+}
+
+.dropdownFilter .dropdownContent .filtercontent.activeDrop .filter{
+    display: block;
+}

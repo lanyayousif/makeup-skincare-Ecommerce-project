@@ -1,0 +1,8 @@
+.catagoryFilter{
+    position: relative;
+    border-top: 1px solid rgb(171, 171, 171);
+}
+input[type="checkbox"]:checked {
+    background-color: var(--back-secondary-color);
+    accent-color: var(--back-secondary-color);
+}
