@@ -2,84 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   .h1 {
-    font-size: theme('fontSize.5xl');
-    color: theme('colors.black-text');
-    line-height: theme('lineHeight.14');
+    font-size: theme("fontSize.5xl");
+    color: theme("colors.black-text");
+    line-height: theme("lineHeight.14");
     @apply font-black;
     @apply capitalize;
-    font-family: 'Roboto Mono', monospace;
+    font-family: "Roboto Mono", monospace;
   }
   .h2 {
-    font-size: theme('fontSize.4xl');
-    line-height: theme('lineHeight.14');
+    font-size: theme("fontSize.4xl");
+    line-height: theme("lineHeight.14");
     @apply font-bold;
     @apply capitalize;
-    font-family: 'Roboto Mono', monospace;
+    font-family: "Roboto Mono", monospace;
   }
   .h3 {
-    font-size: theme('fontSize.3xl');
-    line-height: theme('lineHeight.11');
+    font-size: theme("fontSize.3xl");
+    line-height: theme("lineHeight.11");
     @apply font-semibold;
     @apply capitalize;
-    font-family: 'Roboto Mono', monospace;
+    font-family: "Roboto Mono", monospace;
   }
   .h4 {
-    font-size: theme('fontSize.2xl');
-    line-height: theme('lineHeight.11');
+    font-size: theme("fontSize.2xl");
+    line-height: theme("lineHeight.11");
     @apply font-medium;
     @apply capitalize;
-    font-family: 'Roboto Mono', monospace;
+    font-family: "Roboto Mono", monospace;
   }
   .h5 {
-    font-size: theme('fontSize.xl');
-    line-height: theme('lineHeight.10');
+    font-size: theme("fontSize.xl");
+    line-height: theme("lineHeight.10");
     @apply font-medium;
     @apply capitalize;
-    font-family: 'Roboto Mono', monospace;
+    font-family: "Roboto Mono", monospace;
   }
   .h6 {
-    font-size: theme('fontSize.base');
-    line-height: theme('lineHeight.7');
+    font-size: theme("fontSize.base");
+    line-height: theme("lineHeight.7");
     @apply font-medium;
     @apply capitalize;
-    font-family: 'Roboto Mono', monospace;
+    font-family: "Roboto Mono", monospace;
   }
-  .section{
-    @apply w-full h-fit my-16
+  .section {
+    @apply w-full h-fit my-16;
   }
-  .section_title{
-    color: theme('colors.black-text');
-    @apply xsm:h4 sm:h4 md:h4 h3 text-center 
+  .section_title {
+    color: theme("colors.black-text");
+    @apply xsm:h4 sm:h4 md:h4 h3 text-center;
   }
-  .slick-slide{
+  .slick-slide {
     /* @apply xsm:m-2 sm:m-4 md:m-4 m-3 w-[350px] h-[500px] xsm:w-[290px] xsm:h-[400px]  */
   }
 
-  select#sort option{
-    @apply text-sm capitalize my-3 hover:bg-bg-second  
+  select#sort option {
+    @apply text-sm capitalize my-3 hover:bg-bg-second;
+  }
 }
- 
-}
-
 
 *,
 ::after,
-::before{
+::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
-  font-family: 'Alkatra', cursive;
-  font-family: 'Roboto Mono', monospace;
-  font-family: 'Roboto', sans-serif;
+body {
+  font-family: "Alkatra", cursive;
+  font-family: "Roboto Mono", monospace;
+  font-family: "Roboto", sans-serif;
   position: relative;
   margin: 0;
   height: 100%;
 }
-
-
