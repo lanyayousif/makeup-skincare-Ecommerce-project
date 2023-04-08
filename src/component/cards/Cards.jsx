@@ -11,7 +11,7 @@ import db from '../../../data/db.json'
 import product from "../../assets/img/product.jpg";
 import product2 from "../../assets/img/product2.jpg";
 
-function Cards({ discount }) {
+function Cards({ discount , column }) {
 
   const productInfor = [
     {
@@ -161,19 +161,30 @@ function Cards({ discount }) {
     ],
   };
 
+  console.log("column"+column)
   return (
     <div className="  max-w-[98%] pl-[1%]">
       {/* flex align-middle justify-center  */}
       <div className=" xsm:mt-8  sm:mt-8 md:mt-8 mt-0  cards w-full">
-        <Slider {...settings}>
+       {column==="notcolumn"  ? <Slider {...settings}>
           {productInfor.map((data) => {
             if (discount && data.product_DiscountPrice) {
               return <Card {...data} key={data.id} discountt={discount} />;
             } else if (!discount && !data.product_DiscountPrice) {
               return <Card {...data} key={data.id} discountt={discount} />;
             }
-          })}
+          }) }
         </Slider>
+        :
+        <div className="grid 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 xsm:grid-cols-1 w-full">
+              {
+                productInfor.map((data) => {
+                  return <Card {...data} key={data.id}  />
+                })
+              }
+        </div>
+        
+        }
       </div>
     </div>
   );

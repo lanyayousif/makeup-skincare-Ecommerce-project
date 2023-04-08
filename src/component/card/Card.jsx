@@ -49,7 +49,7 @@ function Card({
     <>
       <div
         key={id}
-        className="card xsm:m-2 sm:m-4 md:m-4 m-3 w-[350px] h-[500px] xsm:w-[290px] xsm:h-[400px] rounded "
+        className="card xsm:m-2 sm:m-4 md:m-4 m-3  min-w-[280px] max-w-[360px] h-[500px] xsm:w-[290px] xsm:h-[400px] rounded "
       >
         <div
           className="imgCard-part w-full h-[280px] xsm:h-1/2 relative"

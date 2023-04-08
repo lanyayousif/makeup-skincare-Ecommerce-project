@@ -9,7 +9,7 @@ export default {
         sm: { min: "640px", max: "768px" },
         // => @media (min-width: 640px and max-width: 767px) { ... }
 
-        md: { min: "768px", max: "1024px" },
+        md: { min: "768px", max: "1023px" },
         // => @media (min-width: 768px and max-width: 1023px) { ... }
 
         lg: { min: "1024px", max: "1280px" },

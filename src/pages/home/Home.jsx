@@ -54,7 +54,7 @@ function Home() {
         {/* *************************************** sell best sellers section ****************************************** */}
         <section className="se_best_sell section  ">
           <h2 className="section_title mb-16 ">SALE BEST SELLERS</h2>
-          <Cards discount={false} />
+          <Cards discount={false} column="notcolumn"  />
         </section>
 
         {/* *************************************** about section ****************************************** */}
@@ -112,7 +112,7 @@ function Home() {
           </div>
 
           <div className="overing_products">
-            <Cards discount={true} />
+            <Cards discount={true} column="notcolumn" />
           </div>
         </section>
 

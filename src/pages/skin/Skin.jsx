@@ -3,6 +3,8 @@ import "./skin.css";
 import Navbar from "../../component/navbar/Navbar";
 import Filter from "../../component/filter/Filter";
 import DropDownFilter from "../../component/filter/DropDownFilter";
+import Cards from "../../component/cards/Cards";
+import Footer from '../../component/footer/Footer'
 
 function Skin() {
   const [sortType, setSortType] = useState("alphabetically, A-Z");
@@ -24,17 +26,16 @@ function Skin() {
         </section>
 
         <section
-          className="se_filterAndproduct grid grid-cols-4 xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 grid-rows-1 md:grid-rows-2 xsm:grid-rows-2 sm:grid-rows-2 
-        section px-8 xsm:px-4 sm:px-4"
+          className="se_filterAndproduct grid grid-cols-5 xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-1  
+        section px-8 xsm:px-0 sm:px-4"
         >
-          <div className="filters col-span-1  ">
+          <div className="filters col-span-1 px-4 ">
             <div className="md:hidden xsm:hidden sm:hidden">
               <Filter />
             </div>
-
             <DropDownFilter />
           </div>
-          <div className="products col-span-3 xsm:col-span-1 sm:col-span-1">
+          <div className="products col-span-4 xsm:col-span-1 sm:col-span-1">
             <div className="sortPart w-full md:hidden sm:hidden xsm:hidden ">
               <span className="itemsNumber text-base uppercase float-left">
                 items:100
@@ -56,10 +57,14 @@ function Skin() {
               </div>
             </div>
 
-            <div className="productsColumns"></div>
+            <div className="productsColumns">
+                  <Cards discount="all" column="Column"  />
+            </div>
+
           </div>
         </section>
       </main>
+      <Footer/>
     </>
   );
 }

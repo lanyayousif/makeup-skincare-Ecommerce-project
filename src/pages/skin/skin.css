@@ -33,3 +33,10 @@ select#sort option:hover {
 .dropdownFilter .dropdownContent .filtercontent.activeDrop .filter {
   display: block;
 }
+
+@media (max-width: 768px){
+.productsColumns .card{
+margin-left: auto!important;
+margin-right: auto!important;
+}
+}
