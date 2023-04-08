@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import "./skin.css";
 import Navbar from "../../component/navbar/Navbar";
 import Filter from "../../component/filter/Filter";
 import DropDownFilter from "../../component/filter/DropDownFilter";
 import Cards from "../../component/cards/Cards";
-import Footer from '../../component/footer/Footer'
+import Footer from "../../component/footer/Footer";
 
 function Skin() {
   const [sortType, setSortType] = useState("alphabetically, A-Z");
@@ -58,13 +60,19 @@ function Skin() {
             </div>
 
             <div className="productsColumns">
-                  <Cards discount="all" column="Column"  />
+              <Cards discount="all" column="Column" />
             </div>
-
           </div>
         </section>
+        <div className="pageNumberPart w-fit mx-auto my-20">
+          <FontAwesomeIcon icon={faArrowLeft} />
+          <span className="text-base capitalize font-medium mx-6">
+            1 <span className="mx-2">of</span> 3
+          </span>
+          <FontAwesomeIcon icon={faArrowRight} />
+        </div>
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 }

@@ -34,9 +34,9 @@ select#sort option:hover {
   display: block;
 }
 
-@media (max-width: 768px){
-.productsColumns .card{
-margin-left: auto!important;
-margin-right: auto!important;
-}
+@media (max-width: 768px) {
+  .productsColumns .card {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
 }

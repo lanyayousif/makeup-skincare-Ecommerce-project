@@ -19,7 +19,8 @@ const serviceData = [
     img: skin,
     imgCircle: "skin",
     title: " skin care",
-    about:"We're here to help you get your best skin routine for your skin journey.",
+    about:
+      "We're here to help you get your best skin routine for your skin journey.",
   },
   {
     id: 2,
@@ -40,7 +41,8 @@ const serviceData = [
     img: makeup,
     imgCircle: "makeup",
     title: " makeup care",
-    about: "Discover Your Signature Look: The Best Makeup Products for Every Style at Our Store",
+    about:
+      "Discover Your Signature Look: The Best Makeup Products for Every Style at Our Store",
   },
 ];
 
@@ -54,7 +56,7 @@ function Home() {
         {/* *************************************** sell best sellers section ****************************************** */}
         <section className="se_best_sell section  ">
           <h2 className="section_title mb-16 ">SALE BEST SELLERS</h2>
-          <Cards discount={false} column="notcolumn"  />
+          <Cards discount={false} column="notcolumn" />
         </section>
 
         {/* *************************************** about section ****************************************** */}
@@ -128,20 +130,18 @@ function Home() {
 
           <div className="overing_products">
             {/* <Cards discount={true}/> */}
-            <ReviewsSlider/>
+            <ReviewsSlider />
           </div>
         </section>
-        
       </main>
-      <Footer/>
-     
+      <Footer />
     </>
   );
 }
 
 export default Home;
 
-function Services({ img, title, about,imgCircle }) {
+function Services({ img, title, about, imgCircle }) {
   return (
     <div className="service relative w-60 my-10 mx-auto  h-fit ">
       <div className={`service_img ${imgCircle}_circle w-full h-full`}>
