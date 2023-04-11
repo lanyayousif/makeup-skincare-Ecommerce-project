@@ -43,3 +43,9 @@ max-width: 660px;
 .totalAndsub .total{
     border-top: 1px solid #787474;
 }
+
+@media (max-width:768px){
+    .checkout .contactPart .logo-part{
+        width: fit-content;
+        } 
+}
