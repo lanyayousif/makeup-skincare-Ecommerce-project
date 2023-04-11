@@ -29,6 +29,7 @@ export default {
         "black-text": "#000",
         "white-text": "#fff",
         "purple-text": "#80597A",
+        "lightBlack-text": "#848484",
       },
       fontSize: {
         sm: "0.8rem",

@@ -136,7 +136,7 @@ function Navbar() {
                 </NavLink>
               </li>
               <li className="lg:visible hidden lg:inline-block xl:inline-block 2xl:inline-block">
-                <NavLink to="/">
+                <NavLink to="/login">
                   <FontAwesomeIcon icon={faUser} />
                 </NavLink>
               </li>

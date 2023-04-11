@@ -3,6 +3,8 @@ import './App.css'
 import Home from './pages/home/Home'
 import Skin from './pages/skin/Skin'
 import Checkout from './pages/cheackout/Checkout'
+import Login from './pages/login/Login'
+import Signup from './pages/singup/Signup'
 
 function App() {
 
@@ -11,7 +13,10 @@ function App() {
       <Routes>
         <Route path='/'  element={<Home/>}/>
         <Route path='/skin'  element={<Skin/>}/>
-        <Route path='*'  element={<Checkout/>}/>
+        <Route path='/checkout'  element={<Checkout/>}/>
+        <Route path='/login'  element={<Login/>}/>
+        <Route path='/signup'  element={<Signup/>}/>
+        <Route path='*'  element={<Home/>}/>
       </Routes>
       
     </>
