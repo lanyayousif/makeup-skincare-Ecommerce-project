@@ -60,15 +60,14 @@
     @apply text-sm capitalize my-3 hover:bg-bg-second;
   }
 
-  .inputDesign{
+  .inputDesign {
     border: 2px solid var(--back-secondary-color);
-    @apply  w-full bg-transparent h-16 rounded px-4 block my-6 xsm:mb-0 sm:mb-0
+    @apply w-full bg-transparent h-16 rounded px-4 block my-6 xsm:mb-0 sm:mb-0;
   }
-  .inputDesign:focus-visible{
+  .inputDesign:focus-visible {
     outline: none;
     border-color: theme("colors.bg-main");
   }
-
 }
 
 *,

@@ -42,7 +42,7 @@ function Card({
     //     productPrice,
     //   })
     // );
-    console.log(id)
+    console.log(id);
   };
 
   return (

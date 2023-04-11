@@ -38,7 +38,6 @@ function Navbar() {
     <nav className={` ${scrollnav && `scrolled`}`}>
       <Container>
         <div className="nav-parts flex justify-between items-center">
-
           <div className="logo-part ">
             <Logo />
           </div>
@@ -55,8 +54,10 @@ function Navbar() {
           {/* nav menu responsive */}
           <div className={`nav_elements ${shownav && "active"} `}>
             {/* nav menu top  */}
-            <div className="  md:container xsm:container sm:container mx-auto xsm:px-4 xsm:py-[10px] sm:px-4 sm:py-[10px]
-             md:px-8 md:py-5 ">
+            <div
+              className="  md:container xsm:container sm:container mx-auto xsm:px-4 xsm:py-[10px] sm:px-4 sm:py-[10px]
+             md:px-8 md:py-5 "
+            >
               {/* pt-5 px-5  */}
               <div className="close_menu_part  hidden md:block sm:block xsm:block ">
                 <div className="flex justify-between items-center ">

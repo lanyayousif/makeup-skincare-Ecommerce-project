@@ -141,13 +141,23 @@ function Footer() {
                   placeholder="Email Address"
                   className="inline-block  w-full  lg:w-[340px] max-w-[400px]  px-4 py-3 rounded col-start-1 col-end-3"
                 />
-                <Button classbtn="px-4 py-3 xsm:py-3 xsm:text-sm font-semibold col-start-3 col-end-4 my-0 xsm:my-0 xsm:mx-2">submit</Button>
+                <Button classbtn="px-4 py-3 xsm:py-3 xsm:text-sm font-semibold col-start-3 col-end-4 my-0 xsm:my-0 xsm:mx-2">
+                  submit
+                </Button>
               </div>
               <div className="social_Icons my-8">
-                <a href="#" target="_blank"><FontAwesomeIcon icon={faFacebookF} /></a>
-                <a href="#" target="_blank"><FontAwesomeIcon icon={faTwitter} /></a>
-                <a href="#" target="_blank"><FontAwesomeIcon icon={faInstagram} /></a>
-                <a href="#" target="_blank"><FontAwesomeIcon icon={faYoutube} /></a>
+                <a href="#" target="_blank">
+                  <FontAwesomeIcon icon={faFacebookF} />
+                </a>
+                <a href="#" target="_blank">
+                  <FontAwesomeIcon icon={faTwitter} />
+                </a>
+                <a href="#" target="_blank">
+                  <FontAwesomeIcon icon={faInstagram} />
+                </a>
+                <a href="#" target="_blank">
+                  <FontAwesomeIcon icon={faYoutube} />
+                </a>
               </div>
             </div>
           </div>

@@ -35,7 +35,7 @@ function Signup() {
                 className="inputDesign "
                 placeholder="re-enter password"
               />
-              <SecondaryButton classBtn="mt-8">sign in</SecondaryButton>
+              <SecondaryButton classBtn="mt-8">create account</SecondaryButton>
               <div className="block w-full mb-2">
                 <p className="text-base text-center font-light text-lightBlack-text capitalize">
                   already have an account?

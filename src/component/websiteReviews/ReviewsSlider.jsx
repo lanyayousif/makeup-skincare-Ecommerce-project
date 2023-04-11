@@ -6,9 +6,8 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Pagination, EffectCoverflow  } from "swiper";
+import SwiperCore, { Navigation, Pagination, EffectCoverflow } from "swiper";
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
-
 
 import Reviews from "../reviews/Reviews";
 import quote from "../../assets/img/quote.png";
@@ -67,12 +66,10 @@ function ReviewsSlider() {
     },
   ];
 
-  
   return (
     <div className="mt-14">
-
       <Swiper
-       navigation
+        navigation
         pagination={{ clickable: true }}
         effect="coverflow"
         coverflowEffect={{
@@ -80,19 +77,20 @@ function ReviewsSlider() {
           stretch: -10,
           depth: 100,
           modifier: 3,
-          slideShadows: false
+          slideShadows: false,
         }}
         slidesPerView={2}
-         // centeredSlides
+        // centeredSlides
         style={{ height: "500px" }}
       >
-
-         {ReviewsData.map((data) => {
-            return <SwiperSlide><ReviewsCard {...data} key={data.id} /></SwiperSlide>;
-          })}
-
-        </Swiper>
-
+        {ReviewsData.map((data) => {
+          return (
+            <SwiperSlide>
+              <ReviewsCard {...data} key={data.id} />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     </div>
   );
 }
@@ -115,6 +113,5 @@ function ReviewsCard({ username, raitingNumber, review }) {
         className="absolute bottom-[-25px] right-4"
       />
     </div>
-    
   );
 }
