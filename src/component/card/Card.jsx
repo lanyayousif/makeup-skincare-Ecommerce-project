@@ -11,6 +11,7 @@ import product2 from "../../assets/img/product2.jpg";
 
 import Button from "../button/Button";
 import Reviews from "../reviews/Reviews";
+import Heartbtn from "./Heartbtn";
 
 function Card({
   discountt,
@@ -24,7 +25,7 @@ function Card({
   product_DiscountPrice,
   productPrice,
 }) {
-  const [heart, setHeart] = useState(false);
+  // const [heart, setHeart] = useState(false);
   const [product_imgState, setProduct_imgState] = useState(false);
   // const dispatch = useDispatch();
 
@@ -56,16 +57,11 @@ function Card({
           onMouseOver={() => setProduct_imgState(true)}
           onMouseOut={() => setProduct_imgState(false)}
         >
-          <button
-            className="absolute top-5 right-5"
-            onMouseEnter={() => setHeart(!heart)}
-          >
-            <img
-              src={heart == true ? hearRed : heartimg}
-              alt="heart image"
-              className="w-full h-full object-contain object-center"
-            />
-          </button>
+          <Heartbtn
+            heartRedImg={hearRed}
+            heartImg={heartimg}
+            heartClass="absolute top-5 right-5"
+          />
 
           <NavLink to="/">
             <img

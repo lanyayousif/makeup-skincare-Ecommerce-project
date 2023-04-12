@@ -7,9 +7,9 @@ import Login from './pages/login/Login'
 import Signup from './pages/singup/Signup'
 import Cart from './component/cart/Cart'
 import Cartspage from './pages/cart/Cartspage'
+import Product from './pages/product/Product'
 
 function App() {
-
   return (
     <>
       <Routes>
@@ -19,9 +19,9 @@ function App() {
         <Route path='/login'  element={<Login/>}/>
         <Route path='/signup'  element={<Signup/>}/>
         <Route path='/cart'  element={<Cartspage/>}/>
+        <Route path='/body'  element={<Product/>}/>
         <Route path='*'  element={<Home/>}/>
       </Routes>
-      
     </>
   )
 }
