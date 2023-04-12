@@ -31,3 +31,8 @@ footer .listsPart .lists li.footerListHover:hover{
     color: var(--back-secondary-color);
     font-weight: 600;
 }
+
+footer input:focus-visible{
+   outline: none;
+   border: 1px solid var(--back-secondary-color);
+}

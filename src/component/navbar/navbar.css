@@ -63,6 +63,47 @@ nav.scrolled .nav_elements ul li a{
 .nav-parts .icons ul li svg{
     color: var(--purple-text-color);
 }
+
+
+.cartshow{
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0; 
+    overflow: hidden;
+    height: 100vh;
+    opacity: 0;
+    transition: all .6s ease-in-out;
+    z-index: 33333333333333;
+    /* background-color: blueviolet; */
+    width: 0;
+}
+
+.cartshow.activecart{
+    width:100%;
+    max-width: 500px;
+    height: 100vh;
+    transition: width .4s ease-in-out;
+    opacity: 1;
+}
+
+.cartshow .blackshadow{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    transition: 0.5s;
+    opacity: 0;
+    visibility: hidden;
+}
+.cartshow.activecart .blackshadow{
+    opacity: 1;
+    visibility: visible;
+}
+
+
 @media (max-width: 1023px) {
     .humberger-btn{
         cursor: pointer;

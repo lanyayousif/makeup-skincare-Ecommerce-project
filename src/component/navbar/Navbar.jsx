@@ -12,13 +12,18 @@ import { NavLink } from "react-router-dom";
 import Logo from "../logo/Logo";
 import "./navbar.css";
 import Button from "../button/Button";
+import Cart from "../cart/Cart";
 
 function Navbar() {
   const [shownav, setShownav] = useState(false);
+  const [showcart, setShowcart] = useState(false);
   const [scrollnav, setScrollnav] = useState(false);
 
   const handlShowNavbar = () => {
     setShownav(!shownav);
+  };
+  const handlShowCart = () => {
+    setShowcart(!showcart);
   };
 
   const changeBackground = (event) => {
@@ -35,8 +40,21 @@ function Navbar() {
   });
 
   return (
+    <>
+
     <nav className={` ${scrollnav && `scrolled`}`}>
       <Container>
+
+<div className={`cartshow ${showcart && "activecart"} `}>
+      <div className="relative">
+      <button className=" top-5 right-7  absolute  block z-[4444444444444444444]" onClick={handlShowCart} >
+          <FontAwesomeIcon className="text-2xl" icon={faXmark} />
+        </button>
+      </div>
+      <Cart/>
+      <div className="blackshadow" onClick={handlShowCart}></div>
+</div>
+
         <div className="nav-parts flex justify-between items-center">
           <div className="logo-part ">
             <Logo />
@@ -122,7 +140,6 @@ function Navbar() {
               </Button>
             </ul>
           </div>
-
           {/* nav icons */}
           <div className="icons sm:order-last md:order-last xsm:order-last">
             <ul className="flex justify-between items-center">
@@ -141,7 +158,7 @@ function Navbar() {
                   <FontAwesomeIcon icon={faUser} />
                 </NavLink>
               </li>
-              <li>
+              <li onClick={handlShowCart}>
                 <NavLink to="/">
                   <FontAwesomeIcon icon={faBagShopping} />
                 </NavLink>
@@ -150,7 +167,10 @@ function Navbar() {
           </div>
         </div>
       </Container>
+
     </nav>
+    
+    </>
   );
 }
 

@@ -5,6 +5,8 @@ import Skin from './pages/skin/Skin'
 import Checkout from './pages/cheackout/Checkout'
 import Login from './pages/login/Login'
 import Signup from './pages/singup/Signup'
+import Cart from './component/cart/Cart'
+import Cartspage from './pages/cart/Cartspage'
 
 function App() {
 
@@ -16,6 +18,7 @@ function App() {
         <Route path='/checkout'  element={<Checkout/>}/>
         <Route path='/login'  element={<Login/>}/>
         <Route path='/signup'  element={<Signup/>}/>
+        <Route path='/cart'  element={<Cartspage/>}/>
         <Route path='*'  element={<Home/>}/>
       </Routes>
       

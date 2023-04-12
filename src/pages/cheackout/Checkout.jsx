@@ -105,10 +105,10 @@ function Checkout() {
                 <div className="returnCart">
                   <NavLink to="/">
                     {" "}
-                    <p className="text-base font-light">
+                  <NavLink to="/cart">  <p className="text-base font-light">
                       <FontAwesomeIcon icon={faChevronLeft} />
                       Return to cart
-                    </p>
+                    </p></NavLink>
                   </NavLink>
                 </div>
                 <Button classbtn="mx-0" type="submit">

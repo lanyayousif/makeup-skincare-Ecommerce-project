@@ -1,0 +1,10 @@
+.productQuantity{
+    border: 1px solid #303030;
+}
+
+.productQuantity button svg{
+    color: #484848;
+}
+.productQuantity button svg:hover{
+    color: #303030;
+}
