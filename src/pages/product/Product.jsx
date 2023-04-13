@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "../../component/footer/Footer";
 import Navbar from "../../component/navbar/Navbar";
 import Reviews from "../../component/reviews/Reviews";
@@ -9,13 +9,14 @@ import product4 from "../../assets/img/pro_page (4).jpg";
 import imgproductFree from "../../assets/img/gluten-free.png";
 import imgproductFree2 from "../../assets/img/cruelty-free.png";
 import imgproductFree3 from "../../assets/img/vegan.png";
-// import heartimg from "../../assets/img/heart.svg";
-// import hearRed from "../../assets/img/hearRed.svg";
 
 import "./product.css";
 import Counter from "../../component/counter/Counter";
 import Button from "../../component/button/Button";
 import Heartbtn from "../../component/card/Heartbtn";
+import ProductImgSlider from "../../component/ProductImgSlider/ProductImgSlider";
+import ReviewsProd from "../../component/ReviewssProduct/ReviewsProd";
+import Cards from "../../component/cards/Cards";
 
 function Product() {
   const productdata = [
@@ -23,32 +24,62 @@ function Product() {
       id: 1,
       name: " test ",
       ratingNumber: 4,
-      revies: 25,
+      reviews: 25,
       size: "4 Fl oz",
       price: 24,
-      imgsproduct:[product1,product2,product3,product4],
-      imgfree:[imgproductFree,imgproductFree2,imgproductFree3]
+      imgsproduct: [product1, product2, product3, product4],
+      imgfree: [imgproductFree, imgproductFree2, imgproductFree3],
     },
   ];
+
+  const[detailOpen,SetDetailOpen]=useState(true)
+  const[useOpen,SetUseOpen]=useState(false)
+  const[ingredientsOpen,SetIngredientsOpen]=useState(false)
+
+  const handldetails=()=>{
+    SetDetailOpen(!detailOpen)
+    SetUseOpen(false)
+    SetIngredientsOpen(false)
+   
+  }
+  const handleUse=()=>{
+    SetUseOpen(!useOpen)
+    SetDetailOpen(false)
+    SetIngredientsOpen(false)}
+  
+  const handleIngredients=()=>{
+    SetIngredientsOpen(!ingredientsOpen)
+    SetUseOpen(false)
+    SetDetailOpen(false)
+  }
+  if(useOpen===false && ingredientsOpen ===false){
+    SetDetailOpen(true)
+  }
+
+  console.log("detailOpen"+detailOpen)
+  console.log("useOpen"+useOpen)
+  console.log("ingredientsOpen"+ingredientsOpen)
+
+
   console.log(" product " + productdata[0].ratingNumber);
   return (
     <>
       <main>
         <Navbar />
 
-        <section className=' mt-[7vh] pb-16 px-4 relative '>
+        <section className=" mt-[7vh]  px-4 relative ">
           <div className="div se1_product grid grid-cols-2">
-            <div className="imgsProduct col-span-1 ">
-                
+            <div className="imgsProduct col-span-1  ">
+              {/* <ProductImgSlider/> */}
             </div>
             <div className="AboutProduct col-span-1 px-4">
               <div className="aboutPart max-w-[600px]">
                 <div className="ratingsPro  flex items-center justify-between relative">
                   <div className="">
-                  <Reviews rating={productdata[0].ratingNumber} />
-                  <span className="reviesProduct text-base ml-2 text-lightBlack-text">{`(${productdata[0].revies})`}</span>
+                    <Reviews rating={productdata[0].ratingNumber} />
+                    <span className="reviesProduct text-base ml-2 text-lightBlack-text">{`(${productdata[0].reviews})`}</span>
                   </div>
-                  <Heartbtn/>
+                  <Heartbtn />
                 </div>
                 <div className="sizeProduct my-2">
                   <p className="text-base font-medium capitalize">
@@ -67,26 +98,128 @@ function Product() {
                   behind any residue.
                 </p>
 
-
                 <div className="imgPro grid grid-cols-4 my-10 w-fit ">
-                    {
-                        productdata[0].imgfree.map(img=>{
-                            return (
-                                <div className="col-span-1 max-w-[40px] max-h-[40px] mr-4">
-                                   <img src={img} alt="image detail" className="w-full h-full object-contain object-center" />
-                                </div>
-                            )
-                        })
-                    }
+                  {productdata[0].imgfree.map((img) => {
+                    return (
+                      <div className="col-span-1 max-w-[40px] max-h-[40px] mr-4">
+                        <img
+                          src={img}
+                          alt="image detail"
+                          className="w-full h-full object-contain object-center"
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
 
                 <div className="button_counterPart grid grid-cols-4 xsm:grid-cols-1 ">
-                        <div className="col-span-1 xsm:my-2"><Counter classConter="w-[95%] mx-auto py-2"/></div>
-                        <div className="col-span-3 xsm:col-span-1 xsm:my-2 "><Button classbtn="m-0 w-full ProductBtn ">add to card - $ { productdata[0].price}</Button></div>
-                    </div>
+                  <div className="col-span-1 xsm:my-2">
+                    <Counter classConter="w-[95%] mx-auto py-2" />
+                  </div>
+                  <div className="col-span-3 xsm:col-span-1 xsm:my-2 ">
+                    <Button classbtn="m-0 w-full ProductBtn ">
+                      add to card - $ {productdata[0].price}
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+        </section>
+        <section className="productDetails bg-bg-bejiKal mt-20 ">
+          <div className="detaiTitlePart">
+            <div className="w-fit mx-auto py-6">
+              <button className="mx-4 text-base font-semibold capitalize" onClick={handldetails}>
+                Product Details
+              </button>
+              <button className="mx-4 text-base font-semibold capitalize" onClick={handleUse}>
+                How to Use
+              </button>
+              <button className="mx-4 text-base font-semibold capitalize" onClick={handleIngredients}>
+                Ingredients
+              </button>
+            </div>
+          </div>
+
+          <div className="detalsInformation max-w-[1200px] mx-auto py-6 px-4">
+          {/* detailse */}
+            <div className={`detailsProduct ${detailOpen && "detailOpen"}`}>
+              <p className="text-base font-medium ">
+                A midnight feast of skin nutrients, this night cream features
+                Northern Truffle, wild harvested in Finnish forests under the
+                magical glow of the Northern Lights.
+              </p>
+              <div className="childdetalPart max-w-[900px] pt-4">
+                <p className="text-base font-light py-4">
+                  Enriched with radiance-boosting actives that replenish
+                  hydration to counteract dryness and irritation, this soothing
+                  skin cream is perfect who hold a healthy, hydrated complexion
+                  as the ultimate skin goal.
+                </p>
+                <p className="text-base font-light py-4">
+                  Enriched with radiance-boosting actives that replenish
+                  hydration to counteract dryness and irritation, this soothing
+                  skin cream is perfect who hold a healthy, hydrated complexion
+                  as the ultimate skin goal.
+                </p>
+                <p className="text-base font-light py-4">
+                  Enriched with radiance-boosting actives that replenish
+                  hydration to counteract dryness and irritation, this soothing
+                  skin cream is perfect who hold a healthy, hydrated complexion
+                  as the ultimate skin goal.
+                </p>
+              </div>
+            </div>
+          {/* use */}
+            <div className={`useProduct ${useOpen && "useOpen"}`}>
+              <p className="text-base font-medium ">
+                A midnight feast of skin nutrients, this night cream features
+                Northern Truffle, wild harvested in Finnish forests under the
+                magical glow of the Northern Lights.
+              </p>
+              <div className="childdetalPart max-w-[900px] pt-4">
+                <p className="text-base font-light py-4">
+                  Enriched with radiance-boosting actives that replenish
+                  hydration to counteract dryness and irritation, this soothing
+                  skin cream is perfect who hold a healthy, hydrated complexion
+                  as the ultimate skin goal.
+                </p>
+                
+              </div>
+            </div>
+          {/* ingredient */}
+            <div className={`ingredientProduct ${ingredientsOpen && "ingredientsOpen"} `}>
+              <p className="text-base font-medium ">
+                A midnight feast of skin nutrients, this night cream features
+                Northern Truffle, wild harvested in Finnish forests under the
+                magical glow of the Northern Lights.
+              </p>
+              <div className="childdetalPart max-w-[900px] pt-4">
+                <p className="text-base font-light py-4">
+                  Enriched with radiance-boosting actives that replenish
+                  hydration to counteract dryness and irritation, this soothing
+                  skin cream is perfect who hold a healthy, hydrated complexion
+                  as the ultimate skin goal.
+                </p>
+                <p className="text-base font-light py-4">
+                  Enriched with radiance-boosting actives that replenish
+                  hydration to counteract dryness and irritation, this soothing
+                  skin cream is perfect who hold a healthy, hydrated complexion
+                  as the ultimate skin goal.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="productRecomend pb-20 pt-10 ">
+          <h2 className="section_title py-16">YOU MAY ALSO LIKE</h2>
+          <Cards discount={false} column="notcolumn" />
+        </section>
+        <section className="reviewsProduct">
+          <ReviewsProd
+            ratingProduct={productdata[0].ratingNumber}
+            numberReviews={productdata[0].reviews}
+          />
         </section>
       </main>
       <Footer />

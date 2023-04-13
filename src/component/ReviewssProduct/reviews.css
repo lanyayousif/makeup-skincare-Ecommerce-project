@@ -1,0 +1,13 @@
+.ratingALl svg.checked {
+    color: rgb(249, 224, 7);
+  }
+  .reviewForm1{
+    height: 0;
+    opacity: 0;
+    transition: height .6s;
+  }
+  .reviewForm1.showform{
+    height: 800px;
+    opacity: 1;
+    transition: all .5s;
+  }

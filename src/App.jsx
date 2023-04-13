@@ -8,6 +8,7 @@ import Signup from './pages/singup/Signup'
 import Cart from './component/cart/Cart'
 import Cartspage from './pages/cart/Cartspage'
 import Product from './pages/product/Product'
+import ProductImgSlider from './component/ProductImgSlider/ProductImgSlider'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/signup'  element={<Signup/>}/>
         <Route path='/cart'  element={<Cartspage/>}/>
         <Route path='/body'  element={<Product/>}/>
+        <Route path='/sun'  element={<ProductImgSlider/>}/>
         <Route path='*'  element={<Home/>}/>
       </Routes>
     </>

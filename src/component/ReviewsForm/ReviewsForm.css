@@ -1,0 +1,21 @@
+.reviewform .reviewInput{
+    background-color: transparent!important;
+    border: 1px solid #787474;
+}
+.reviewform .reviewInput:focus-visible{
+    outline:  none;
+    border:2px solid var(--purple-text-color);
+    /* outline-color: var(--purple-text-color);
+    outline-width: 2px; */
+}
+
+/* .reviewForm1 .reviewform form {
+    height: 0;
+    opacity: 0;
+    transition: height .3s;
+  }
+  .reviewForm1.showform .reviewform form{
+    height: 700px;
+    opacity: 1;
+    transition: height 3s;
+  } */

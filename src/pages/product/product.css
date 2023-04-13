@@ -5,5 +5,25 @@
 .ProductBtn {
 padding-top: 0.5rem!important;
 padding-bottom: 0.5rem!important;
+margin: 0!important;
+}
+.detaiTitlePart {
+    border-top: 1px solid var(--black-text-color);
+    border-bottom: 1px solid var(--black-text-color);
+}
+.ingredientProduct,
+.useProduct,
+.detailsProduct{
+    height: 0;
+    opacity: 0;
+    /* transition: height .6s; */
 
+}
+
+.detailsProduct.detailOpen,
+.useProduct.useOpen,
+.ingredientProduct.ingredientsOpen{
+    height: 100%;
+    opacity: 1;
+    transition: height .6s;
 }
