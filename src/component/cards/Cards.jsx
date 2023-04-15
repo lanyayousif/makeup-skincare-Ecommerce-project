@@ -10,120 +10,11 @@ import db from "../../../data/db.json";
 
 import product from "../../assets/img/product.jpg";
 import product2 from "../../assets/img/product2.jpg";
+import { useSelector } from "react-redux";
 
 function Cards({ discount, column }) {
-  const productInfor = [
-    {
-      id: 1,
-      productImg: product,
-      productImgHover: product2,
-      ratingNumber: 3.5,
-      numberReviews: "278",
-      productName: "KLAIRS",
-      productType: "Freshly Juiced Vitamin C Drop",
-      productPrice: "$24",
-      product_DiscountPrice: "",
-    },
-    {
-      id: 2,
-      productImg: product,
-      productImgHover: product2,
-      ratingNumber: 3.5,
-      numberReviews: "278",
-      productName: "KLAIRS",
-      productType: "Freshly Juiced Vitamin C Drop",
-      productPrice: "$24",
-      product_DiscountPrice: "$10",
-    },
-    {
-      id: 3,
-      productImg: product,
-      productImgHover: product2,
-      ratingNumber: 3.5,
-      numberReviews: "278",
-      productName: "KLAIRS",
-      productType: "Freshly Juiced Vitamin C Drop",
-      productPrice: "$24",
-      product_DiscountPrice: "",
-    },
-    {
-      id: 4,
-      productImg: product,
-      productImgHover: product2,
-      ratingNumber: 3.5,
-      numberReviews: "278",
-      productName: "KLAIRS",
-      productType: "Freshly Juiced Vitamin C Drop",
-      productPrice: "$24",
-      product_DiscountPrice: "$10",
-    },
-    {
-      id: 5,
-      productImg: product,
-      productImgHover: product2,
-      ratingNumber: 3.5,
-      numberReviews: "278",
-      productName: "KLAIRS",
-      productType: "Freshly Juiced Vitamin C Drop",
-      productPrice: "$24",
-      product_DiscountPrice: "",
-    },
-    {
-      id: 6,
-      productImg: product,
-      productImgHover: product2,
-      ratingNumber: 3.5,
-      numberReviews: "278",
-      productName: "KLAIRS",
-      productType: "Freshly Juiced Vitamin C Drop",
-      productPrice: "$24",
-      product_DiscountPrice: "$10",
-    },
-    {
-      id: 7,
-      productImg: product,
-      productImgHover: product2,
-      ratingNumber: 3.5,
-      numberReviews: "278",
-      productName: "KLAIRS",
-      productType: "Freshly Juiced Vitamin C Drop",
-      productPrice: "$24",
-      product_DiscountPrice: "",
-    },
-    {
-      id: 8,
-      productImg: product,
-      productImgHover: product2,
-      ratingNumber: 3.5,
-      numberReviews: "278",
-      productName: "KLAIRS",
-      productType: "Freshly Juiced Vitamin C Drop",
-      productPrice: "$24",
-      product_DiscountPrice: "$10",
-    },
-    {
-      id: 9,
-      productImg: product,
-      productImgHover: product2,
-      ratingNumber: 3.5,
-      numberReviews: "278",
-      productName: "KLAIRS",
-      productType: "Freshly Juiced Vitamin C Drop",
-      productPrice: "$24",
-      product_DiscountPrice: "",
-    },
-    {
-      id: 10,
-      productImg: product,
-      productImgHover: product2,
-      ratingNumber: 3.5,
-      numberReviews: "278",
-      productName: "KLAIRS",
-      productType: "Freshly Juiced Vitamin C Drop",
-      productPrice: "$24",
-      product_DiscountPrice: "$10",
-    },
-  ];
+  const {products}=useSelector(state=>state.product)
+  // console.log(products)
 
   const settings = {
     dots: true,
@@ -160,14 +51,14 @@ function Cards({ discount, column }) {
     ],
   };
 
-  console.log("column" + column);
+  // console.log("column" + column);
   return (
     <div className="  max-w-[98%] pl-[1%]">
       {/* flex align-middle justify-center  */}
       <div className=" xsm:mt-8  sm:mt-8 md:mt-8 mt-0  cards w-full">
         {column === "notcolumn" ? (
           <Slider {...settings}>
-            {productInfor.map((data) => {
+            {products.map((data) => {
               if (discount && data.product_DiscountPrice) {
                 return <Card {...data} key={data.id} discountt={discount} />;
               } else if (!discount && !data.product_DiscountPrice) {
@@ -177,7 +68,7 @@ function Cards({ discount, column }) {
           </Slider>
         ) : (
           <div className="grid 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 xsm:grid-cols-1 w-full">
-            {productInfor.map((data) => {
+            {products.map((data) => {
               return <Card {...data} key={data.id} />;
             })}
           </div>

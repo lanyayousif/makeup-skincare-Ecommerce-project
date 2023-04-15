@@ -7,47 +7,18 @@ import Counter from "../counter/Counter";
 import Button from "../button/Button";
 import { NavLink } from "react-router-dom";
 import CartProduct from "./CartProduct";
+import { useSelector } from "react-redux";
+import { addToCart } from "../../store/reducer/cartSlice";
 
 function Cart() {
-  const cartProductData = [
-    {
-      id: 1,
-      name: "Lorem Ipsum, giving information ",
-      img: cartImg,
-      price: "$144",
-    },
-    {
-      id: 2,
-      name: " giving information Lorem Ipsum,",
-      img: cartImg,
-      price: "$44",
-    },
-    {
-      id: 3,
-      name: " giving information Lorem Ipsum,",
-      img: cartImg,
-      price: "$44",
-    },
-    {
-      id: 4,
-      name: " giving information Lorem Ipsum,",
-      img: cartImg,
-      price: "$44",
-    },
-    {
-      id: 5,
-      name: " giving information Lorem Ipsum,",
-      img: cartImg,
-      price: "$44",
-    },
-    {
-      id: 6,
-      name: " giving information Lorem Ipsum,",
-      img: cartImg,
-      price: "$44",
-    },
-  ];
-  // onClick={handlShowCart}
+
+  const { cartItems } = useSelector((state) => state.cart);
+
+  const totals= cartItems.reduce((total, item) => {
+      return total + (item.productPrice * item.quantity);
+    }, 0);
+ 
+
   return (
     // top-0 right-0 fixed bottom-0  h-[100vh] w-full max-w-[500px]
     <div className="cartPart   h-full w-full  bg-white relative z-[88] max-w-[500px] ">
@@ -55,22 +26,23 @@ function Cart() {
         <h2 className="section_title py-10 ">my cart</h2>
 
         <div className="carts h-[70vh]  overflow-x-auto thin">
-          {cartProductData.map((data) => {
+          {cartItems.map((data) => {
             return <CartProduct {...data} key={data.id} />;
           })}
-
         </div>
-       
+
         <div className="buttonCart absolute bottom-30 left-0 right-0 px-4 bottom-0">
           <div className="totalPrice pb-4">
             <p className="subtotalCart inline-block float-left text-base font-semibold">
-              Subtotal (2 items)
+              Subtotal
             </p>
             <p className="subtotalPriceCart inline-block float-right text-base font-semibold">
-              $144
+              ${totals}
             </p>
           </div>
-         <NavLink to="/checkout"> <Button classbtn="w-full mx-auto">checkout</Button></NavLink>
+          <NavLink to="/checkout">
+            <Button classbtn="w-full mx-auto">checkout</Button>
+          </NavLink>
         </div>
       </div>
     </div>

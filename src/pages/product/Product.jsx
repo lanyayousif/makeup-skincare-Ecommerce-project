@@ -17,6 +17,7 @@ import Heartbtn from "../../component/card/Heartbtn";
 import ProductImgSlider from "../../component/ProductImgSlider/ProductImgSlider";
 import ReviewsProd from "../../component/ReviewssProduct/ReviewsProd";
 import Cards from "../../component/cards/Cards";
+import { useSelector } from "react-redux";
 
 function Product() {
   const productdata = [
@@ -31,6 +32,9 @@ function Product() {
       imgfree: [imgproductFree, imgproductFree2, imgproductFree3],
     },
   ];
+
+  const {products}=useSelector(state=>state.product)
+ 
 
   const[detailOpen,SetDetailOpen]=useState(true)
   const[useOpen,SetUseOpen]=useState(false)
@@ -52,16 +56,14 @@ function Product() {
     SetUseOpen(false)
     SetDetailOpen(false)
   }
-  if(useOpen===false && ingredientsOpen ===false){
-    SetDetailOpen(true)
-  }
+//   if(useOpen===false && ingredientsOpen ===false){
+//     SetDetailOpen(true)
+//   }
 
-  console.log("detailOpen"+detailOpen)
-  console.log("useOpen"+useOpen)
-  console.log("ingredientsOpen"+ingredientsOpen)
+//   console.log("detailOpen"+detailOpen)
+//   console.log("useOpen"+useOpen)
+//   console.log("ingredientsOpen"+ingredientsOpen)
 
-
-  console.log(" product " + productdata[0].ratingNumber);
   return (
     <>
       <main>
@@ -129,7 +131,7 @@ function Product() {
         <section className="productDetails bg-bg-bejiKal mt-20 ">
           <div className="detaiTitlePart">
             <div className="w-fit mx-auto py-6">
-              <button className="mx-4 text-base font-semibold capitalize" onClick={handldetails}>
+              <button className={`mx-4 text-base font-semibold capitalize  ${detailOpen && "focusBtn"}`} onClick={handldetails}>
                 Product Details
               </button>
               <button className="mx-4 text-base font-semibold capitalize" onClick={handleUse}>

@@ -25,7 +25,8 @@ nav.scrolled{
     /* margin-right: 60px; */
     margin-right: 30px;
     margin-left: 30px;
-} 
+}
+.nav_elements ul li, 
 .nav_elements ul li a{
     font-size: 1rem;
     font-weight: 500;
@@ -48,6 +49,7 @@ nav.scrolled{
     background-color: var(--purple-text-color);   
 }
 
+nav.scrolled .nav_elements ul li ,
 nav.scrolled .nav_elements ul li a{
     cursor: pointer;
 }

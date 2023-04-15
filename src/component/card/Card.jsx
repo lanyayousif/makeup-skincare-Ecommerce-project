@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { addItem } from "../../store/cartSlice";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../store/reducer/cartSlice";
 
 import { NavLink } from "react-router-dom";
 import "./card.css";
@@ -13,38 +13,25 @@ import Button from "../button/Button";
 import Reviews from "../reviews/Reviews";
 import Heartbtn from "./Heartbtn";
 
-function Card({
-  discountt,
-  id,
-  productImgHover,
-  productImg,
-  ratingNumber,
-  numberReviews,
-  productName,
-  productType,
-  product_DiscountPrice,
-  productPrice,
-}) {
+function Card(producte) {
   // const [heart, setHeart] = useState(false);
   const [product_imgState, setProduct_imgState] = useState(false);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  const addProductToCard = () => {
-    // dispatch(
-    //   addItem({
-    //     id,
-    //     productImgHover,
-    //     productImg,
-    //     ratingNumber,
-    //     numberReviews,
-    //     productName,
-    //     productType,
-    //     product_DiscountPrice,
-    //     productPrice,
-    //   })
-    // );
-    console.log(id);
-  };
+  const {
+    discountt,
+    id,
+    productImgHover,
+    productImg,
+    ratingNumber,
+    numberReviews,
+    productName,
+    productType,
+    product_DiscountPrice,
+    productPrice,
+    quantity
+  }=producte
+
 
   return (
     <>
@@ -91,13 +78,17 @@ function Card({
               <span className="h6 price ">{product_DiscountPrice}</span>
             </h6>
           ) : (
-            <h6 className="h6 price ">{productPrice}</h6>
+            <h6 className="h6 price ">${productPrice}</h6>
           )}
           <div className="w-fit h-fit mx-auto my-4 xsm:my-2">
             <button
               className="cardBtn"
               type="button"
-              onClick={addProductToCard}
+              onClick={() => {
+                let item = null;
+                item = {...producte,quantity:1};
+                dispatch(addToCart(item));
+              }}
             >
               add to card
             </button>

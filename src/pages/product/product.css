@@ -27,3 +27,11 @@ margin: 0!important;
     opacity: 1;
     transition: height .6s;
 }
+
+.detaiTitlePart button .focusBtn::after{
+    position: absolute;
+    bottom: 0;
+    height: 10px;
+    width: 100px;
+    background-color: var(--back-secondary-color);
+}

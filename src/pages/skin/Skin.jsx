@@ -7,9 +7,11 @@ import Filter from "../../component/filter/Filter";
 import DropDownFilter from "../../component/filter/DropDownFilter";
 import Cards from "../../component/cards/Cards";
 import Footer from "../../component/footer/Footer";
+import { useSelector } from "react-redux";
 
 function Skin() {
   const [sortType, setSortType] = useState("alphabetically, A-Z");
+  const {products}=useSelector(state=>state.product)
   const handleSort = (e) => {
     setSortType(e.target.value);
     console.log(sortType);
@@ -40,7 +42,7 @@ function Skin() {
           <div className="products col-span-4 xsm:col-span-1 sm:col-span-1">
             <div className="sortPart w-full md:hidden sm:hidden xsm:hidden ">
               <span className="itemsNumber text-base uppercase float-left">
-                items:100
+                items:{products.length}
               </span>
               <div className="sortdiv inline-block w-fit h-fit float-right">
                 <span className="text-base capitalize">sort by:</span>

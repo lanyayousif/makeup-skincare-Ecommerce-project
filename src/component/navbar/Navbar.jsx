@@ -104,9 +104,8 @@ function Navbar() {
                         </NavLink>
                       </li>
                       <li>
-                        <NavLink to="/">
                           <FontAwesomeIcon icon={faBagShopping} />
-                        </NavLink>
+                       
                       </li>
                     </ul>
                   </div>
@@ -159,9 +158,9 @@ function Navbar() {
                 </NavLink>
               </li>
               <li onClick={handlShowCart}>
-                <NavLink to="/">
+                
                   <FontAwesomeIcon icon={faBagShopping} />
-                </NavLink>
+             
               </li>
             </ul>
           </div>
