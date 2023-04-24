@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useGetProductsByIdQuery } from "../../store/services/services";
 import Footer from "../../component/footer/Footer";
 import Navbar from "../../component/navbar/Navbar";
 import Reviews from "../../component/reviews/Reviews";
@@ -18,6 +19,7 @@ import ProductImgSlider from "../../component/ProductImgSlider/ProductImgSlider"
 import ReviewsProd from "../../component/ReviewssProduct/ReviewsProd";
 import Cards from "../../component/cards/Cards";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 function Product() {
   const productdata = [
@@ -33,36 +35,60 @@ function Product() {
     },
   ];
 
-  const {products}=useSelector(state=>state.product)
- 
+  const { id } = useParams();
 
-  const[detailOpen,SetDetailOpen]=useState(true)
-  const[useOpen,SetUseOpen]=useState(false)
-  const[ingredientsOpen,SetIngredientsOpen]=useState(false)
+  const { data:singleProduct, isLoading, error } = useGetProductsByIdQuery(id);
 
-  const handldetails=()=>{
-    SetDetailOpen(!detailOpen)
-    SetUseOpen(false)
-    SetIngredientsOpen(false)
-   
-  }
-  const handleUse=()=>{
-    SetUseOpen(!useOpen)
-    SetDetailOpen(false)
-    SetIngredientsOpen(false)}
-  
-  const handleIngredients=()=>{
-    SetIngredientsOpen(!ingredientsOpen)
-    SetUseOpen(false)
-    SetDetailOpen(false)
-  }
-//   if(useOpen===false && ingredientsOpen ===false){
-//     SetDetailOpen(true)
-//   }
+  const productData = singleProduct;
+  // console.log(singleProduct);
 
-//   console.log("detailOpen"+detailOpen)
-//   console.log("useOpen"+useOpen)
-//   console.log("ingredientsOpen"+ingredientsOpen)
+  // {ProductPrice,
+  // isActive
+  // productDetailse,
+  // productImgPage,
+  // productImgcard,
+  // productIntegrate,
+  // productLiked,
+  // productName,
+  // productRaiting,
+  // productReviews,
+  // productSize,
+  // productTitle,
+  // productUse,
+  // __v,
+  // _id,}
+
+
+  const { products } = useSelector((state) => state.product);
+
+  // console.log(products)
+  const [detailOpen, SetDetailOpen] = useState(true);
+  const [useOpen, SetUseOpen] = useState(false);
+  const [ingredientsOpen, SetIngredientsOpen] = useState(false);
+
+  const handldetails = () => {
+    SetDetailOpen(!detailOpen);
+    SetUseOpen(false);
+    SetIngredientsOpen(false);
+  };
+  const handleUse = () => {
+    SetUseOpen(!useOpen);
+    SetDetailOpen(false);
+    SetIngredientsOpen(false);
+  };
+
+  const handleIngredients = () => {
+    SetIngredientsOpen(!ingredientsOpen);
+    SetUseOpen(false);
+    SetDetailOpen(false);
+  };
+  //   if(useOpen===false && ingredientsOpen ===false){
+  //     SetDetailOpen(true)
+  //   }
+
+  //   console.log("detailOpen"+detailOpen)
+  //   console.log("useOpen"+useOpen)
+  //   console.log("ingredientsOpen"+ingredientsOpen)
 
   return (
     <>
@@ -78,20 +104,20 @@ function Product() {
               <div className="aboutPart max-w-[600px]">
                 <div className="ratingsPro  flex items-center justify-between relative">
                   <div className="">
-                    <Reviews rating={productdata[0].ratingNumber} />
-                    <span className="reviesProduct text-base ml-2 text-lightBlack-text">{`(${productdata[0].reviews})`}</span>
+                    <Reviews rating={productdata.productRaiting} />
+                    <span className="reviesProduct text-base ml-2 text-lightBlack-text">{`(${productdata.productReviews})`}</span>
                   </div>
                   <Heartbtn />
                 </div>
                 <div className="sizeProduct my-2">
                   <p className="text-base font-medium capitalize">
-                    {productdata[0].size}
+                    {productdata.productSize}
                   </p>
                 </div>
                 <h2 className="text-purple-text xsm:h4 sm:h4 md:h4 h3">
-                  Flower Water Toner
+                  {productdata.productTitle}
                 </h2>
-                <p className="productPrice text-base font-medium mt-2">{`$ ${productdata[0].price}`}</p>
+                <p className="productPrice text-base font-medium mt-2">{`$ ${productdata.ProductPrice}`}</p>
                 <p className="aboutProduct text-base font-light mt-10">
                   my makeup melting cleanser is a cream-to-oil cleanser that
                   efficiently melts away makeup and impurities leaving skin
@@ -116,11 +142,11 @@ function Product() {
 
                 <div className="button_counterPart grid grid-cols-4 xsm:grid-cols-1 ">
                   <div className="col-span-1 xsm:my-2">
-                    <Counter classConter="w-[95%] mx-auto py-2" />
+                    {/* <Counter classConter="w-[95%] mx-auto py-2" /> */}
                   </div>
                   <div className="col-span-3 xsm:col-span-1 xsm:my-2 ">
                     <Button classbtn="m-0 w-full ProductBtn ">
-                      add to card - $ {productdata[0].price}
+                      add to card - $ {productdata.ProductPrice}
                     </Button>
                   </div>
                 </div>
@@ -131,20 +157,31 @@ function Product() {
         <section className="productDetails bg-bg-bejiKal mt-20 ">
           <div className="detaiTitlePart">
             <div className="w-fit mx-auto py-6">
-              <button className={`mx-4 text-base font-semibold capitalize  ${detailOpen && "focusBtn"}`} onClick={handldetails}>
+              <button
+                className={`mx-4 text-base font-semibold capitalize  ${
+                  detailOpen && "focusBtn"
+                }`}
+                onClick={handldetails}
+              >
                 Product Details
               </button>
-              <button className="mx-4 text-base font-semibold capitalize" onClick={handleUse}>
+              <button
+                className="mx-4 text-base font-semibold capitalize"
+                onClick={handleUse}
+              >
                 How to Use
               </button>
-              <button className="mx-4 text-base font-semibold capitalize" onClick={handleIngredients}>
+              <button
+                className="mx-4 text-base font-semibold capitalize"
+                onClick={handleIngredients}
+              >
                 Ingredients
               </button>
             </div>
           </div>
 
           <div className="detalsInformation max-w-[1200px] mx-auto py-6 px-4">
-          {/* detailse */}
+            {/* detailse */}
             <div className={`detailsProduct ${detailOpen && "detailOpen"}`}>
               <p className="text-base font-medium ">
                 A midnight feast of skin nutrients, this night cream features
@@ -172,7 +209,7 @@ function Product() {
                 </p>
               </div>
             </div>
-          {/* use */}
+            {/* use */}
             <div className={`useProduct ${useOpen && "useOpen"}`}>
               <p className="text-base font-medium ">
                 A midnight feast of skin nutrients, this night cream features
@@ -186,11 +223,14 @@ function Product() {
                   skin cream is perfect who hold a healthy, hydrated complexion
                   as the ultimate skin goal.
                 </p>
-                
               </div>
             </div>
-          {/* ingredient */}
-            <div className={`ingredientProduct ${ingredientsOpen && "ingredientsOpen"} `}>
+            {/* ingredient */}
+            <div
+              className={`ingredientProduct ${
+                ingredientsOpen && "ingredientsOpen"
+              } `}
+            >
               <p className="text-base font-medium ">
                 A midnight feast of skin nutrients, this night cream features
                 Northern Truffle, wild harvested in Finnish forests under the

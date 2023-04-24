@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import product from "../../assets/img/product.jpg";
 import product2 from "../../assets/img/product2.jpg";
 
@@ -137,6 +137,7 @@ const initialState={
         },
       ]
 }
+
 
 export const productSlice=createSlice({
     name:'product',

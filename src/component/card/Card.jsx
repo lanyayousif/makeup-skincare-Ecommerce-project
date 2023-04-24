@@ -29,9 +29,26 @@ function Card(producte) {
     productType,
     product_DiscountPrice,
     productPrice,
-    quantity
-  }=producte
+    quantity,
+  } = producte;
 
+  // {ProductPrice,
+  // isActive
+  // productDetailse,
+  // productImgPage,
+  // productImgcard,
+  // productIntegrate,
+  // productLiked,
+  // productName,
+  // productRaiting,
+  // productReviews,
+  // productSize,
+  // productTitle,
+  // productUse,
+  // __v,
+  // _id,}
+  
+  const _id="643e7a7e8b33ba3e24412cac"
 
   return (
     <>
@@ -50,7 +67,7 @@ function Card(producte) {
             heartClass="absolute top-5 right-5"
           />
 
-          <NavLink to="/">
+          <NavLink to={`/product/${_id}`}>
             <img
               src={product_imgState ? productImgHover : productImg}
               alt="product image"
@@ -86,7 +103,7 @@ function Card(producte) {
               type="button"
               onClick={() => {
                 let item = null;
-                item = {...producte,quantity:1};
+                item = { ...producte, quantity: 1 };
                 dispatch(addToCart(item));
               }}
             >

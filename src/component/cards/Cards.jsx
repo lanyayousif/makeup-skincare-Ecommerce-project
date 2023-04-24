@@ -11,10 +11,29 @@ import db from "../../../data/db.json";
 import product from "../../assets/img/product.jpg";
 import product2 from "../../assets/img/product2.jpg";
 import { useSelector } from "react-redux";
+import { useGetAllProductsQuery } from "../../store/services/services";
 
 function Cards({ discount, column }) {
   const {products}=useSelector(state=>state.product)
-  // console.log(products)
+
+  const {
+    data:productsData,
+    isLoading,
+    error,
+  } =useGetAllProductsQuery()
+
+  // productsData.data.map((data) => {
+  //   console.log(data)
+  // })
+
+// console.log("productsData "+productsData)  
+console.log(productsData.data[0]) 
+
+// const arrayy=productsData.data
+// console.log(arrayy) 
+// arrayy.map(data => {
+//     console.log(data)
+//   })
 
   const settings = {
     dots: true,
