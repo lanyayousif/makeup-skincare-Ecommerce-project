@@ -9,15 +9,16 @@ import Counter from "../counter/Counter";
 
 
 function CartProduct(cartProducte) {
+
   const dispatch=useDispatch()
-  const { id, productImg, productName, productPrice,quantity } = cartProducte;
+  const { productId:{_id, productImgcard, productName, ProductPrice},quantity} = cartProducte;
 
   return (
-    <div className="cardtProduct w-[95%] mx-auto rounded bg-bg-bejiKal  mb-7 max-w-[800px]" key={id}>
+    <div className="cardtProduct w-[95%] mx-auto rounded bg-bg-bejiKal  mb-7 max-w-[800px]" key={_id}>
       <div className="flex  items-start w-full h-[120px]">
         <div className="CartImg rounded-t rounded-b h-full w-3/12">
           <img
-            src={productImg}
+            src={productImgcard}
             alt="product image"
             className="w-full h-full object-fill object-center rounded-t rounded-b"
           />
@@ -34,7 +35,7 @@ function CartProduct(cartProducte) {
 
           <div className="flex items-center justify-between py-2">
             <Counter item={cartProducte} />
-            <p className="text-purple-text">${productPrice}</p>
+            <p className="text-purple-text">${ProductPrice}</p>
           </div>
         </div>
       </div>

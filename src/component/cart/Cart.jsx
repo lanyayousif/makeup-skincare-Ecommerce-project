@@ -7,17 +7,32 @@ import Counter from "../counter/Counter";
 import Button from "../button/Button";
 import { NavLink } from "react-router-dom";
 import CartProduct from "./CartProduct";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../store/reducer/cartSlice";
+import { useGetCartProductQuery ,useAddProductToCartMutation} from "../../store/api/cart.js";
 
 function Cart() {
+  const dispatch=useDispatch()
+  const {carts}  = useSelector((state) => state.cart);
 
-  const { cartItems } = useSelector((state) => state.cart);
+  const totals = carts.cartItems.reduce((total, item) => {
+    return total + item.productId.ProductPrice * item.quantity;
+  }, 0);
+  
+// console.log(carts)
 
-  const totals= cartItems.reduce((total, item) => {
-      return total + (item.productPrice * item.quantity);
-    }, 0);
- 
+const cartItemsInfor={...carts,totalPrice:totals}
+console.log(cartItemsInfor)
+
+
+// get and post to database
+const [addProductCart, { isLoading, isError }]=useAddProductToCartMutation()
+const handleCheackout=(e)=>{
+  addProductCart(cartItemsInfor)
+}
+const {data: getProductCart,  issLoading, issError }=useGetCartProductQuery()
+// console.log(getProductCart)
+
 
   return (
     // top-0 right-0 fixed bottom-0  h-[100vh] w-full max-w-[500px]
@@ -26,8 +41,8 @@ function Cart() {
         <h2 className="section_title py-10 ">my cart</h2>
 
         <div className="carts h-[70vh]  overflow-x-auto thin">
-          {cartItems.map((data) => {
-            return <CartProduct {...data} key={data.id} />;
+          {carts.cartItems.map((data) => {
+            return <CartProduct {...data} key={data.productId._id} />;
           })}
         </div>
 
@@ -40,8 +55,8 @@ function Cart() {
               ${totals}
             </p>
           </div>
-          <NavLink to="/checkout">
-            <Button classbtn="w-full mx-auto">checkout</Button>
+          <NavLink to="/checkout" onClick={handleCheackout}>
+            <Button classbtn="w-full mx-auto" >checkout</Button>
           </NavLink>
         </div>
       </div>
@@ -79,3 +94,26 @@ export default Cart;
 //     </div>
 //   );
 // }
+
+
+// const totalss = cartItemsInfor.cartItems.reduce((total, item) => {
+//   return total + item.productId.ProductPrice * item.quantity;
+// }, 0);
+// console.log(cartItemsInfor)
+// dispatch(addToCart(cartItemsInfor))
+
+// const initialStatee = [
+//   {
+//       cartItems: [{id:1,age:2},{id:1,age:2}],
+//       totalQuantity: 10,
+//       totalPrice: 10,
+//       userId: "64410d9cbec84f65377bca67",  
+    
+//     }
+// ];
+// initialStatee.map((data) => {
+//   // console.log(data.cartItems)
+//   data.cartItems.map((data,index) => {
+//     console.log(data.id) })
+
+// })

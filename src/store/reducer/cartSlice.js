@@ -1,35 +1,42 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  cartItems: [],
-};
+      carts:{
+      cartItems: [],
+      totalQuantity: 0,
+      totalPrice: 0,
+      userId: "", 
+    } 
+}
+
+console.log(initialState.carts.cartItems)
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
     addToCart: (state, action) => {
       const item = action.payload;
-      const productItem = state.cartItems.find(
-        (item) => item.id === action.payload.id
+      const productItem = state.carts.cartItems.find(
+        (product) => product.productId._id === item.productId._id
       );
       if (productItem) {
         // exsistingIndex.quantity +=1
         console.log("product item added befor");
       } else {
-        state.cartItems = [...state.cartItems, item];
-        console.log(state.cartItems);
+        state.carts.cartItems = [...state.carts.cartItems, item];
+        // console.log(state.cartItems);
       }
     },
     remove: (state, action) => {
       const item = action.payload;
-      state.cartItems = state.cartItems.filter(
-        (product) => product.id !== item.id
+      state.carts.cartItems = state.carts.cartItems.filter(
+        (product) => product.productId._id !== item.productId._id
       );
     },
     increment: (state, action) => {
       const item = action.payload;
-      let productItem = state.cartItems.find(
-        (product) => product.id === item.id
+      let productItem = state.carts.cartItems.find(
+        (product) => product.productId._id === item.productId._id
       );
       if (productItem) {
         productItem.quantity += 1;
@@ -37,14 +44,14 @@ export const cartSlice = createSlice({
     },
     decrement: (state, action) => {
       const item = action.payload;
-      let productItem = state.cartItems.find(
-        (product) => product.id === item.id
+      let productItem = state.carts.cartItems.find(
+        (product) => product.productId._id === item.productId._id
       );
       if (productItem.quantity > 1) {
         productItem.quantity -= 1;
       } else if (productItem.quantity === 1) {
-        state.cartItems = state.cartItems.filter(
-          (product) => product.id !== productItem.id
+        state.carts.cartItems = state.carts.cartItems.filter(
+          (product) => product.productId._id !== productItem._id
         );
       }
       console.log("productItem.quantity  " + productItem.quantity);

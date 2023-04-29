@@ -11,29 +11,15 @@ import db from "../../../data/db.json";
 import product from "../../assets/img/product.jpg";
 import product2 from "../../assets/img/product2.jpg";
 import { useSelector } from "react-redux";
-import { useGetAllProductsQuery } from "../../store/services/services";
+import { useGetAllProductsQuery } from "../../store/api/product.js";
 
 function Cards({ discount, column }) {
-  const {products}=useSelector(state=>state.product)
-
-  const {
-    data:productsData,
-    isLoading,
-    error,
-  } =useGetAllProductsQuery()
+  const { products } = useSelector((state) => state.product);
+  const { data: productsData, isLoading, error } = useGetAllProductsQuery();
 
   // productsData.data.map((data) => {
   //   console.log(data)
   // })
-
-// console.log("productsData "+productsData)  
-console.log(productsData.data[0]) 
-
-// const arrayy=productsData.data
-// console.log(arrayy) 
-// arrayy.map(data => {
-//     console.log(data)
-//   })
 
   const settings = {
     dots: true,
@@ -77,18 +63,18 @@ console.log(productsData.data[0])
       <div className=" xsm:mt-8  sm:mt-8 md:mt-8 mt-0  cards w-full">
         {column === "notcolumn" ? (
           <Slider {...settings}>
-            {products.map((data) => {
-              if (discount && data.product_DiscountPrice) {
-                return <Card {...data} key={data.id} discountt={discount} />;
-              } else if (!discount && !data.product_DiscountPrice) {
-                return <Card {...data} key={data.id} discountt={discount} />;
+            {productsData?.data.map((data) => {
+              if (discount && data.discountPrice) {
+                return <Card {...data} key={data._id} discountt={discount} />;
+              } else if (!discount && !data.discountPrice) {
+                return <Card {...data} key={data._id} discountt={discount} />;
               }
             })}
           </Slider>
         ) : (
           <div className="grid 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 xsm:grid-cols-1 w-full">
-            {products.map((data) => {
-              return <Card {...data} key={data.id} />;
+            {productsData?.data.map((data) => {
+              return <Card {...data} key={data._id} />;
             })}
           </div>
         )}

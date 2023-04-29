@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useGetProductsByIdQuery } from "../../store/services/services";
+import { useGetProductsByIdQuery } from "../../store/api/product.js";
 import Footer from "../../component/footer/Footer";
 import Navbar from "../../component/navbar/Navbar";
 import Reviews from "../../component/reviews/Reviews";
@@ -22,46 +22,24 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 function Product() {
-  const productdata = [
-    {
-      id: 1,
-      name: " test ",
-      ratingNumber: 4,
-      reviews: 25,
-      size: "4 Fl oz",
-      price: 24,
-      imgsproduct: [product1, product2, product3, product4],
-      imgfree: [imgproductFree, imgproductFree2, imgproductFree3],
-    },
-  ];
+  // const productdata = [
+  //   {
+  //     id: 1,
+  //     name: " test ",
+  //     ratingNumber: 4,
+  //     reviews: 25,
+  //     size: "4 Fl oz",
+  //     price: 24,
+  //     imgsproduct: [product1, product2, product3, product4],
+  //     imgfree: [imgproductFree, imgproductFree2, imgproductFree3],
+  //   },
+  // ];
 
   const { id } = useParams();
-
-  const { data:singleProduct, isLoading, error } = useGetProductsByIdQuery(id);
-
-  const productData = singleProduct;
-  // console.log(singleProduct);
-
-  // {ProductPrice,
-  // isActive
-  // productDetailse,
-  // productImgPage,
-  // productImgcard,
-  // productIntegrate,
-  // productLiked,
-  // productName,
-  // productRaiting,
-  // productReviews,
-  // productSize,
-  // productTitle,
-  // productUse,
-  // __v,
-  // _id,}
-
+  const { data: singleProduct, isLoading, error } = useGetProductsByIdQuery(id);
 
   const { products } = useSelector((state) => state.product);
 
-  // console.log(products)
   const [detailOpen, SetDetailOpen] = useState(true);
   const [useOpen, SetUseOpen] = useState(false);
   const [ingredientsOpen, SetIngredientsOpen] = useState(false);
@@ -82,10 +60,10 @@ function Product() {
     SetUseOpen(false);
     SetDetailOpen(false);
   };
+
   //   if(useOpen===false && ingredientsOpen ===false){
   //     SetDetailOpen(true)
   //   }
-
   //   console.log("detailOpen"+detailOpen)
   //   console.log("useOpen"+useOpen)
   //   console.log("ingredientsOpen"+ingredientsOpen)
@@ -104,20 +82,20 @@ function Product() {
               <div className="aboutPart max-w-[600px]">
                 <div className="ratingsPro  flex items-center justify-between relative">
                   <div className="">
-                    <Reviews rating={productdata.productRaiting} />
-                    <span className="reviesProduct text-base ml-2 text-lightBlack-text">{`(${productdata.productReviews})`}</span>
+                    <Reviews rating={singleProduct?.data.productRaiting} />
+                    <span className="reviesProduct text-base ml-2 text-lightBlack-text">{`(${singleProduct?.data.productReviews})`}</span>
                   </div>
                   <Heartbtn />
                 </div>
                 <div className="sizeProduct my-2">
                   <p className="text-base font-medium capitalize">
-                    {productdata.productSize}
+                    {singleProduct?.data.productSize}
                   </p>
                 </div>
                 <h2 className="text-purple-text xsm:h4 sm:h4 md:h4 h3">
-                  {productdata.productTitle}
+                  {singleProduct?.data.productSize}
                 </h2>
-                <p className="productPrice text-base font-medium mt-2">{`$ ${productdata.ProductPrice}`}</p>
+                <p className="productPrice text-base font-medium mt-2">{`$ ${singleProduct?.data.ProductPrice}`}</p>
                 <p className="aboutProduct text-base font-light mt-10">
                   my makeup melting cleanser is a cream-to-oil cleanser that
                   efficiently melts away makeup and impurities leaving skin
@@ -127,7 +105,7 @@ function Product() {
                 </p>
 
                 <div className="imgPro grid grid-cols-4 my-10 w-fit ">
-                  {productdata[0].imgfree.map((img) => {
+                  {singleProduct?.data.productImgFree.map((img) => {
                     return (
                       <div className="col-span-1 max-w-[40px] max-h-[40px] mr-4">
                         <img
@@ -146,7 +124,7 @@ function Product() {
                   </div>
                   <div className="col-span-3 xsm:col-span-1 xsm:my-2 ">
                     <Button classbtn="m-0 w-full ProductBtn ">
-                      add to card - $ {productdata.ProductPrice}
+                      add to card - $ {singleProduct?.data.ProductPrice}
                     </Button>
                   </div>
                 </div>
@@ -259,8 +237,8 @@ function Product() {
         </section>
         <section className="reviewsProduct">
           <ReviewsProd
-            ratingProduct={productdata[0].ratingNumber}
-            numberReviews={productdata[0].reviews}
+            ratingProduct={singleProduct?.data.productRaiting}
+            numberReviews={singleProduct?.data.productReviews}
           />
         </section>
       </main>

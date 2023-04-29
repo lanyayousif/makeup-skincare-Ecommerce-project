@@ -12,48 +12,58 @@ import product2 from "../../assets/img/product2.jpg";
 import Button from "../button/Button";
 import Reviews from "../reviews/Reviews";
 import Heartbtn from "./Heartbtn";
+import { useAddProductToCartMutation } from "../../store/api/cart.js";
 
 function Card(producte) {
   // const [heart, setHeart] = useState(false);
   const [product_imgState, setProduct_imgState] = useState(false);
   const dispatch = useDispatch();
+  const [addProductCart, { isLoading, isError }]=useAddProductToCartMutation()
+  // const {
+  //   discountt,
+  //   id,
+  //   productImgHover,
+  //   productImg,
+  //   ratingNumber,
+  //   numberReviews,
+  //   productName,
+  //   productType,
+  //   product_DiscountPrice,
+  //   productPrice,
+  //   quantity,
+  // } = producte;
 
   const {
-    discountt,
-    id,
-    productImgHover,
-    productImg,
-    ratingNumber,
-    numberReviews,
-    productName,
+    ProductPrice,
+    cart_items,
+    catagoryId,
+    productDescription,
+    productDetailse,
     productType,
-    product_DiscountPrice,
-    productPrice,
+    productImgFree,
+    productImgPage,
+    productImgcard,
+    productImgcardHover,
+    productIntegrate,
+    productLiked,
+    productName,
+    productRaiting,
+    productReviews,
+    productSize,
+    productTitle,
+    productUse,
+    discountPrice,
     quantity,
+    __v,
+    _id,
   } = producte;
 
-  // {ProductPrice,
-  // isActive
-  // productDetailse,
-  // productImgPage,
-  // productImgcard,
-  // productIntegrate,
-  // productLiked,
-  // productName,
-  // productRaiting,
-  // productReviews,
-  // productSize,
-  // productTitle,
-  // productUse,
-  // __v,
-  // _id,}
-  
-  const _id="643e7a7e8b33ba3e24412cac"
+  // const _id="643e7a7e8b33ba3e24412cac"
 
   return (
     <>
       <div
-        key={id}
+        key={_id}
         className="card xsm:m-2 sm:m-4 md:m-4 m-3  min-w-[280px] max-w-[360px] h-[500px] xsm:w-[290px] xsm:h-[400px] rounded "
       >
         <div
@@ -69,7 +79,7 @@ function Card(producte) {
 
           <NavLink to={`/product/${_id}`}>
             <img
-              src={product_imgState ? productImgHover : productImg}
+              src={product_imgState ? productImgcard : productImgcardHover}
               alt="product image"
               className="w-full h-full rounded-t"
             />
@@ -78,35 +88,35 @@ function Card(producte) {
         <div className="card_about h-[220px] xsm:h-1/2 py-6 px-4  bg-bg-bejiKal rounded-b">
           <div className="rating_part">
             <div className="cardStars inline-block">
-              <Reviews rating={ratingNumber} />
+              <Reviews rating={productRaiting} />
             </div>
 
             <span className="font-light text-sm ml-3 ">
-              ({numberReviews} reviews)
+              ({productReviews} reviews)
             </span>
           </div>
           <h6 className="h6 productName pt-2 ">{productName}</h6>
           <p className="productType text-base pt-1 pb-1 font-light">
             {productType}
           </p>
-          {product_DiscountPrice ? (
+          {discountPrice ? (
             <h6 className=" h6 font-extralight ">
-              <span className="line-through">{productPrice}</span>{" "}
-              <span className="h6 price ">{product_DiscountPrice}</span>
+              <span className="line-through">{ProductPrice}</span>
+              <span className="h6 price ">{discountPrice}</span>
             </h6>
           ) : (
-            <h6 className="h6 price ">${productPrice}</h6>
+            <h6 className="h6 price ">${ProductPrice}</h6>
           )}
           <div className="w-fit h-fit mx-auto my-4 xsm:my-2">
             <button
               className="cardBtn"
               type="button"
               onClick={() => {
-                let item = null;
-                item = { ...producte, quantity: 1 };
-                dispatch(addToCart(item));
-              }}
-            >
+                // let item ={cartItems:[ {productId: producte._id ,quantity:1}] ,totalPrice:0};
+                let item = { productId:producte ,quantity:1};
+                dispatch(addToCart(item))
+               }}
+             >
               add to card
             </button>
           </div>
