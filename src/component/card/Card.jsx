@@ -18,7 +18,8 @@ function Card(producte) {
   // const [heart, setHeart] = useState(false);
   const [product_imgState, setProduct_imgState] = useState(false);
   const dispatch = useDispatch();
-  const [addProductCart, { isLoading, isError }]=useAddProductToCartMutation()
+  const [addProductCart, { isLoading, isError }] =
+    useAddProductToCartMutation();
   // const {
   //   discountt,
   //   id,
@@ -113,10 +114,10 @@ function Card(producte) {
               type="button"
               onClick={() => {
                 // let item ={cartItems:[ {productId: producte._id ,quantity:1}] ,totalPrice:0};
-                let item = { productId:producte ,quantity:1};
-                dispatch(addToCart(item))
-               }}
-             >
+                let item = { productId: producte, quantity: 1 };
+                dispatch(addToCart(item));
+              }}
+            >
               add to card
             </button>
           </div>

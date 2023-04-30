@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./cart.css";
 import cartImg from "../../assets/img/cartImgg.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,31 +8,41 @@ import Button from "../button/Button";
 import { NavLink } from "react-router-dom";
 import CartProduct from "./CartProduct";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../store/reducer/cartSlice";
-import { useGetCartProductQuery ,useAddProductToCartMutation} from "../../store/api/cart.js";
+import { addToCart, calculateTotals } from "../../store/reducer/cartSlice";
+import {
+  useGetCartProductQuery,
+  useAddProductToCartMutation,
+} from "../../store/api/cart.js";
 
 function Cart() {
-  const dispatch=useDispatch()
-  const {carts}  = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const { carts } = useSelector((state) => state.cart);
 
-  const totals = carts.cartItems.reduce((total, item) => {
-    return total + item.productId.ProductPrice * item.quantity;
-  }, 0);
-  
-// console.log(carts)
+  useEffect(()=>{
+    dispatch(calculateTotals())
+  },[carts.cartItems])
 
-const cartItemsInfor={...carts,totalPrice:totals}
-console.log(cartItemsInfor)
+  const newObj = {
+    // cartItems: [{productId:carts.cartItems.map((c) => c.productId._id), quantity:carts.cartItems.quantity}]
+    cartItems: carts.cartItems.map((c) => ( { productId: c.productId._id, quantity: c.quantity })),
+    totalQuantity: carts.totalQuantity,
+    totalPrice: carts.totalPrice,
+    userId:carts.userId
+  }
+  console.log(newObj)
 
+  // get and post to database
+  const [addProductCart, { isLoading, isError }] =useAddProductToCartMutation();
 
-// get and post to database
-const [addProductCart, { isLoading, isError }]=useAddProductToCartMutation()
-const handleCheackout=(e)=>{
-  addProductCart(cartItemsInfor)
-}
-const {data: getProductCart,  issLoading, issError }=useGetCartProductQuery()
-// console.log(getProductCart)
-
+  const handleCheackout = (e) => {
+    addProductCart(newObj);
+  };
+  const {
+    data: getProductCart,
+    issLoading,
+    issError,
+  } = useGetCartProductQuery();
+  // console.log(getProductCart)
 
   return (
     // top-0 right-0 fixed bottom-0  h-[100vh] w-full max-w-[500px]
@@ -52,11 +62,11 @@ const {data: getProductCart,  issLoading, issError }=useGetCartProductQuery()
               Subtotal
             </p>
             <p className="subtotalPriceCart inline-block float-right text-base font-semibold">
-              ${totals}
+              ${carts.totalPrice}
             </p>
           </div>
           <NavLink to="/checkout" onClick={handleCheackout}>
-            <Button classbtn="w-full mx-auto" >checkout</Button>
+            <Button classbtn="w-full mx-auto">checkout</Button>
           </NavLink>
         </div>
       </div>
@@ -95,7 +105,6 @@ export default Cart;
 //   );
 // }
 
-
 // const totalss = cartItemsInfor.cartItems.reduce((total, item) => {
 //   return total + item.productId.ProductPrice * item.quantity;
 // }, 0);
@@ -107,8 +116,8 @@ export default Cart;
 //       cartItems: [{id:1,age:2},{id:1,age:2}],
 //       totalQuantity: 10,
 //       totalPrice: 10,
-//       userId: "64410d9cbec84f65377bca67",  
-    
+//       userId: "64410d9cbec84f65377bca67",
+
 //     }
 // ];
 // initialStatee.map((data) => {
@@ -117,3 +126,13 @@ export default Cart;
 //     console.log(data.id) })
 
 // })
+
+
+// ..................
+// const totals = carts.cartItems.reduce((total, item) => {
+  //   return total + item.productId.ProductPrice * item.quantity;
+  // }, 0);
+  // console.log(carts)
+
+  // const cartItemsInfor = { ...carts, totalPrice: totals };
+  // console.log(cartItemsInfor);

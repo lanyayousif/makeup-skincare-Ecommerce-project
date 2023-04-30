@@ -5,11 +5,10 @@ const initialState = {
       cartItems: [],
       totalQuantity: 0,
       totalPrice: 0,
-      userId: "", 
+      userId:"64410d9cbec84f65377bca67"
     } 
 }
 
-console.log(initialState.carts.cartItems)
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -24,7 +23,6 @@ export const cartSlice = createSlice({
         console.log("product item added befor");
       } else {
         state.carts.cartItems = [...state.carts.cartItems, item];
-        // console.log(state.cartItems);
       }
     },
     remove: (state, action) => {
@@ -35,6 +33,7 @@ export const cartSlice = createSlice({
     },
     increment: (state, action) => {
       const item = action.payload;
+      console.log(item)
       let productItem = state.carts.cartItems.find(
         (product) => product.productId._id === item.productId._id
       );
@@ -53,11 +52,30 @@ export const cartSlice = createSlice({
         state.carts.cartItems = state.carts.cartItems.filter(
           (product) => product.productId._id !== productItem._id
         );
+        console.log("productItem.quantity  " + productItem.quantity);
+        // console.log(state.carts.cartItems );
+        
       }
-      console.log("productItem.quantity  " + productItem.quantity);
     },
+
+    calculateTotals:(state)=>{
+       const totals = state.carts.cartItems.reduce((total, item) => {
+        return total + item.productId.ProductPrice * item.quantity;
+      }, 0);
+      console.log("totals",totals)
+      state.carts.totalPrice=totals
+
+      // total quantity
+      let quantity=0
+      state.carts.cartItems.forEach(item=>{
+        quantity+=item.quantity
+      })
+      state.carts.totalQuantity=quantity
+      console.log("quantity",quantity)
+    }
+
   },
 });
 
-export const { addToCart, remove, increment, decrement } = cartSlice.actions;
+export const { addToCart, remove, increment, decrement ,calculateTotals} = cartSlice.actions;
 export default cartSlice.reducer;
