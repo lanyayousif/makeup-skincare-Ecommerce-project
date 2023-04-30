@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../component/navbar/Navbar";
 import Footer from "../../component/footer/Footer";
 import "./login.css";
 import SecondaryButton from "../../component/button/SecondaryButton";
 import { NavLink } from "react-router-dom";
+import { useLoginMutation } from "../../store/api/auth";
 
 function Login() {
+  const [formData, setFormData] = useState({});
+  const [login, { data, isError }] = useLoginMutation();
+
+  const handlInput = (e) => {
+    e.preventDefault();
+    login(formData);
+  };
+
+  useEffect(() => {
+    if (!isError || data) {
+      localStorage.setItem("access_token", data?.token);
+    }
+  }, [data]);
+
   return (
     <>
       <main className="login relative">
@@ -20,11 +35,17 @@ function Login() {
               action="#"
               className="flex justify-center items-center flex-col"
             >
-              <input type="text" className="inputDesign " placeholder="Email" />
+              <input
+                type="text"
+                className="inputDesign "
+                placeholder="Email"
+                onChange={handlInput}
+              />
               <input
                 type="text"
                 className="inputDesign mb-3"
                 placeholder="Password"
+                onChange={handlInput}
               />
               <div className="block w-full mb-8">
                 <NavLink to="/">
