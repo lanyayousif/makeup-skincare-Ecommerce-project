@@ -15,7 +15,12 @@ function Signup() {
     confirmPassword: "",
     username: "",
   });
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    username: "",
+});
   const [signUp, { data: response, isError }] = useSignupMutation();
 
   const handleInput = (e) => {
@@ -28,12 +33,12 @@ function Signup() {
       setErrors([...errors, "passwords didn't match"]);
       return;
     }
-    console.log(formData);
     signUp(formData);
   };
 
   useEffect(() => {
     if (!isError) {
+      console.log(response)
       localStorage.setItem("access_token", response?.data.token);
       // navigate("/");
     }

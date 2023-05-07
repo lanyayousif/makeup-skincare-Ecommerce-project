@@ -29,7 +29,7 @@ function Cart() {
     totalPrice: carts.totalPrice,
     userId:carts.userId
   }
-  console.log(newObj)
+  // console.log(newObj)
 
   // get and post to database
   const [addProductCart, { isLoading, isError }] =useAddProductToCartMutation();

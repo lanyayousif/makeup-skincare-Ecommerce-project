@@ -7,11 +7,18 @@ import { NavLink } from "react-router-dom";
 import { useLoginMutation } from "../../store/api/auth";
 
 function Login() {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    email:"",
+    password:""
+  });
   const [login, { data, isError }] = useLoginMutation();
 
-  const handlInput = (e) => {
-    e.preventDefault();
+  const handleInput = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
     login(formData);
   };
 
@@ -39,13 +46,18 @@ function Login() {
                 type="text"
                 className="inputDesign "
                 placeholder="Email"
-                onChange={handlInput}
+                onChange={handleInput}
+                name="email"
+                value={formData.email}
               />
               <input
                 type="text"
                 className="inputDesign mb-3"
                 placeholder="Password"
-                onChange={handlInput}
+                onChange={handleInput}
+                name="password"
+                value={formData.password}
+
               />
               <div className="block w-full mb-8">
                 <NavLink to="/">
@@ -54,7 +66,8 @@ function Login() {
                   </p>
                 </NavLink>
               </div>
-              <SecondaryButton>sign in</SecondaryButton>
+              <div onClick={handleSubmit}><SecondaryButton>sign in</SecondaryButton></div>
+
               <div className="block w-full mb-2">
                 <p className="text-base text-center font-light text-lightBlack-text capitalize">
                   don't have an account yet?
