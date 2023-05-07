@@ -5,6 +5,7 @@ import Footer from "../../component/footer/Footer";
 import SecondaryButton from "../../component/button/SecondaryButton";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSignupMutation } from "../../store/api/auth";
+import Errors from "../../component/errors/Errors";
 
 function Signup() {
   const navigate = useNavigate();
@@ -23,13 +24,11 @@ function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (formData.confirmPassword !== formData.password)
-      if (formData.confirmPassword !== formData.password) {
-        setErrors([...errors, "passwords didn't match"]);
-        return;
-      }
-
+    if (formData.confirmPassword !== formData.password) {
+      setErrors([...errors, "passwords didn't match"]);
+      return;
+    }
+    console.log(formData);
     signUp(formData);
   };
 
@@ -53,6 +52,7 @@ function Signup() {
               action="#"
               className="flex justify-center items-center flex-col"
             >
+              {errors.length > 0 && <Errors message={errors} />}
               <input
                 type="text"
                 className="inputDesign "
@@ -85,7 +85,11 @@ function Signup() {
                 onChange={handleInput}
                 value={formData.confirmPassword}
               />
-              <SecondaryButton classBtn="mt-8">create account</SecondaryButton>
+              <div onClick={handleSubmit}>
+                <SecondaryButton classBtn="mt-8">
+                  create account
+                </SecondaryButton>
+              </div>
               <div className="block w-full mb-2">
                 <p className="text-base text-center font-light text-lightBlack-text capitalize">
                   already have an account?
