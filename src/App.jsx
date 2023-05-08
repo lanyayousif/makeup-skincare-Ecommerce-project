@@ -9,8 +9,24 @@ import Cart from './component/cart/Cart'
 import Cartspage from './pages/cart/Cartspage'
 import Product from './pages/product/Product'
 import ProductImgSlider from './component/ProductImgSlider/ProductImgSlider'
+import { useEffect } from 'react'
+import { useGetCurrentUserQuery } from './store/api/auth'
+import { useDispatch, useSelector } from 'react-redux'
 
 function App() {
+const dispatch=useDispatch()
+const {user}=useSelector((state)=> state.user)
+
+
+const {data, isError, isSuccess, isLoading}=useGetCurrentUserQuery()
+
+console.log(data)
+  useEffect(()=>{
+    if (isSuccess && data) {
+      dispatch(addUser(data.data.user));
+    }
+  },[data])
+
   return (
     <>
       <Routes>
