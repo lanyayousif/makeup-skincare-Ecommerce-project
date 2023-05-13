@@ -16,13 +16,13 @@ function Checkout() {
       price: "$14",
     },
     {
-      id: 1,
+      id: 2,
       name: " Cream 50ml",
       img: cartImg,
       price: "$34",
     },
     {
-      id: 1,
+      id: 3,
       name: " Cream 50ml",
       img: cartImg,
       price: "$34",
@@ -103,14 +103,14 @@ function Checkout() {
               </div>
               <div className="buttonAndReturnPart  w-[90%] xsm:w-full xsm:flex-col-reverse max-w-[590px] flex justify-between items-center">
                 <div className="returnCart">
-                  <NavLink to="/">
-                    {" "}
-                  <NavLink to="/cart">  <p className="text-base font-light">
-                      <FontAwesomeIcon icon={faChevronLeft} />
-                      Return to cart
-                    </p></NavLink>
-                  </NavLink>
+                    <NavLink to="/cart">
+                      <p className="text-base font-light">
+                        <FontAwesomeIcon icon={faChevronLeft} />
+                        Return to cart
+                      </p>
+                    </NavLink>
                 </div>
+                NavLink
                 <Button classbtn="mx-0" type="submit">
                   Continue to Shipping
                 </Button>

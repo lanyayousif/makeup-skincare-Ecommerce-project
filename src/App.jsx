@@ -9,18 +9,19 @@ import Cart from './component/cart/Cart'
 import Cartspage from './pages/cart/Cartspage'
 import Product from './pages/product/Product'
 import ProductImgSlider from './component/ProductImgSlider/ProductImgSlider'
+import Account from './pages/account/Account'
+import Protected from './component/Protected/Protected'
+import NotAuthorized from './component/Protected/NotAuthorized'
 
 import { useEffect } from 'react'
 import { useGetCurrentUserQuery } from './store/api/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser } from './store/reducer/userSlice'
-import Account from './pages/account/Account'
 
 
 function App() {
 const dispatch=useDispatch()
 const {user}=useSelector((state)=> state.user)
-
 const {data, isError, isSuccess, isLoading}=useGetCurrentUserQuery()
 
 // console.log(data)
@@ -38,11 +39,15 @@ const {data, isError, isSuccess, isLoading}=useGetCurrentUserQuery()
         <Route path='/checkout'  element={<Checkout/>}/>
         <Route path='/login'  element={<Login/>}/>
         <Route path='/signup'  element={<Signup/>}/>
-        <Route path='/account'  element={<Account/>}/>
         <Route path='/cart'  element={<Cartspage/>}/>
         <Route path='/product/:id'  element={<Product/>}/>
         <Route path='/sun'  element={<ProductImgSlider/>}/>
-        <Route path='*'  element={<Home/>}/>
+        <Route path='/403'  element={<NotAuthorized/>}/>
+
+        <Route element={<Protected user={user} role="admin"/>}>
+           <Route path='/account'  element={<Account/>}/>
+        </Route>
+        <Route path='*'  element={<NotAuthorized/>}/>
       </Routes>
     </>
   )

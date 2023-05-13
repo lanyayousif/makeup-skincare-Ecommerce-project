@@ -11,6 +11,7 @@ import Counter from "../counter/Counter";
 function CartProduct(cartProducte) {
 
   const dispatch=useDispatch()
+  console.log(cartProducte)
   const { productId:{_id, productImgcard, productName, ProductPrice},quantity} = cartProducte;
 
   return (

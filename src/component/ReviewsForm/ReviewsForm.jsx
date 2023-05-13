@@ -15,7 +15,7 @@ function ReviewsForm() {
             
             {/* review */}
             <label htmlFor="review" className='labelInput text-base font-normal capitalize block mt-6'>review:</label>
-            <textarea id='review' className='reviewInput block w-[90%] xsm:w-[100%]  w-full bg-transparent h-10 rounded px-4 my-2 max-h-[200px]' cols="10" rows="4" maxlength="200" />
+            <textarea id='review' className='reviewInput block w-[90%] xsm:w-[100%]  w-full bg-transparent h-10 rounded px-4 my-2 max-h-[200px]' cols="10" rows="4" maxLength="200" />
             
             {/* Skin Type */}
             <label htmlFor="skinType" className='labelInput text-base font-normal capitalize block mt-6'>skin Type:</label>

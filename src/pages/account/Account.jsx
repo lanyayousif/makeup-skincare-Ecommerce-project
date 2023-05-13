@@ -14,9 +14,9 @@ function Account() {
     if((token !== null || token !== "undefined") && logout=== true) return <Navigate to="/"/>
   return (
     <>
-    <main className="login relative">
+    <main className=" relative">
       <Navbar />
-      <section className="se_login mt-[7vh] pb-16 px-4">
+      <section className=" mt-[7vh] pb-16 px-4">
         <button
           className="main-btn xsm:px-4 px-8 py-4 w-fit
          bg-bg-second uppercase text-base font-bold m-4 rounded text-white-text"

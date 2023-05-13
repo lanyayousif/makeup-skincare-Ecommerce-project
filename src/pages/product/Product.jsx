@@ -82,7 +82,7 @@ function Product() {
               <div className="aboutPart max-w-[600px]">
                 <div className="ratingsPro  flex items-center justify-between relative">
                   <div className="">
-                    <Reviews rating={singleProduct?.data.productRaiting} />
+                    <Reviews rating={singleProduct?.data?.productRaiting}  />
                     <span className="reviesProduct text-base ml-2 text-lightBlack-text">{`(${singleProduct?.data.productReviews})`}</span>
                   </div>
                   <Heartbtn />
@@ -105,9 +105,9 @@ function Product() {
                 </p>
 
                 <div className="imgPro grid grid-cols-4 my-10 w-fit ">
-                  {singleProduct?.data.productImgFree.map((img) => {
+                  {singleProduct?.data.productImgFree.map((img) => {//abe key habe
                     return (
-                      <div className="col-span-1 max-w-[40px] max-h-[40px] mr-4">
+                      <div className="col-span-1 max-w-[40px] max-h-[40px] mr-4" key={img}>
                         <img
                           src={img}
                           alt="image detail"

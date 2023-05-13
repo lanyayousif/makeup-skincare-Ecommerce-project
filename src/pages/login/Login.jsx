@@ -10,7 +10,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 function Login() {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    email:"",
+    password:""
+  });
   const [token, setToken] = useState();
   const { user } = useSelector((state) => state.user);
   const { data: userData, isError: userDataIsError } = useGetCurrentUserQuery(

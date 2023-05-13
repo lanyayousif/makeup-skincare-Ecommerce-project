@@ -85,8 +85,8 @@ function ReviewsSlider() {
       >
         {ReviewsData.map((data) => {
           return (
-            <SwiperSlide>
-              <ReviewsCard {...data} key={data.id} />
+            <SwiperSlide key={data.id}>
+              <ReviewsCard {...data}  />
             </SwiperSlide>
           );
         })}

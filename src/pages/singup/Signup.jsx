@@ -43,7 +43,6 @@ function Signup() {
       dispatch(addUser(response.data.user))
     }
   }, [response]);
-console.log(user)
 
   if (user) {
     return <Navigate to="/account" replace/>
