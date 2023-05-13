@@ -3,11 +3,14 @@ import "./signup.css";
 import Navbar from "../../component/navbar/Navbar";
 import Footer from "../../component/footer/Footer";
 import SecondaryButton from "../../component/button/SecondaryButton";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import { useSignupMutation } from "../../store/api/auth";
 import Errors from "../../component/errors/Errors";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser } from "../../store/reducer/userSlice";
 
 function Signup() {
+  const dispatch=useDispatch()
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -15,12 +18,9 @@ function Signup() {
     confirmPassword: "",
     username: "",
   });
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    username: "",
-});
+  const [errors, setErrors] = useState([]);
+ const {user}=useSelector((state)=>state.user)
+
   const [signUp, { data: response, isError }] = useSignupMutation();
 
   const handleInput = (e) => {
@@ -37,13 +37,17 @@ function Signup() {
   };
 
   useEffect(() => {
-    if (!isError) {
+    if (!isError && response) {
       console.log(response)
       localStorage.setItem("access_token", response?.data.token);
-      // navigate("/");
+      dispatch(addUser(response.data.user))
     }
   }, [response]);
+console.log(user)
 
+  if (user) {
+    return <Navigate to="/account" replace/>
+  }
   return (
     <>
       <main className="signup relative">

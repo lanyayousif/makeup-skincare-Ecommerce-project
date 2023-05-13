@@ -3,14 +3,20 @@ import Navbar from "../../component/navbar/Navbar";
 import Footer from "../../component/footer/Footer";
 import "./login.css";
 import SecondaryButton from "../../component/button/SecondaryButton";
-import { NavLink } from "react-router-dom";
-import { useLoginMutation } from "../../store/api/auth";
+import { NavLink, Navigate } from "react-router-dom";
+import { useGetCurrentUserQuery, useLoginMutation } from "../../store/api/auth";
+import { addUser } from "../../store/reducer/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function Login() {
-  const [formData, setFormData] = useState({
-    email:"",
-    password:""
-  });
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({});
+  const [token, setToken] = useState();
+  const { user } = useSelector((state) => state.user);
+  const { data: userData, isError: userDataIsError } = useGetCurrentUserQuery(
+    token,
+    { skip: !token }
+  );
   const [login, { data, isError }] = useLoginMutation();
 
   const handleInput = (e) => {
@@ -18,16 +24,24 @@ function Login() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     login(formData);
   };
-
+  
   useEffect(() => {
-    if (!isError || data) {
+    if (!isError && data) {
       localStorage.setItem("access_token", data?.token);
+      setToken(data?.token)
     }
   }, [data]);
 
+  useEffect(() => {
+    if (!userDataIsError && userData) {
+      dispatch(addUser(userData.data));
+    }
+  }, [userData]);
+
+  if (user) return <Navigate to="/account" replace />;
   return (
     <>
       <main className="login relative">
@@ -57,7 +71,6 @@ function Login() {
                 onChange={handleInput}
                 name="password"
                 value={formData.password}
-
               />
               <div className="block w-full mb-8">
                 <NavLink to="/">
@@ -66,7 +79,9 @@ function Login() {
                   </p>
                 </NavLink>
               </div>
-              <div onClick={handleSubmit}><SecondaryButton>sign in</SecondaryButton></div>
+              <div onClick={handleSubmit}>
+                <SecondaryButton>sign in</SecondaryButton>
+              </div>
 
               <div className="block w-full mb-2">
                 <p className="text-base text-center font-light text-lightBlack-text capitalize">
