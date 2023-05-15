@@ -16,10 +16,11 @@ function Login() {
   });
   const [token, setToken] = useState();
   const { user } = useSelector((state) => state.user);
-  const { data: userData, isError: userDataIsError } = useGetCurrentUserQuery(
-    token,
-    { skip: !token }
-  );
+  // const { data: userData, isError: userDataIsError } = useGetCurrentUserQuery(
+  //   token,
+  //   { skip: !token }
+  // );
+  // const { data: userData, isError: userDataIsError } = useGetCurrentUserQuery(token);
   const [login, { data, isError }] = useLoginMutation();
 
   const handleInput = (e) => {
@@ -35,15 +36,18 @@ function Login() {
     if (!isError && data) {
       localStorage.setItem("access_token", data?.token);
       setToken(data?.token)
+      dispatch(addUser(data?.user));
     }
   }, [data]);
 
-  useEffect(() => {
-    if (!userDataIsError && userData) {
-      dispatch(addUser(userData.data));
-    }
-  }, [userData]);
-
+  // useEffect(() => {
+  //   if (!userDataIsError && userData) {
+  //     dispatch(addUser(userData.data));
+  //   }
+  // }, [userData]);
+  
+  // console.log(userData?.data)
+  // console.log(user)
   if (user) return <Navigate to="/account" replace />;
   return (
     <>

@@ -24,12 +24,13 @@ const dispatch=useDispatch()
 const {user}=useSelector((state)=> state.user)
 const {data, isError, isSuccess, isLoading}=useGetCurrentUserQuery()
 
-// console.log(data)
   useEffect(()=>{
     if (isSuccess && data) {
-      dispatch(addUser(data.data.user));
+      dispatch(addUser(data.data));
     }
   },[data])
+
+  // console.log(data.data)
 
   return (
     <>
@@ -43,10 +44,11 @@ const {data, isError, isSuccess, isLoading}=useGetCurrentUserQuery()
         <Route path='/product/:id'  element={<Product/>}/>
         <Route path='/sun'  element={<ProductImgSlider/>}/>
         <Route path='/403'  element={<NotAuthorized/>}/>
-
+        
         <Route element={<Protected user={user} role="admin"/>}>
            <Route path='/account'  element={<Account/>}/>
         </Route>
+
         <Route path='*'  element={<NotAuthorized/>}/>
       </Routes>
     </>

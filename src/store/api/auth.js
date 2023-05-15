@@ -13,9 +13,7 @@ const authApi = api.injectEndpoints({
       query: (token) =>({
         url: "/user/currentuser",
         headers: { Authorization: `Bearer ${token}` },
-      })
-     
-      ,
+      }),
       providesTags: ["userData"],
     }),
     login: builder.mutation({

@@ -10,10 +10,14 @@ const userSlice=createSlice({
     reducers:{
         addUser:(state,action)=>{
             state.user=action.payload
+        },
+        logoutt:(state,action)=>{
+            localStorage.removeItem("access_token");
+            state.user=null
         }
     }
 })
 
 
-export const {addUser}=userSlice.actions
+export const {addUser,logoutt}=userSlice.actions
 export default userSlice
