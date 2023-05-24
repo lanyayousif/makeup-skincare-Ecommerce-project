@@ -4,7 +4,6 @@ import cartImg from "../../assets/img/cartImgg.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Counter from "../counter/Counter";
-import Button from "../button/Button";
 import { NavLink } from "react-router-dom";
 import CartProduct from "./CartProduct";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,14 +26,15 @@ function Cart() {
     cartItems: carts.cartItems.map((c) => ( { productId: c.productId._id, quantity: c.quantity })),
     totalQuantity: carts.totalQuantity,
     totalPrice: carts.totalPrice,
-    userId:carts.userId
+    // userId:carts.userId
   }
-  // console.log(newObj)
+ 
 
   // get and post to database
   const [addProductCart, { isLoading, isError }] =useAddProductToCartMutation();
 
-  const handleCheackout = (e) => {
+  const handleCheackout = () => {
+    console.log(newObj)
     addProductCart(newObj);
   };
   const {
@@ -65,9 +65,9 @@ function Cart() {
               ${carts.totalPrice}
             </p>
           </div>
-          <NavLink to="/checkout" onClick={handleCheackout}>
-            <Button classbtn="w-full mx-auto">checkout</Button>
-          </NavLink>
+          {/* <NavLink to="/checkout" > */}
+            <button onClick={handleCheackout} type="submit"  className="mainButton w-full mx-auto main-btn ">checkout</button>
+          {/* </NavLink> */}
         </div>
       </div>
     </div>

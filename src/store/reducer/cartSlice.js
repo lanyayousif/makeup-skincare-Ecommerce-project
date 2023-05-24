@@ -5,7 +5,7 @@ const initialState = {
       cartItems: [],
       totalQuantity: 0,
       totalPrice: 0,
-      userId:"64410d9cbec84f65377bca67"
+      // userId:"64410d9cbec84f65377bca67"
     } 
 }
 

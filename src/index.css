@@ -68,6 +68,9 @@
     outline: none;
     border-color: theme("colors.bg-main");
   }
+  .mainButton{
+    @apply xsm:px-4 px-8 py-4 w-fit bg-bg-second uppercase text-base font-bold m-4 rounded text-white-text
+  }
   .secondButton{
     @apply xsm:px-4 px-8 py-4 w-full max-w-[240px] mx-auto
        bg-bg-main capitalize text-lg font-bold m-4 rounded text-purple-text  hover:filter brightness-90 hover:brightness-100

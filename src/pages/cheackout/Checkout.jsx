@@ -110,7 +110,7 @@ function Checkout() {
                       </p>
                     </NavLink>
                 </div>
-                NavLink
+                
                 <Button classbtn="mx-0" type="submit">
                   Continue to Shipping
                 </Button>
