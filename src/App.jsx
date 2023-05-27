@@ -18,6 +18,7 @@ import { useGetCurrentUserQuery } from "./store/api/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "./store/reducer/userSlice";
 import Loder from "./component/loder/Loder";
+import ProductAdd from "./pages/admin/ProductAdd";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ function App() {
     }
   }, [data]);
 
-  console.log("isLoading  "+isLoading)
+  // console.log("isLoading  "+isLoading)
 
 
   // if (isLoading) {
@@ -53,6 +54,8 @@ function App() {
             <Route path="/account" element={<Account />} />
             <Route path="/checkout" element={<Checkout />} />
           </Route>
+
+          <Route path="/productAdd" element={<ProductAdd />} />
 
           <Route path="*" element={<NotAuthorized />} />
         </Routes>

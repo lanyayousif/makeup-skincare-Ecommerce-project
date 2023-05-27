@@ -69,7 +69,7 @@
     border-color: theme("colors.bg-main");
   }
   .mainButton{
-    @apply xsm:px-4 px-8 py-4 w-fit bg-bg-second uppercase text-base font-bold m-4 rounded text-white-text
+    @apply xsm:px-4 px-8 py-4 w-fit bg-bg-second uppercase text-base font-bold m-4 rounded text-white-text opacity-90 hover:opacity-100
   }
   .secondButton{
     @apply xsm:px-4 px-8 py-4 w-full max-w-[240px] mx-auto
