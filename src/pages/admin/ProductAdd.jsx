@@ -30,7 +30,18 @@ productUse: ""
   };
 
   const handleUpload = (e) => {
-    upload(e.target.files)
+    // upload(e.target.files)
+
+    // const files = e.target.files;
+    // const fieldName = e.target.name;
+
+    // const formData = new FormData();
+    // for (let i = 0; i < files.length; i++) {
+    //   formData.append(fieldName, files[i]);
+    // }
+    // upload(formData)
+    upload({[e.target.name]:e.target.files})
+
     // console.log({[e.target.name]:e.target.files});
     // console.log(e.target.files);
   };
@@ -45,10 +56,12 @@ productUse: ""
       setFormData({...formData,image:uploadResponse.path})
     }
    else if(uploadResponse?.paths){
-    setFormData({ ...formData, documents: uploadResponse.paths });
+    setFormData({ ...formData, [uploadResponse.paths[0]]: uploadResponse.valuePaths });
     }  
+  
   },[uploadResponse])
-
+  // console.log(uploadResponse.paths[0]);
+  // console.log(uploadResponse.valuePaths);
   console.log(formData);
  
 
@@ -56,6 +69,7 @@ productUse: ""
     <div className="py-10">
       <h1 className="section_title">Add product</h1>
       <form
+      encType="multipart/form-data"
         onSubmit={handleSubmit}
         className=" w-fit mx-auto my-6 max-w-[1050px]"
       >

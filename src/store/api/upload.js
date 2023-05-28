@@ -14,18 +14,27 @@ const uploadsApi = api.injectEndpoints({
     UploadMulti: builder.mutation({
         query: (files) => {
         const formData = new FormData();
-        if (files.length > 1) {
-          for (let file of files) {
-            formData.append("photos", file);
+        // console.log(files)
+        //   console.log(Object.values(files)[0].length)
+        // console.log(Object.keys(files))
+
+        if (Object.values(files)[0].length > 1) {
+          for (let file of Object.values(files)[0]) {
+            formData.append(Object.keys(files), file);
           }
+        // if (files.length > 1) {
+        //   for (let file of files) {
+        //     formData.append("photos", file);
+        //   }
           return {
-            url: "/product/upload-multi",
+            url: "/product/uploadFildes",
             method: "POST",
             headers: {
               "Content-Type": undefined,
             },
             body: formData,
           };
+        
         } else {
           formData.append("photo", files[0]);
           return {
