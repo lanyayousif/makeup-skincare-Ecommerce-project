@@ -30,20 +30,7 @@ productUse: ""
   };
 
   const handleUpload = (e) => {
-    // upload(e.target.files)
-
-    // const files = e.target.files;
-    // const fieldName = e.target.name;
-
-    // const formData = new FormData();
-    // for (let i = 0; i < files.length; i++) {
-    //   formData.append(fieldName, files[i]);
-    // }
-    // upload(formData)
     upload({[e.target.name]:e.target.files})
-
-    // console.log({[e.target.name]:e.target.files});
-    // console.log(e.target.files);
   };
 
   const handleSubmit = (e) => {
@@ -60,10 +47,7 @@ productUse: ""
     }  
   
   },[uploadResponse])
-  // console.log(uploadResponse.paths[0]);
-  // console.log(uploadResponse.valuePaths);
-  console.log(formData);
- 
+
 
   return (
     <div className="py-10">
