@@ -43,9 +43,8 @@ productUse: ""
       setFormData({...formData,image:uploadResponse.path})
     }
    else if(uploadResponse?.paths){
-    setFormData({ ...formData, [Object.keys(uploadResponse?.paths)]: Object.values(uploadResponse?.paths) });
+    setFormData({ ...formData, [Object.keys(uploadResponse?.paths)[0]]: Object.values(uploadResponse?.paths)[0] });
     }  
-  
   },[uploadResponse])
 
 
