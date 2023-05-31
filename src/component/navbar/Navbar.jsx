@@ -154,9 +154,7 @@ function Navbar() {
             <div className="icons sm:order-last md:order-last xsm:order-last">
               <ul className="flex justify-between items-center">
                 <li>
-                  <NavLink to="/">
                    <button onClick={handlShowSearch} > <FontAwesomeIcon icon={faMagnifyingGlass} /></button>
-                  </NavLink>
                 </li>
                 <li>
                   <NavLink to="/">

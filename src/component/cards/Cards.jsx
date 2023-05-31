@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
@@ -14,12 +14,9 @@ import { useSelector } from "react-redux";
 import { useGetAllProductsQuery } from "../../store/api/product.js";
 
 function Cards({ discount, column }) {
-  const { products } = useSelector((state) => state.product);
-  const { data: productsData, isLoading, error } = useGetAllProductsQuery();
-
-  // productsData.data.map((data) => {
-  //   console.log(data)
-  // })
+  const {products} = useSelector((state) => state.product);
+  const [params, setParams] = useState({search: ''});
+  const { data: productsData, isLoading, error } = useGetAllProductsQuery(params);
 
   const settings = {
     dots: true,
@@ -56,12 +53,23 @@ function Cards({ discount, column }) {
     ],
   };
 
-  // console.log("column" + column);
+  useEffect(() => {
+    if (products === undefined) {
+      setParams(null);
+    } else {
+      setParams(products);
+     
+    }
+  }, [products]);
+
+  // const a=JSON.parse(localStorage.getItem("searchInput"));
+  // console.log(a);
+
   return (
     <div className="  max-w-[98%] pl-[1%]">
       {/* flex align-middle justify-center  */}
       <div className=" xsm:mt-8  sm:mt-8 md:mt-8 mt-0  cards w-full">
-      column {column === "notcolumn" ? (
+        {column === "notcolumn" ? (
           <Slider {...settings}>
             {productsData?.data.map((data) => {
               if (discount && data.discountPrice) {
