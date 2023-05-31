@@ -109,6 +109,17 @@ nav.scrolled .nav_elements ul li a {
   visibility: visible;
 }
 
+.searchNav{
+  height:0;
+  opacity: 0;
+  transition: .3s;
+}
+.searchNav.activeSearch{
+  height: 100%;
+  opacity: 1;
+  transition: .3s;
+}
+
 @media (max-width: 1023px) {
   .humberger-btn {
     cursor: pointer;

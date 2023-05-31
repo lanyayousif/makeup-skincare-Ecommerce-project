@@ -61,7 +61,7 @@ function Cards({ discount, column }) {
     <div className="  max-w-[98%] pl-[1%]">
       {/* flex align-middle justify-center  */}
       <div className=" xsm:mt-8  sm:mt-8 md:mt-8 mt-0  cards w-full">
-        {column === "notcolumn" ? (
+      column {column === "notcolumn" ? (
           <Slider {...settings}>
             {productsData?.data.map((data) => {
               if (discount && data.discountPrice) {

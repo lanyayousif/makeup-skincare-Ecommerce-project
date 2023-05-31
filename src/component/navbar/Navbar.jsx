@@ -14,6 +14,7 @@ import "./navbar.css";
 import Button from "../button/Button";
 import Cart from "../cart/Cart";
 import { useDispatch, useSelector } from "react-redux";
+import Search from "../search/Search";
 
 function Navbar() {
   const dispatch = useDispatch();
@@ -22,12 +23,16 @@ function Navbar() {
   const [shownav, setShownav] = useState(false);
   const [showcart, setShowcart] = useState(false);
   const [scrollnav, setScrollnav] = useState(false);
+  const [search, setSearch] = useState(false);
 
   const handlShowNavbar = () => {
     setShownav(!shownav);
   };
   const handlShowCart = () => {
     setShowcart(!showcart);
+  };
+  const handlShowSearch = () => {
+    setSearch(!search);
   };
 
   const changeBackground = (event) => {
@@ -45,7 +50,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className={` ${scrollnav && `scrolled`}`}>
+      <nav className={`${scrollnav && `scrolled`} hover:bg-[var(--back-weight-color)] ${search && "bg-[var(--back-weight-color)]" } `}>
         <Container>
           <div className={`cartshow ${showcart && "activecart"} `}>
             <div className="relative">
@@ -150,7 +155,7 @@ function Navbar() {
               <ul className="flex justify-between items-center">
                 <li>
                   <NavLink to="/">
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                   <button onClick={handlShowSearch} > <FontAwesomeIcon icon={faMagnifyingGlass} /></button>
                   </NavLink>
                 </li>
                 <li>
@@ -176,6 +181,9 @@ function Navbar() {
             </div>
           </div>
         </Container>
+          <div className={`searchNav ${search && "activeSearch"} `}>
+          <Search/>
+          </div>
       </nav>
     </>
   );
