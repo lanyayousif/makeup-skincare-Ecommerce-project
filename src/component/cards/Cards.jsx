@@ -11,12 +11,13 @@ import db from "../../../data/db.json";
 import product from "../../assets/img/product.jpg";
 import product2 from "../../assets/img/product2.jpg";
 import { useSelector } from "react-redux";
-import { useGetAllProductsQuery } from "../../store/api/product.js";
+import { useGetAllProdQuery, useGetAllProductsQuery } from "../../store/api/product.js";
 
 function Cards({ discount, column }) {
   const {products} = useSelector((state) => state.product);
   const [params, setParams] = useState({search: ''});
   const { data: productsData, isLoading, error } = useGetAllProductsQuery(params);
+  const { data: prodData, isLoading:productLoding, error:productError } = useGetAllProdQuery();
 
   const settings = {
     dots: true,
@@ -70,10 +71,10 @@ function Cards({ discount, column }) {
       <div className=" xsm:mt-8  sm:mt-8 md:mt-8 mt-0  cards w-full">
         {column === "notcolumn" ? (
           <Slider {...settings}>
-            {productsData?.data.map((data) => {
-              if (discount && data.discountPrice) {
+            {prodData?.data.map((data) => {
+              if (discount && data.ProductDiscountPrice) {
                 return <Card {...data} key={data._id} discountt={discount} />;
-              } else if (!discount && !data.discountPrice) {
+              } else if (!discount && !data.ProductDiscountPrice) {
                 return <Card {...data} key={data._id} discountt={discount} />;
               }
             })}

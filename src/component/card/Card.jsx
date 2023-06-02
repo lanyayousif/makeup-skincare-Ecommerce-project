@@ -53,7 +53,7 @@ function Card(producte) {
     productSize,
     productTitle,
     productUse,
-    discountPrice,
+    ProductDiscountPrice,
     quantity,
     __v,
     _id,
@@ -100,10 +100,10 @@ function Card(producte) {
           <p className="productType text-base pt-1 pb-1 font-light">
             {productType}
           </p>
-          {discountPrice ? (
+          {ProductDiscountPrice ? (
             <h6 className=" h6 font-extralight ">
-              <span className="line-through">{ProductPrice}</span>
-              <span className="h6 price ">{discountPrice}</span>
+              <span className="line-through">{ProductPrice}$ </span>
+              <span className="h6 price px-4 "> {ProductDiscountPrice}$ </span>
             </h6>
           ) : (
             <h6 className="h6 price ">${ProductPrice}</h6>

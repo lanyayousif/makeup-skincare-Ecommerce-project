@@ -13,7 +13,8 @@ import imgproductFree3 from "../../assets/img/vegan.png";
 const initialState={
     products:{
         search:"",
-        page:1
+        page:1,
+        all:true
     }
       
 }
