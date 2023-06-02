@@ -1,9 +1,16 @@
 import { api } from "./api.js";
+import queryString from 'query-string';
+
 
 const productsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getAllProducts: builder.query({
-      query: (params) => (`/product?search=${params ? params.search : ""}`),
+      query: (params) => {
+      const query=queryString.stringify(params)
+        console.log(query); 
+         return(`/product?search=${query}`)
+        //  return(`/product?search=${params?.search ? params.search : ""}&page=${params?.page ?params.page:1}`)
+        },
       invalidatesTags: ["product"],
     }),
     getProductsById: builder.query({

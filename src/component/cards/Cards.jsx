@@ -58,7 +58,6 @@ function Cards({ discount, column }) {
       setParams(null);
     } else {
       setParams(products);
-     
     }
   }, [products]);
 

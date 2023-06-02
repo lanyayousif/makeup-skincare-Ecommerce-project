@@ -113,11 +113,13 @@ nav.scrolled .nav_elements ul li a {
   height:0;
   opacity: 0;
   transition: .3s;
+  display: none;
 }
 .searchNav.activeSearch{
   height: 100%;
   opacity: 1;
   transition: .3s;
+  display: block;
 }
 
 @media (max-width: 1023px) {

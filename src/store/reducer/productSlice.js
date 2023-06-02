@@ -11,7 +11,10 @@ import imgproductFree2 from "../../assets/img/cruelty-free.png";
 import imgproductFree3 from "../../assets/img/vegan.png";
 
 const initialState={
-    products:null
+    products:{
+        search:"",
+        page:1
+    }
       
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import "./skin.css";
@@ -7,17 +7,39 @@ import Filter from "../../component/filter/Filter";
 import DropDownFilter from "../../component/filter/DropDownFilter";
 import Cards from "../../component/cards/Cards";
 import Footer from "../../component/footer/Footer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useGetAllProductsQuery } from "../../store/api/product";
+import Pagenate from "../../component/Pagenate/Pagenate";
+import ReactPaginate from "react-paginate";
+import { addSearchValue } from "../../store/reducer/productSlice";
 
 function Skin() {
+  const dispatch = useDispatch();
   const [sortType, setSortType] = useState("alphabetically, A-Z");
-  const {products}=useSelector(state=>state.product)
+  const { products } = useSelector((state) => state.product);
   const { data: productsData, isLoading, error } = useGetAllProductsQuery();
   const handleSort = (e) => {
     setSortType(e.target.value);
     console.log(sortType);
   };
+
+  const [currentPage, setCurrentPage] = useState(1);
+  // const pageCount = Math.ceil(productsData.data.length / 3);
+
+// const getAlldata =()=>{
+//   const { data: productsData, isLoading, error } = useGetAllProductsQuery();
+//   console.log(productsData)
+// }
+// getAlldata();
+
+  const paginate = ({ selected }) => {
+    setCurrentPage(selected + 1);
+    console.log(selected);
+  };
+
+  useEffect(() => {
+    dispatch(addSearchValue({ page: currentPage }));
+  }, [currentPage]);
 
   return (
     <>
@@ -66,15 +88,33 @@ function Skin() {
             <div className="productsColumns">
               <Cards discount="all" column="Column" />
             </div>
+            <div className="pageNumberPart w-fit mx-auto my-20 rounded-[50%] mx-0 ">
+              <ReactPaginate
+                breakLabel="of"
+                onPageChange={paginate}
+                pageCount={10}
+                previousLabel={<FontAwesomeIcon icon={faArrowLeft} />}
+                nextLabel={<FontAwesomeIcon icon={faArrowRight} />}
+                containerClassName={"pagination"}
+                pageLinkClassName={
+                  "page-number text-base capitalize font-medium mx-2 inline-block"
+                }
+                breakClassName={"inline-block"}
+                breakLinkClassName={"inline-block mx-2"}
+                pageClassName={"inline-block"}
+                previousClassName={"inline-block"}
+                nextClassName={"inline-block"}
+                activeClassName={
+                  "bg-bg-second  rounded-[50%] text-white-text mx-3"
+                }
+                activeLinkClassName={"mx-3 my-1"}
+                previousLinkClassName={"page-number"}
+                nextLinkClassName={"page-number"}
+                pageRangeDisplayed={3}
+              />
+            </div>
           </div>
         </section>
-        <div className="pageNumberPart w-fit mx-auto my-20">
-          <FontAwesomeIcon icon={faArrowLeft} />
-          <span className="text-base capitalize font-medium mx-6">
-            1 <span className="mx-2">of</span> 3
-          </span>
-          <FontAwesomeIcon icon={faArrowRight} />
-        </div>
       </main>
       <Footer />
     </>
