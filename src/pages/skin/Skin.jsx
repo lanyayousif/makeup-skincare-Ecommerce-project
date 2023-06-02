@@ -12,6 +12,7 @@ import { useGetAllProductsQuery } from "../../store/api/product";
 import Pagenate from "../../component/Pagenate/Pagenate";
 import ReactPaginate from "react-paginate";
 import { addSearchValue } from "../../store/reducer/productSlice";
+import Loder from "../../component/loder/Loder";
 
 function Skin() {
   const dispatch = useDispatch();
@@ -24,13 +25,9 @@ function Skin() {
   };
 
   const [currentPage, setCurrentPage] = useState(1);
-  // const pageCount = Math.ceil(productsData.data.length / 3);
 
-// const getAlldata =()=>{
-//   const { data: productsData, isLoading, error } = useGetAllProductsQuery();
-//   console.log(productsData)
-// }
-// getAlldata();
+  const pageCount = Math.ceil(productsData?.results / 3);
+  console.log(pageCount)
 
   const paginate = ({ selected }) => {
     setCurrentPage(selected + 1);
@@ -40,6 +37,9 @@ function Skin() {
   useEffect(() => {
     dispatch(addSearchValue({ page: currentPage }));
   }, [currentPage]);
+
+if(isLoading)
+ return <Loder/>
 
   return (
     <>
@@ -92,7 +92,7 @@ function Skin() {
               <ReactPaginate
                 breakLabel="of"
                 onPageChange={paginate}
-                pageCount={10}
+                pageCount={pageCount}
                 previousLabel={<FontAwesomeIcon icon={faArrowLeft} />}
                 nextLabel={<FontAwesomeIcon icon={faArrowRight} />}
                 containerClassName={"pagination"}

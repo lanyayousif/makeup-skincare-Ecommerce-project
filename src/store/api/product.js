@@ -8,7 +8,7 @@ const productsApi = api.injectEndpoints({
       query: (params) => {
       const query=queryString.stringify(params)
         console.log(query); 
-         return(`/product?search=${query}`)
+         return(`/product?${query}`)
         //  return(`/product?search=${params?.search ? params.search : ""}&page=${params?.page ?params.page:1}`)
         },
       invalidatesTags: ["product"],
@@ -20,4 +20,4 @@ const productsApi = api.injectEndpoints({
   }),
 });
 
-export const { useGetAllProductsQuery, useGetProductsByIdQuery } = productsApi;
+export const { useGetAllProductsQuery, useGetProductsByIdQuery,useGetAllProdQuery } = productsApi;

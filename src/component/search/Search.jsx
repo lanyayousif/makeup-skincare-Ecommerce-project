@@ -7,11 +7,13 @@ import { addSearchValue } from "../../store/reducer/productSlice";
 function Search() {
     const dispatch=useDispatch()
     const {products}=useSelector(state=>state.product)
-  const [formData, setFormData] = useState({
+    const { data: productsData, isLoading, error } = useGetAllProductsQuery(products);
+
+    const [formData, setFormData] = useState({
     search: ""
-  });
-  const { data: productsData, isLoading, error } = useGetAllProductsQuery(products);
-  const handleInput = (e) => {
+    });
+
+   const handleInput = (e) => {
     if (e.target.name.includes(".")) {
       const [parent, child] = e.target.name.split(".");
       setFormData({
