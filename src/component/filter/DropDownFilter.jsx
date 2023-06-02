@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Filter from "./Filter";
+import { useDispatch } from "react-redux";
+import { addSearchValue } from "../../store/reducer/productSlice";
 
 export default function DropDownFilter() {
-  const [sortType, setSortType] = useState("alphabetically, A-Z");
+  const dispatch = useDispatch();
+  const [sortType, setSortType] = useState({sort:"alphaAZ"});
   const [dropState, setDropState] = useState(false);
 
   const handleDropdown = () => {
@@ -10,9 +13,15 @@ export default function DropDownFilter() {
   };
 
   const handleSort = (e) => {
-    setSortType(e.target.value);
-    console.log(sortType);
+    const selectedValue = e.target.name;
+    setSortType({[e.target.name]:e.target.value});
+    // console.log(sortType);
   };
+
+
+  useEffect(() => {
+    dispatch(addSearchValue({ sort: sortType }));
+  }, [sortType]);
 
   return (
     <>
@@ -37,23 +46,21 @@ export default function DropDownFilter() {
             <div className="sortdiv inline-block w-fit h-fit float-right inline-block mb-6">
               <span className="text-base capitalize xsm:text-sm ">sort by</span>
               <select
-                name=""
+                name="sorted"
                 onChange={handleSort}
                 id="sort"
-                value={sortType}
-                className="p-2  text-sm font-light capitalize rounded-sm xsm:ml-1 ml-3 w-[200px] xsm:w-[150px] md:border-none sm:border-none xsm:border-none
-                  bg-bg-main"
+                value={sortType.sort}
+                className="p-2 text-sm font-light capitalize rounded-sm xsm:ml-1 ml-3 w-[200px] xsm:w-[150px] md:border-none sm:border-none xsm:border-none bg-bg-main"
               >
-                <option value="alphabetically_AZ">alphabetically, A-Z</option>
-                <option value="alphabetically_ZA">alphabetically, Z-A</option>
-                <option value="pricelow">price, low to hight</option>
+                <option value="alphaAZ">alphabetically, A-Z</option>
+                <option value="alphaZA">alphabetically, Z-A</option>
+                <option value="pricelow">price, low to high</option>
                 <option value="pricehigh">price, high to low</option>
               </select>
             </div>
           </div>
 
           <div className={`${dropState && "activeDrop"} filtercontent`}>
-            {" "}
             <Filter />
           </div>
         </div>

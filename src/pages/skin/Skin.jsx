@@ -16,18 +16,19 @@ import Loder from "../../component/loder/Loder";
 
 function Skin() {
   const dispatch = useDispatch();
-  const [sortType, setSortType] = useState("alphabetically, A-Z");
+  const [sortType, setSortType] = useState({sort:"alphaAZ"});
   const { products } = useSelector((state) => state.product);
   const { data: productsData, isLoading, error } = useGetAllProductsQuery();
   const handleSort = (e) => {
-    setSortType(e.target.value);
-    console.log(sortType);
+    const selectedValue = e.target.name;
+    setSortType({[e.target.name]:e.target.value});
+    // console.log(sortType);
   };
+
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const pageCount = Math.ceil(productsData?.results / 3);
-  console.log(pageCount)
+  const pageCount = Math.ceil(productsData?.results / 9);
 
   const paginate = ({ selected }) => {
     setCurrentPage(selected + 1);
@@ -35,8 +36,8 @@ function Skin() {
   };
 
   useEffect(() => {
-    dispatch(addSearchValue({ page: currentPage }));
-  }, [currentPage]);
+    dispatch(addSearchValue({ page: currentPage,sort: sortType.sort }));
+  }, [currentPage,sortType]);
 
 if(isLoading)
  return <Loder/>
@@ -71,14 +72,14 @@ if(isLoading)
               <div className="sortdiv inline-block w-fit h-fit float-right">
                 <span className="text-base capitalize">sort by:</span>
                 <select
-                  name=""
+                  name="sort"
                   onChange={handleSort}
                   id="sort"
-                  value={sortType}
+                  value={sortType.sort}
                   className="p-2 sort text-sm font-light capitalize rounded-sm ml-3 w-[200px]"
                 >
-                  <option value="alphabetically_AZ">alphabetically, A-Z</option>
-                  <option value="alphabetically_ZA">alphabetically, Z-A</option>
+                  <option value="alphaAZ">alphabetically, A-Z</option>
+                  <option value="alphaZA">alphabetically, Z-A</option>
                   <option value="pricelow">price, low to hight</option>
                   <option value="pricehigh">price, high to low</option>
                 </select>
