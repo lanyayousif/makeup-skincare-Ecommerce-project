@@ -25,14 +25,15 @@ function Skin() {
     // console.log(sortType);
   };
 
-
   const [currentPage, setCurrentPage] = useState(1);
 
   const pageCount = Math.ceil(productsData?.results / 9);
+  
+
+  console.log(productsData?.results);
 
   const paginate = ({ selected }) => {
     setCurrentPage(selected + 1);
-    console.log(selected);
   };
 
   useEffect(() => {
