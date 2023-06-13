@@ -3,11 +3,17 @@ import { useGetAllProductsQuery } from "../../store/api/product";
 import Card from "../card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { addSearchValue } from "../../store/reducer/productSlice";
+import { useNavigate } from "react-router-dom";
 
 function Search() {
     const dispatch=useDispatch()
+    const navigate = useNavigate()
     const {products}=useSelector(state=>state.product)
     const { data: productsData, isLoading, error } = useGetAllProductsQuery(products);
+
+    const limitedArray = productsData?.data.slice(0, 4);
+
+    console.log(limitedArray)
 
     const [formData, setFormData] = useState({
     search: ""
@@ -26,7 +32,7 @@ function Search() {
   };
 
   const handleButton = () => {
-    console.log("test");
+   navigate('/skin')
   };
 
   useEffect(() => {
@@ -49,7 +55,7 @@ function Search() {
 
       <div className="productsReturn ">
         <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 xsm:grid-cols-1 grid-rows-1 w-full">
-          {productsData?.data.map((data) => {
+          {limitedArray?.map((data) => {
               return <Card {...data} key={data._id} />;
             })}
         </div>

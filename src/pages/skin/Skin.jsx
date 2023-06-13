@@ -18,7 +18,8 @@ function Skin() {
   const dispatch = useDispatch();
   const [sortType, setSortType] = useState({sort:"alphaAZ"});
   const { products } = useSelector((state) => state.product);
-  const { data: productsData, isLoading, error } = useGetAllProductsQuery();
+
+  const { data: productsData, isLoading, error } = useGetAllProductsQuery(products?.search ?? products?.search);
   const handleSort = (e) => {
     const selectedValue = e.target.name;
     setSortType({[e.target.name]:e.target.value});
@@ -29,8 +30,6 @@ function Skin() {
 
   const pageCount = Math.ceil(productsData?.results / 9);
   
-
-  console.log(productsData?.results);
 
   const paginate = ({ selected }) => {
     setCurrentPage(selected + 1);
@@ -94,7 +93,7 @@ if(isLoading)
               <ReactPaginate
                 breakLabel="of"
                 onPageChange={paginate}
-                pageCount={pageCount}
+                pageCount={pageCount || 1}
                 previousLabel={<FontAwesomeIcon icon={faArrowLeft} />}
                 nextLabel={<FontAwesomeIcon icon={faArrowRight} />}
                 containerClassName={"pagination"}
