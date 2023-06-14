@@ -8,7 +8,7 @@ const initialState = {
       // userId:"64410d9cbec84f65377bca67"
     } 
 }
-
+let incrementNumberBeforeAdd={productId:{},quantity:0}
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -22,7 +22,8 @@ export const cartSlice = createSlice({
         // exsistingIndex.quantity +=1
         console.log("product item added befor");
       } else {
-        state.carts.cartItems = [...state.carts.cartItems, item];
+        // state.carts.cartItems = [...state.carts.cartItems, item];
+        incrementNumberBeforeAdd? state.carts.cartItems = [...state.carts.cartItems, incrementNumberBeforeAdd]:state.carts.cartItems = [...state.carts.cartItems, item]
       }
     },
     remove: (state, action) => {
@@ -39,7 +40,9 @@ export const cartSlice = createSlice({
       if (productItem) {
         productItem.quantity += 1;
       }else{
-        state.carts.cartItems = [...state.carts.cartItems, item] ;
+        incrementNumberBeforeAdd.quantity+=1
+        incrementNumberBeforeAdd.productId=item.productId
+        // state.carts.cartItems = [...state.carts.cartItems, item] ;
       }
     },
     decrement: (state, action) => {
@@ -57,10 +60,18 @@ export const cartSlice = createSlice({
         productItem.quantity -= 1;
         state.carts.cartItems = state.carts.cartItems.filter(
           (product) => product.productId._id !== item.productId._id
-        );
-        // console.log(state.carts.cartItems );
-        
+        )
       }
+      else if (incrementNumberBeforeAdd.quantity > 1) {
+         incrementNumberBeforeAdd.quantity-=1
+      } 
+      else if (incrementNumberBeforeAdd.quantity === 1) {
+         incrementNumberBeforeAdd.quantity-=1
+        state.carts.cartItems = state.carts.cartItems.filter(
+          (product) => product.productId._id !== item.productId._id
+        );
+        }
+        
     },
 
     calculateTotals:(state)=>{
