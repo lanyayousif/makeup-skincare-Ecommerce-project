@@ -1,41 +1,48 @@
-import React, { useEffect, useState } from "react";
-import "./cart.css";
-import cartImg from "../../assets/img/cartImgg.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan, faXmark } from "@fortawesome/free-solid-svg-icons";
-import Counter from "../counter/Counter";
-import { NavLink } from "react-router-dom";
-import CartProduct from "./CartProduct";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, calculateTotals } from "../../store/reducer/cartSlice";
+import React, { useEffect, useState } from 'react';
+import './cart.css';
+import cartImg from '../../assets/img/cartImgg.jpg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan, faXmark } from '@fortawesome/free-solid-svg-icons';
+import Counter from '../counter/Counter';
+import { NavLink, useNavigate } from 'react-router-dom';
+import CartProduct from './CartProduct';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, calculateTotals } from '../../store/reducer/cartSlice';
 import {
   useGetCartProductQuery,
   useAddProductToCartMutation,
-} from "../../store/api/cart.js";
+} from '../../store/api/cart.js';
 
 function Cart() {
   const dispatch = useDispatch();
   const { carts } = useSelector((state) => state.cart);
+  const navigate = useNavigate();
 
-  useEffect(()=>{
-    dispatch(calculateTotals())
-  },[carts.cartItems])
+  useEffect(() => {
+    dispatch(calculateTotals());
+  }, [carts.cartItems]);
 
   const newObj = {
     // cartItems: [{productId:carts.cartItems.map((c) => c.productId._id), quantity:carts.cartItems.quantity}]
-    cartItems: carts.cartItems.map((c) => ( { productId: c.productId._id, quantity: c.quantity })),
+    cartItems: carts.cartItems.map((c) => ({
+      productId: c.productId._id,
+      quantity: c.quantity,
+    })),
     totalQuantity: carts.totalQuantity,
     totalPrice: carts.totalPrice,
     // userId:carts.userId
-  }
- 
+  };
 
   // get and post to database
-  const [addProductCart, { isLoading, isError }] =useAddProductToCartMutation();
+  const [addProductCart, { isLoading, isError }] =
+    useAddProductToCartMutation();
 
   const handleCheackout = () => {
-    console.log(newObj)
+    console.log(newObj);
     addProductCart(newObj);
+    if (addProductCart(newObj)) {
+      navigate('/checkout');
+    }
   };
   const {
     data: getProductCart,
@@ -65,9 +72,13 @@ function Cart() {
               ${carts.totalPrice}
             </p>
           </div>
-          {/* <NavLink to="/checkout" > */}
-            <button onClick={handleCheackout} type="submit"  className="mainButton w-full mx-auto main-btn ">checkout</button>
-          {/* </NavLink> */}
+          <button
+            onClick={handleCheackout}
+            type="submit"
+            className="mainButton w-full mx-auto main-btn "
+          >
+            checkout
+          </button>
         </div>
       </div>
     </div>
@@ -127,12 +138,11 @@ export default Cart;
 
 // })
 
-
 // ..................
 // const totals = carts.cartItems.reduce((total, item) => {
-  //   return total + item.productId.ProductPrice * item.quantity;
-  // }, 0);
-  // console.log(carts)
+//   return total + item.productId.ProductPrice * item.quantity;
+// }, 0);
+// console.log(carts)
 
-  // const cartItemsInfor = { ...carts, totalPrice: totals };
-  // console.log(cartItemsInfor);
+// const cartItemsInfor = { ...carts, totalPrice: totals };
+// console.log(cartItemsInfor);

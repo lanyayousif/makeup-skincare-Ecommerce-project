@@ -1,30 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { useGetAllProductsQuery } from "../../store/api/product";
-import Card from "../card/Card";
-import { useDispatch, useSelector } from "react-redux";
-import { addSearchValue } from "../../store/reducer/productSlice";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useGetAllProductsQuery } from '../../store/api/product';
+import Card from '../card/Card';
+import { useDispatch, useSelector } from 'react-redux';
+import { addSearchValue } from '../../store/reducer/productSlice';
+import { useNavigate } from 'react-router-dom';
 
 function Search() {
-    const dispatch=useDispatch()
-    const navigate = useNavigate()
-    const {products}=useSelector(state=>state.product)
-    const { data: productsData, isLoading, error } = useGetAllProductsQuery(products);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { products } = useSelector((state) => state.product);
+  const {
+    data: productsData,
+    isLoading,
+    error,
+  } = useGetAllProductsQuery(products);
 
-    const limitedArray = productsData?.data.slice(0, 4);
+  const limitedArray = productsData?.data.slice(0, 4);
 
-    // console.log(limitedArray)
+  // console.log(limitedArray)
 
-    const [formData, setFormData] = useState({
-    search: ""
-    });
+  const [formData, setFormData] = useState({
+    search: '',
+  });
 
-   const handleInput = (e) => {
-    if (e.target.name.includes(".")) {
-      const [parent, child] = e.target.name.split(".");
+  const handleInput = (e) => {
+    if (e.target.name.includes('.')) {
+      const [parent, child] = e.target.name.split('.');
       setFormData({
         ...formData,
-        [parent]: {...formData[parent], [child]: e.target.value },
+        [parent]: { ...formData[parent], [child]: e.target.value },
       });
     } else {
       setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -32,15 +36,15 @@ function Search() {
   };
 
   const handleButton = () => {
-   navigate('/skin')
+    navigate('/skin');
   };
 
   useEffect(() => {
-    dispatch(addSearchValue(formData))
+    dispatch(addSearchValue(formData));
   }, [formData]);
 
   // console.log(products)
-// localStorage.setItem("searchInput", JSON.stringify(formData));
+  // localStorage.setItem("searchInput", JSON.stringify(formData));
 
   return (
     <div className="search bg-white  z-50 min-h-[150px] h-fit py-2 px-10">
@@ -56,8 +60,8 @@ function Search() {
       <div className="productsReturn ">
         <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 xsm:grid-cols-1 grid-rows-1 w-full">
           {limitedArray?.map((data) => {
-              return <Card {...data} key={data._id} />;
-            })}
+            return <Card {...data} key={data._id} />;
+          })}
         </div>
       </div>
 

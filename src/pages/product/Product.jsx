@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import { useGetProductsByIdQuery } from "../../store/api/product.js";
-import Footer from "../../component/footer/Footer";
-import Navbar from "../../component/navbar/Navbar";
-import Reviews from "../../component/reviews/Reviews";
-import product1 from "../../assets/img/pro_page.jpg";
-import product2 from "../../assets/img/pro_page (2).jpg";
-import product3 from "../../assets/img/pro_page (3).jpg";
-import product4 from "../../assets/img/pro_page (4).jpg";
-import imgproductFree from "../../assets/img/gluten-free.png";
-import imgproductFree2 from "../../assets/img/cruelty-free.png";
-import imgproductFree3 from "../../assets/img/vegan.png";
+import React, { useState } from 'react';
+import { useGetProductsByIdQuery } from '../../store/api/product.js';
+import Footer from '../../component/footer/Footer';
+import Navbar from '../../component/navbar/Navbar';
+import Reviews from '../../component/reviews/Reviews';
+import product1 from '../../assets/img/pro_page.jpg';
+import product2 from '../../assets/img/pro_page (2).jpg';
+import product3 from '../../assets/img/pro_page (3).jpg';
+import product4 from '../../assets/img/pro_page (4).jpg';
+import imgproductFree from '../../assets/img/gluten-free.png';
+import imgproductFree2 from '../../assets/img/cruelty-free.png';
+import imgproductFree3 from '../../assets/img/vegan.png';
 
-import "./product.css";
-import Counter from "../../component/counter/Counter";
-import Button from "../../component/button/Button";
-import Heartbtn from "../../component/card/Heartbtn";
-import ProductImgSlider from "../../component/ProductImgSlider/ProductImgSlider";
-import ReviewsProd from "../../component/ReviewssProduct/ReviewsProd";
-import Cards from "../../component/cards/Cards";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { addToCart } from "../../store/reducer/cartSlice.js";
+import './product.css';
+import Counter from '../../component/counter/Counter';
+import Button from '../../component/button/Button';
+import Heartbtn from '../../component/card/Heartbtn';
+import ProductImgSlider from '../../component/ProductImgSlider/ProductImgSlider';
+import ReviewsProd from '../../component/ReviewssProduct/ReviewsProd';
+import Cards from '../../component/cards/Cards';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { addToCart } from '../../store/reducer/cartSlice.js';
 
 function Product() {
   const dispatch = useDispatch();
@@ -50,11 +50,11 @@ function Product() {
     SetUseOpen(false);
     SetDetailOpen(false);
   };
-  const handleAddToCart=()=>{
+  const handleAddToCart = () => {
     let item = { productId: singleProduct?.data, quantity: 1 };
     // console.log(item)
     dispatch(addToCart(item));
-  }
+  };
 
   //   if(useOpen===false && ingredientsOpen ===false){
   //     SetDetailOpen(true)
@@ -63,8 +63,7 @@ function Product() {
   //   console.log("useOpen"+useOpen)
   //   console.log("ingredientsOpen"+ingredientsOpen)
 
-  
-    // console.log({...singleProduct?.data,quantity:0})
+  // console.log({...singleProduct?.data,quantity:0})
   return (
     <>
       <main>
@@ -74,18 +73,18 @@ function Product() {
           <div className="div se1_product grid grid-cols-2">
             <div className="imgsProduct col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1 2xl:col-span-1 xsm:mb-20 sm:mb-20 ">
               {/* <ProductImgSlider/> */}
-              
+
               <img
-              src={singleProduct?.data?.productImgcardHover}
-              alt="product image"
-              className="w-full h-full max-w-[500px] max-h-[600px] mx-auto rounded-t"
-            />
+                src={singleProduct?.data?.productImgcardHover}
+                alt="product image"
+                className="w-full h-full max-w-[500px] max-h-[600px] mx-auto rounded-t"
+              />
             </div>
             <div className="AboutProduct col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1 2xl:col-span-1   px-4">
               <div className="aboutPart max-w-[600px] xsm:mx-auto sm:mx-auto md:mx-auto">
                 <div className="ratingsPro  flex items-center justify-between relative">
                   <div className="">
-                    <Reviews rating={singleProduct?.data?.productRaiting}  />
+                    <Reviews rating={singleProduct?.data?.productRaiting} />
                     <span className="reviesProduct text-base ml-2 text-lightBlack-text">{`(${singleProduct?.data.productReviews})`}</span>
                   </div>
                   <Heartbtn />
@@ -108,9 +107,13 @@ function Product() {
                 </p>
 
                 <div className="imgPro grid grid-cols-4 my-10 w-fit ">
-                  {singleProduct?.data.productImgFree.map((img) => {//abe key habe
+                  {singleProduct?.data.productImgFree.map((img) => {
+                    //abe key habe
                     return (
-                      <div className="col-span-1 max-w-[40px] max-h-[40px] mr-4" key={img}>
+                      <div
+                        className="col-span-1 max-w-[40px] max-h-[40px] mr-4"
+                        key={img}
+                      >
                         <img
                           src={img}
                           alt="image detail"
@@ -124,10 +127,16 @@ function Product() {
                 <div className="button_counterPart grid grid-cols-4 xsm:grid-cols-1 ">
                   <div className="col-span-1 xsm:my-2">
                     {/* <Counter classConter="w-[95%] mx-auto py-2" item={{...singleProduct?.data,quantity:0}} /> */}
-                    <Counter classConter="w-[95%] mx-auto py-2" item={{ productId: singleProduct?.data, quantity: 1 }} />
+                    <Counter
+                      classConter="w-[95%] mx-auto py-2"
+                      item={{ productId: singleProduct?.data, quantity: 1 }}
+                    />
                   </div>
                   <div className="col-span-3 xsm:col-span-1 xsm:my-2 ">
-                    <button className="mainButton m-0 w-full ProductBtn " onClick={handleAddToCart}>
+                    <button
+                      className="mainButton m-0 w-full ProductBtn "
+                      onClick={handleAddToCart}
+                    >
                       add to card - $ {singleProduct?.data.ProductPrice}
                     </button>
                   </div>
@@ -141,7 +150,7 @@ function Product() {
             <div className="w-fit mx-auto py-6">
               <button
                 className={`mx-4 text-base font-semibold capitalize  ${
-                  detailOpen && "focusBtn"
+                  detailOpen && 'focusBtn'
                 }`}
                 onClick={handldetails}
               >
@@ -164,7 +173,7 @@ function Product() {
 
           <div className="detalsInformation max-w-[1200px] mx-auto py-6 px-4">
             {/* detailse */}
-            <div className={`detailsProduct ${detailOpen && "detailOpen"}`}>
+            <div className={`detailsProduct ${detailOpen && 'detailOpen'}`}>
               <p className="text-base font-medium ">
                 A midnight feast of skin nutrients, this night cream features
                 Northern Truffle, wild harvested in Finnish forests under the
@@ -192,7 +201,7 @@ function Product() {
               </div>
             </div>
             {/* use */}
-            <div className={`useProduct ${useOpen && "useOpen"}`}>
+            <div className={`useProduct ${useOpen && 'useOpen'}`}>
               <p className="text-base font-medium ">
                 A midnight feast of skin nutrients, this night cream features
                 Northern Truffle, wild harvested in Finnish forests under the
@@ -210,7 +219,7 @@ function Product() {
             {/* ingredient */}
             <div
               className={`ingredientProduct ${
-                ingredientsOpen && "ingredientsOpen"
+                ingredientsOpen && 'ingredientsOpen'
               } `}
             >
               <p className="text-base font-medium ">

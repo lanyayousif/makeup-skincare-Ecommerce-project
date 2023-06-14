@@ -1,74 +1,76 @@
-import React from "react";
-import CartProduct from "../../component/cart/CartProduct";
-import cartImg from "../../assets/img/cartImgg.jpg";
-import Footer from "../../component/footer/Footer";
-import Navbar from "../../component/navbar/Navbar";
-import { NavLink } from "react-router-dom";
-import Button from "../../component/button/Button";
+import React from 'react';
+import CartProduct from '../../component/cart/CartProduct';
+import cartImg from '../../assets/img/cartImgg.jpg';
+import Footer from '../../component/footer/Footer';
+import Navbar from '../../component/navbar/Navbar';
+import { NavLink, useNavigate } from 'react-router-dom';
+import Button from '../../component/button/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { calculateTotals } from '../../store/reducer/cartSlice';
+import { useAddProductToCartMutation } from '../../store/api/cart';
 
 export default function Cartspage() {
-  const cartProductData = [
-    {
-      id: 1,
-      name: "Lorem Ipsum, giving information ",
-      img: cartImg,
-      price: "$144",
-    },
-    {
-      id: 2,
-      name: " giving information Lorem Ipsum,",
-      img: cartImg,
-      price: "$44",
-    },
-    {
-      id: 3,
-      name: " giving information Lorem Ipsum,",
-      img: cartImg,
-      price: "$44",
-    },
-    {
-      id: 4,
-      name: " giving information Lorem Ipsum,",
-      img: cartImg,
-      price: "$44",
-    },
-    {
-      id: 5,
-      name: " giving information Lorem Ipsum,",
-      img: cartImg,
-      price: "$44",
-    },
-    {
-      id: 6,
-      name: " giving information Lorem Ipsum,",
-      img: cartImg,
-      price: "$44",
-    },
-  ];
+  const dispatch = useDispatch();
+  const { carts } = useSelector((state) => state.cart);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    dispatch(calculateTotals());
+  }, [carts.cartItems]);
 
-  
+  const newObj = {
+    // cartItems: [{productId:carts.cartItems.map((c) => c.productId._id), quantity:carts.cartItems.quantity}]
+    cartItems: carts.cartItems.map((c) => ({
+      productId: c.productId._id,
+      quantity: c.quantity,
+    })),
+    totalQuantity: carts.totalQuantity,
+    totalPrice: carts.totalPrice,
+    // userId:carts.userId
+  };
+
+  // get and post to database
+  const [addProductCart, { isLoading, isError }] =
+    useAddProductToCartMutation();
+
+  const handleCheackout = () => {
+    console.log(newObj);
+    addProductCart(newObj);
+    if (addProductCart(newObj)) {
+      navigate('/checkout');
+    }
+  };
+
   return (
     <>
       <main>
         <Navbar />
         <section className="se_login mt-[7vh] pb-16 px-4">
-          <div className="cartts grid grid-cols-3 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xsm:grid-cols-1 ">
-            {cartProductData.map((data) => {
+         { carts.cartItems===null?(<div className="cartts grid grid-cols-3 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xsm:grid-cols-1 ">
+            {carts.cartItems.map((data) => {
               return (
                 <div className="col-span-1">
-                  <CartProduct {...data} key={data.id} />
+                  <CartProduct {...data} key={data.productId._id} />
                 </div>
               );
-            })}
-          </div>
+            })
+            }
+          </div>):
+          (
+              <div className="w-full max-w-3xl px-8 py-6 bg-bg-main mx-auto rounded mx-auto">
+         <h1 className='h1 section_title'>your cart is empty</h1>
+         <NavLink to="/skin"><h5 className='h5 font-semibold text-center my-11 underline underline-offset-1'>continue shopping</h5></NavLink>
+      </div>
+            )}
 
           <div className="mx-auto max-w-[500px] w-full mt-10">
-            <NavLink to="/checkout">
-              <Button classbtn="w-full mx-auto mx-auto ">
+              <button
+                className="w-full mx-auto mx-auto mainButton"
+                onClick={handleCheackout}
+              >
                 checkout
-              </Button>
-            </NavLink>
+              </button>
           </div>
         </section>
       </main>
