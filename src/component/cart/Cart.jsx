@@ -49,7 +49,7 @@ function Cart() {
     issLoading,
     issError,
   } = useGetCartProductQuery();
-  // console.log(getProductCart)
+  console.log(carts.cartItems.length !==0)
 
   return (
     // top-0 right-0 fixed bottom-0  h-[100vh] w-full max-w-[500px]
@@ -62,7 +62,7 @@ function Cart() {
             return <CartProduct {...data} key={data.productId._id} />;
           })}
         </div>
-
+        {carts.cartItems.length !==0? (
         <div className="buttonCart absolute bottom-30 left-0 right-0 px-4 bottom-0">
           <div className="totalPrice pb-4">
             <p className="subtotalCart inline-block float-left text-base font-semibold">
@@ -79,7 +79,8 @@ function Cart() {
           >
             checkout
           </button>
-        </div>
+        </div>):<div></div>}
+
       </div>
     </div>
   );

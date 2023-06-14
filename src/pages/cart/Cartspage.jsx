@@ -46,33 +46,38 @@ export default function Cartspage() {
     <>
       <main>
         <Navbar />
-        <section className="se_login mt-[7vh] pb-16 px-4">
-         { carts.cartItems===null?(<div className="cartts grid grid-cols-3 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xsm:grid-cols-1 ">
-            {carts.cartItems.map((data) => {
-              return (
-                <div className="col-span-1">
-                  <CartProduct {...data} key={data.productId._id} />
-                </div>
-              );
-            })
-            }
-          </div>):
-          (
-              <div className="w-full max-w-3xl px-8 py-6 bg-bg-main mx-auto rounded mx-auto">
-         <h1 className='h1 section_title'>your cart is empty</h1>
-         <NavLink to="/skin"><h5 className='h5 font-semibold text-center my-11 underline underline-offset-1'>continue shopping</h5></NavLink>
-      </div>
-            )}
-
-          <div className="mx-auto max-w-[500px] w-full mt-10">
+        {carts.cartItems.length !==0 ? (
+          <section className="se_login mt-[7vh] pb-16 px-4">
+            <div className="cartts grid grid-cols-3 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xsm:grid-cols-1 ">
+              {carts.cartItems.map((data) => {
+                return (
+                  <div className="col-span-1">
+                    <CartProduct {...data} key={data.productId._id} />
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mx-auto max-w-[500px] w-full mt-10">
               <button
                 className="w-full mx-auto mx-auto mainButton"
                 onClick={handleCheackout}
               >
                 checkout
               </button>
+            </div>
+          </section>
+        ) : (
+          <section className="se_login mt-[15vh] pb-16 px-4">
+          <div className="w-full max-w-3xl px-8 py-6 bg-bg-main mx-auto rounded mx-auto">
+            <h1 className="h1 section_title">your cart is empty</h1>
+            <NavLink to="/skin">
+              <h5 className="h5 font-semibold text-center my-11 underline underline-offset-1">
+                continue shopping
+              </h5>
+            </NavLink>
           </div>
-        </section>
+          </section>
+        )}
       </main>
       <Footer />
     </>
