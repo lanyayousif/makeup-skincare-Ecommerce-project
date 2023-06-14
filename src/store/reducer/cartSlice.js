@@ -33,26 +33,31 @@ export const cartSlice = createSlice({
     },
     increment: (state, action) => {
       const item = action.payload;
-      console.log(item)
       let productItem = state.carts.cartItems.find(
         (product) => product.productId._id === item.productId._id
       );
       if (productItem) {
         productItem.quantity += 1;
+      }else{
+        state.carts.cartItems = [...state.carts.cartItems, item] ;
       }
     },
     decrement: (state, action) => {
       const item = action.payload;
       let productItem = state.carts.cartItems.find(
-        (product) => product.productId._id === item.productId._id
+        (product) => {
+         return product.productId._id === item.productId._id
+        }
       );
-      if (productItem.quantity > 1) {
+
+      if (productItem?.quantity > 1) {
         productItem.quantity -= 1;
-      } else if (productItem.quantity === 1) {
+      } 
+      else if (productItem?.quantity === 1) {
+        productItem.quantity -= 1;
         state.carts.cartItems = state.carts.cartItems.filter(
-          (product) => product.productId._id !== productItem._id
+          (product) => product.productId._id !== item.productId._id
         );
-        console.log("productItem.quantity  " + productItem.quantity);
         // console.log(state.carts.cartItems );
         
       }
@@ -73,6 +78,7 @@ export const cartSlice = createSlice({
       state.carts.totalQuantity=quantity
       // console.log("quantity",quantity)
     }
+   
 
   },
 });

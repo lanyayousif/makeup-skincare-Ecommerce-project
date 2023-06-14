@@ -13,7 +13,7 @@ function Search() {
 
     const limitedArray = productsData?.data.slice(0, 4);
 
-    console.log(limitedArray)
+    // console.log(limitedArray)
 
     const [formData, setFormData] = useState({
     search: ""

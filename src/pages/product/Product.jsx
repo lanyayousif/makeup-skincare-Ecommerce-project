@@ -18,22 +18,12 @@ import Heartbtn from "../../component/card/Heartbtn";
 import ProductImgSlider from "../../component/ProductImgSlider/ProductImgSlider";
 import ReviewsProd from "../../component/ReviewssProduct/ReviewsProd";
 import Cards from "../../component/cards/Cards";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { addToCart } from "../../store/reducer/cartSlice.js";
 
 function Product() {
-  // const productdata = [
-  //   {
-  //     id: 1,
-  //     name: " test ",
-  //     ratingNumber: 4,
-  //     reviews: 25,
-  //     size: "4 Fl oz",
-  //     price: 24,
-  //     imgsproduct: [product1, product2, product3, product4],
-  //     imgfree: [imgproductFree, imgproductFree2, imgproductFree3],
-  //   },
-  // ];
+  const dispatch = useDispatch();
 
   const { id } = useParams();
   const { data: singleProduct, isLoading, error } = useGetProductsByIdQuery(id);
@@ -60,6 +50,11 @@ function Product() {
     SetUseOpen(false);
     SetDetailOpen(false);
   };
+  const handleAddToCart=()=>{
+    let item = { productId: singleProduct?.data, quantity: 1 };
+    // console.log(item)
+    dispatch(addToCart(item));
+  }
 
   //   if(useOpen===false && ingredientsOpen ===false){
   //     SetDetailOpen(true)
@@ -68,6 +63,8 @@ function Product() {
   //   console.log("useOpen"+useOpen)
   //   console.log("ingredientsOpen"+ingredientsOpen)
 
+  
+    // console.log({...singleProduct?.data,quantity:0})
   return (
     <>
       <main>
@@ -75,11 +72,17 @@ function Product() {
 
         <section className=" mt-[7vh]  px-4 relative ">
           <div className="div se1_product grid grid-cols-2">
-            <div className="imgsProduct col-span-1  ">
+            <div className="imgsProduct col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1 2xl:col-span-1 xsm:mb-20 sm:mb-20 ">
               {/* <ProductImgSlider/> */}
+              
+              <img
+              src={singleProduct?.data?.productImgcardHover}
+              alt="product image"
+              className="w-full h-full max-w-[500px] max-h-[600px] mx-auto rounded-t"
+            />
             </div>
-            <div className="AboutProduct col-span-1 px-4">
-              <div className="aboutPart max-w-[600px]">
+            <div className="AboutProduct col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1 2xl:col-span-1   px-4">
+              <div className="aboutPart max-w-[600px] mx-auto">
                 <div className="ratingsPro  flex items-center justify-between relative">
                   <div className="">
                     <Reviews rating={singleProduct?.data?.productRaiting}  />
@@ -120,12 +123,13 @@ function Product() {
 
                 <div className="button_counterPart grid grid-cols-4 xsm:grid-cols-1 ">
                   <div className="col-span-1 xsm:my-2">
-                    {/* <Counter classConter="w-[95%] mx-auto py-2" /> */}
+                    {/* <Counter classConter="w-[95%] mx-auto py-2" item={{...singleProduct?.data,quantity:0}} /> */}
+                    <Counter classConter="w-[95%] mx-auto py-2" item={{ productId: singleProduct?.data, quantity: 1 }} />
                   </div>
                   <div className="col-span-3 xsm:col-span-1 xsm:my-2 ">
-                    <Button classbtn="m-0 w-full ProductBtn ">
+                    <button className="mainButton m-0 w-full ProductBtn " onClick={handleAddToCart}>
                       add to card - $ {singleProduct?.data.ProductPrice}
-                    </Button>
+                    </button>
                   </div>
                 </div>
               </div>
