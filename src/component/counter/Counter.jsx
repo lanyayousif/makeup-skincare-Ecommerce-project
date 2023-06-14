@@ -9,9 +9,8 @@ function Counter({classConter,item}) {
   const [countt,setCountt]=useState(0)
   const dispatch =useDispatch()
   const a=useSelector(state=>state.cart.carts.cartItems[0])
-  console.log(a?.quantity)
   let quantity=a?.quantity ?? countt
-  // let quantity=item.quantity ?? 0
+
   const handleIncrement=()=>{
     dispatch(increment(item))
     setCountt(countt+1)
