@@ -21,7 +21,8 @@ export const cartSlice = createSlice({
       if (productItem) {
         console.log("product item added befor");
       } else {
-        incrementNumberBeforeAdd? state.carts.cartItems = [...state.carts.cartItems, incrementNumberBeforeAdd]:state.carts.cartItems = [...state.carts.cartItems, item]
+        incrementNumberBeforeAdd.productId?._id ? state.carts.cartItems = [...state.carts.cartItems, incrementNumberBeforeAdd]:state.carts.cartItems = [...state.carts.cartItems, item]
+        // state.carts.cartItems = [...state.carts.cartItems, incrementNumberBeforeAdd]
       }
     },
     remove: (state, action) => {
@@ -68,7 +69,6 @@ export const cartSlice = createSlice({
           (product) => product.productId._id !== item.productId._id
         );
         }
-        
     },
 
     calculateTotals:(state)=>{
@@ -83,8 +83,6 @@ export const cartSlice = createSlice({
       })
       state.carts.totalQuantity=quantity
     }
-   
-
   },
 });
 

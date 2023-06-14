@@ -82,7 +82,7 @@ function Product() {
             />
             </div>
             <div className="AboutProduct col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1 2xl:col-span-1   px-4">
-              <div className="aboutPart max-w-[600px] mx-auto">
+              <div className="aboutPart max-w-[600px] xsm:mx-auto sm:mx-auto md:mx-auto">
                 <div className="ratingsPro  flex items-center justify-between relative">
                   <div className="">
                     <Reviews rating={singleProduct?.data?.productRaiting}  />
