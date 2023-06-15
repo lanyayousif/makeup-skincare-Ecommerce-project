@@ -49,7 +49,6 @@ function Cart() {
     issLoading,
     issError,
   } = useGetCartProductQuery();
-  console.log(carts.cartItems.length !==0)
 
   return (
     // top-0 right-0 fixed bottom-0  h-[100vh] w-full max-w-[500px]

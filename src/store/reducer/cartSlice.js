@@ -24,7 +24,7 @@ export const cartSlice = createSlice({
         incrementNumberBeforeAdd.productId?._id
           ? (state.carts.cartItems = [
               ...state.carts.cartItems,
-              incrementNumberBeforeAdd,
+              incrementNumberBeforeAdd
             ])
           : (state.carts.cartItems = [...state.carts.cartItems, item]);
         // state.carts.cartItems = [...state.carts.cartItems, incrementNumberBeforeAdd]
@@ -39,11 +39,12 @@ export const cartSlice = createSlice({
     increment: (state, action) => {
       const item = action.payload;
       let productItem = state.carts.cartItems.find(
-        (product) => product.productId._id === item.productId._id
+        (product) =>product.productId._id === item.productId._id
       );
       if (productItem) {
         productItem.quantity += 1;
-      } else {
+      } 
+      else {
         incrementNumberBeforeAdd.quantity += 1;
         incrementNumberBeforeAdd.productId = item.productId;
       }
@@ -61,7 +62,8 @@ export const cartSlice = createSlice({
         state.carts.cartItems = state.carts.cartItems.filter(
           (product) => product.productId._id !== item.productId._id
         );
-      } else if (incrementNumberBeforeAdd.quantity > 1) {
+      } 
+      else if (incrementNumberBeforeAdd.quantity > 1) {
         incrementNumberBeforeAdd.quantity -= 1;
       } else if (incrementNumberBeforeAdd.quantity === 1) {
         incrementNumberBeforeAdd.quantity -= 1;
