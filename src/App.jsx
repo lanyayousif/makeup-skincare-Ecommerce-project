@@ -19,12 +19,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from './store/reducer/userSlice';
 import Loder from './component/loder/Loder';
 import ProductAdd from './pages/admin/ProductAdd';
+import { useGetAllProductsQuery } from './store/api/product';
 
 function App() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  const { data, isError, isSuccess, isLoading, isFetching } =
-    useGetCurrentUserQuery();
+  const { data, isError, isSuccess, isLoading, isFetching } =useGetCurrentUserQuery();
+  const { data: productsData, isLoading:load, error } = useGetAllProductsQuery();
 
   useEffect(() => {
     if (isSuccess && data) {
@@ -34,9 +35,9 @@ function App() {
 
   // console.log("isLoading  "+isLoading)
 
-  // if (isLoading) {
-  //   return <Loder/>
-  // }
+  if (isLoading && load) {
+    return <Loder/>
+  }
   return (
     <>
       <Routes>

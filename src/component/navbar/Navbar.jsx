@@ -80,7 +80,7 @@ function Navbar() {
             </div>
 
             {/* nav menu responsive */}
-            <div className={`nav_elements ${shownav && "active"} `}>
+            <div className={`nav_elements ${shownav && "active"} z-88 `}>
               {/* nav menu top  */}
               <div
                 className="  md:container xsm:container sm:container mx-auto xsm:px-4 xsm:py-[10px] sm:px-4 sm:py-[10px]

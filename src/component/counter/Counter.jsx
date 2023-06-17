@@ -7,7 +7,7 @@ import { increment, decrement } from '../../store/reducer/cartSlice';
 
 function Counter({ classConter, item }) {
   const [countt, setCountt] = useState(0);
-  const [quantity, setQuantity] = useState(0);
+  const [quantityy, setQuantityy] = useState(null);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.carts.cartItems);
 
@@ -16,25 +16,29 @@ function Counter({ classConter, item }) {
       (product) => product.productId._id === item.productId._id
     );
     if (productItem) {
-      setQuantity(productItem.quantity);
+      setQuantityy(productItem.quantity);
+      console.log("productItem.quantity ="+productItem.quantity)
     } else {
-      setQuantity(0);
+      setQuantityy(null);
     }
-    console.log(productItem?.quantity)
   }, [cartItems, item]);
 
-  // const quantity=countt
-  
+  const quantity=quantityy??countt
+
   const handleIncrement = () => {
     dispatch(increment(item));
     setCountt(countt + 1);
   };
   const handleDecrement = () => {
     dispatch(decrement(item));
-    setCountt(countt - 1);
+    if(countt>=1){
+      setCountt(countt -1);
+    }
   };
 
-  // console.log("countt ="+countt)
+  console.log("countt ="+countt)
+  console.log("quantity ="+quantityy)
+
   // console.log("a?.quantity ="+a?.quantity)
   return (
     <div

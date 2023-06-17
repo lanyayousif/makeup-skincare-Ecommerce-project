@@ -4,6 +4,7 @@ import Card from '../card/Card';
 import { useDispatch, useSelector } from 'react-redux';
 import { addSearchValue } from '../../store/reducer/productSlice';
 import { useNavigate } from 'react-router-dom';
+import './search.css'
 
 function Search() {
   const dispatch = useDispatch();
@@ -23,15 +24,22 @@ function Search() {
     search: '',
   });
 
+
   const handleInput = (e) => {
     if (e.target.name.includes('.')) {
       const [parent, child] = e.target.name.split('.');
       setFormData({
         ...formData,
         [parent]: { ...formData[parent], [child]: e.target.value },
+        page:1
       });
     } else {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
+      if (e.target.name !== "page") {
+        setFormData({ ...formData, [e.target.name]: e.target.value , page:1});
+      }
+      else{
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+      }
     }
   };
 
@@ -44,6 +52,7 @@ function Search() {
   }, [formData]);
 
   // console.log(products)
+
   // localStorage.setItem("searchInput", JSON.stringify(formData));
 
   return (
@@ -57,7 +66,7 @@ function Search() {
         value={formData?.search}
       />
 
-      <div className="productsReturn ">
+      <div className="productsReturn  overflow-y-auto h-[600px]">
         <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 xsm:grid-cols-1 grid-rows-1 w-full">
           {limitedArray?.map((data) => {
             return <Card {...data} key={data._id} />;

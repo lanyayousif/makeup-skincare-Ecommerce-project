@@ -14,7 +14,8 @@ const initialState={
     products:{
         search:"",
         page:1,
-        all:true
+        sort:"alphaAZ"
+        // all:true
     }
       
 }
@@ -25,7 +26,18 @@ export const productSlice=createSlice({
     initialState,
     reducers:{
       addSearchValue:(state,action)=>{
-        state.products=action.payload
+        const payloadKeys = Object.keys(action.payload);
+        // state.products=action.payload
+        for (let i = 0; i < Object.keys(action.payload).length; i++) {
+            const payloadKey = payloadKeys[i];
+           for (let j = 0; j < Object.keys(state.products).length; j++) {
+               const productKey = Object.keys(state.products)[j];
+            if(productKey === payloadKey){
+                      state.products[productKey] = action.payload[payloadKey];
+                     // console.log(state.products.a)
+            }
+           }  
+        }
     },    
     }
 

@@ -1,0 +1,12 @@
+ .productsReturn::-webkit-scrollbar{
+    width: 2px;
+  }
+ .productsReturn::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+ .productsReturn::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    background-color: var(--back-secondary-color);
+    border-radius: 5px;
+    /* outline: 1px solid slategrey; */
+  }

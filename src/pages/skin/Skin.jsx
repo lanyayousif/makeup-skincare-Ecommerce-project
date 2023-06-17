@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faArrowLeft, faL } from "@fortawesome/free-solid-svg-icons";
 import "./skin.css";
 import Navbar from "../../component/navbar/Navbar";
 import Filter from "../../component/filter/Filter";
@@ -16,29 +16,36 @@ import Loder from "../../component/loder/Loder";
 
 function Skin() {
   const dispatch = useDispatch();
-  const [sortType, setSortType] = useState({sort:"alphaAZ"});
+  const [sortType, setSortType] = useState({sort:null});
   const { products } = useSelector((state) => state.product);
+  const { data: productsData, isLoading, error } = useGetAllProductsQuery(products);
+  const [currentPage, setCurrentPage] = useState(1);
+ 
 
-  const { data: productsData, isLoading, error } = useGetAllProductsQuery(products?.search ?? products?.search);
   const handleSort = (e) => {
     const selectedValue = e.target.name;
     setSortType({[e.target.name]:e.target.value});
-    // console.log(sortType);
   };
 
-  const [currentPage, setCurrentPage] = useState(1);
-
   const pageCount = Math.ceil(productsData?.results / 9);
-  
 
   const paginate = ({ selected }) => {
     setCurrentPage(selected + 1);
   };
 
   useEffect(() => {
-    dispatch(addSearchValue({ page: currentPage,sort: sortType.sort }));
+    if (sortType.sort !== null) {
+      console.log("changed")
+      dispatch(addSearchValue({ page: 1, sort: sortType.sort }));
+      setCurrentPage(products.page)
+    } else {
+      dispatch(addSearchValue({ page: currentPage}));
+    }
   }, [currentPage,sortType]);
 
+  console.log(products)  
+  //  console.log(productsData?.data)
+  // localStorage.setItem("filtervalue", JSON.stringify(products));
 if(isLoading)
  return <Loder/>
 
@@ -112,6 +119,7 @@ if(isLoading)
                 previousLinkClassName={"page-number"}
                 nextLinkClassName={"page-number"}
                 pageRangeDisplayed={3}
+                forcePage={currentPage -1}
               />
             </div>
           </div>

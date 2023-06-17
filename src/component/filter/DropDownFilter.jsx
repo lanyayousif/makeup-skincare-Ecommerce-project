@@ -20,7 +20,7 @@ export default function DropDownFilter() {
 
 
   useEffect(() => {
-    dispatch(addSearchValue({ sort: sortType }));
+    dispatch(addSearchValue({ sort: sortType.sort  }));
   }, [sortType]);
 
   return (
