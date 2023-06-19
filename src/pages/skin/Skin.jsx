@@ -49,8 +49,8 @@ function Skin() {
   }, [products.search]);
 
 
-  console.log(products)  
-  console.log("currentPage   "+currentPage)  
+  // console.log(products)  
+  // console.log("currentPage   "+currentPage)  
 
   //  console.log(productsData?.data)
   // localStorage.setItem("filtervalue", JSON.stringify(products));
