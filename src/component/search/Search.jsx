@@ -50,6 +50,7 @@ function Search() {
   useEffect(() => {
     dispatch(addSearchValue(formData));
   }, [formData]);
+  
 
   // console.log(products)
 

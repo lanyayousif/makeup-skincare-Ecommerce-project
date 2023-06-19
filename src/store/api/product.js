@@ -7,7 +7,7 @@ const productsApi = api.injectEndpoints({
     getAllProducts: builder.query({
       query: (params) => {
       const query=queryString.stringify(params)
-        console.log(query)
+        // console.log(query)
          return(`/product?${query}`)
         },
       invalidatesTags: ["product"],

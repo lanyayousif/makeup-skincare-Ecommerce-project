@@ -34,7 +34,7 @@ export const productSlice=createSlice({
                const productKey = Object.keys(state.products)[j];
             if(productKey === payloadKey){
                       state.products[productKey] = action.payload[payloadKey];
-                     // console.log(state.products.a)
+                    //  console.log(action.payload[payloadKey])
             }
            }  
         }

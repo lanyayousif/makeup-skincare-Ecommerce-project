@@ -30,20 +30,28 @@ function Skin() {
   const pageCount = Math.ceil(productsData?.results / 9);
 
   const paginate = ({ selected }) => {
-    setCurrentPage(selected + 1);
+       setCurrentPage(selected + 1);
   };
 
   useEffect(() => {
     if (sortType.sort !== null) {
-      console.log("changed")
-      dispatch(addSearchValue({ page: 1, sort: sortType.sort }));
-      setCurrentPage(products.page)
-    } else {
+      dispatch(addSearchValue({ page: currentPage, sort: sortType.sort }));
+    }else {
       dispatch(addSearchValue({ page: currentPage}));
     }
+
   }, [currentPage,sortType]);
 
+  useEffect(() => {
+    if (products.page ===1) {
+      setCurrentPage(1)
+    } 
+  }, [products.search]);
+
+
   console.log(products)  
+  console.log("currentPage   "+currentPage)  
+
   //  console.log(productsData?.data)
   // localStorage.setItem("filtervalue", JSON.stringify(products));
 if(isLoading)
@@ -119,7 +127,7 @@ if(isLoading)
                 previousLinkClassName={"page-number"}
                 nextLinkClassName={"page-number"}
                 pageRangeDisplayed={3}
-                forcePage={currentPage -1}
+                forcePage={products.page -1}
               />
             </div>
           </div>
