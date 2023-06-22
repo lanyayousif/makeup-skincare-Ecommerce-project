@@ -90,7 +90,7 @@ if(isLoading)
                   name="sort"
                   onChange={handleSort}
                   id="sort"
-                  value={sortType.sort}
+                  value={sortType.sort || "alphaAZ"}
                   className="p-2 sort text-sm font-light capitalize rounded-sm ml-3 w-[200px]"
                 >
                   <option value="alphaAZ">alphabetically, A-Z</option>

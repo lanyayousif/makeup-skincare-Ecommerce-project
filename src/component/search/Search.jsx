@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addSearchValue } from '../../store/reducer/productSlice';
 import { useNavigate } from 'react-router-dom';
 import './search.css'
+import { addsearchState } from '../../store/reducer/stateSlice';
 
 function Search() {
   const dispatch = useDispatch();
@@ -16,13 +17,13 @@ function Search() {
     error,
   } = useGetAllProductsQuery(products);
 
-  const limitedArray = productsData?.data.slice(0, 4);
-
-  // console.log(limitedArray)
-
   const [formData, setFormData] = useState({
     search: '',
   });
+  const [btnState,setBtnState]=useState(true)
+  const limitedArray = productsData?.data.slice(0, 4);
+
+  // console.log(limitedArray)
 
 
   const handleInput = (e) => {
@@ -45,8 +46,13 @@ function Search() {
 
   const handleButton = () => {
     navigate('/skin');
+    setBtnState(false)
   };
 
+  useEffect(() => {
+    dispatch(addsearchState({searchBtnState:btnState}));
+  }, [btnState]);
+  
   useEffect(() => {
     dispatch(addSearchValue(formData));
   }, [formData]);

@@ -15,10 +15,12 @@ import Button from "../button/Button";
 import Cart from "../cart/Cart";
 import { useDispatch, useSelector } from "react-redux";
 import Search from "../search/Search";
+import  {addsearchState} from "../../store/reducer/stateSlice";
 
 function Navbar() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
+  const  {searchBtnState}  = useSelector((state) => state.stateSlice);
 
   const [shownav, setShownav] = useState(false);
   const [showcart, setShowcart] = useState(false);
@@ -42,6 +44,10 @@ function Navbar() {
       setScrollnav(false);
     }
   };
+  
+  useEffect(() => {
+   dispatch(addsearchState({searchBtnState:search}))
+  },[search]);
 
   useEffect(() => {
     changeBackground();
@@ -179,7 +185,7 @@ function Navbar() {
             </div>
           </div>
         </Container>
-          <div className={`searchNav ${search && "activeSearch"} `}>
+          <div className={`searchNav ${searchBtnState && "activeSearch"} `}>
           <Search/>
           </div>
       </nav>
